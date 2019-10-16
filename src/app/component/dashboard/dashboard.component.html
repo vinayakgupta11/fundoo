@@ -65,8 +65,10 @@
   <div class='ProfileInfo' fxLayout="column">
     <div fxFlex=90 fxLayout="row">
       <div fxFlex=40 fxLayoutAlign="center center">
-        <mat-icon (click)="openDialog()" class='icon-display'>account_circle</mat-icon>
-        <!-- <ngx-img (onSelect)="onSelect($event)" (onReset)="onReset()" [config]="{ crop: [ { ratio: .5 } ] }"></ngx-img> -->
+        <mat-icon (click)="openDialog()" ></mat-icon>
+         <!-- <img mat-card-avatar src='http://fundoonotes.incubation.bridgelabz.com/images/1571250808847blob'>  -->
+        <img mat-card-avatar [src]= "url">
+        
       </div>
       <div fxFlex=60>
         <p>{{firstName+' '+lastName}}</p>
