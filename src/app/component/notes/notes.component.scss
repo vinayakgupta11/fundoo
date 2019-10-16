@@ -1,0 +1,69 @@
+// .main{
+//     height: 100%;
+//     width: 100%;
+// .container
+// {
+//     width:50%;
+//     margin-top:10%;
+//     margin-left: 30%;
+//     border-radius: 5px;
+
+//     .fielda
+//     {
+//         width : 90%;
+//         border: 0px;
+//     }
+//     .field
+//     {
+//         width : 100%;
+//         border: 0px;
+//     }
+    
+    
+// }
+
+// }
+
+// // .full
+// // {
+// //     width:100%;
+// //     min-height: 100px;
+// //     max-height: 100%;
+// // }
+// // .area
+// // {
+// //     border: 0px;
+// //     width:100%;
+// // }
+// // .center
+// // {
+// //     width:100%;
+// // }
+.center{
+ height: 100%;
+  width: 100%;
+  min-width: 200px;
+  min-height: 150px;
+  display: flex;
+  padding-top: 15px;
+  padding-bottom: 20px;
+  }
+  .fielda
+    { width : 100%;
+        border: 0px;
+        outline: none;
+    }
+    .card
+    {
+    
+    min-width: 50%;
+  
+  border-radius: 20px;
+
+    }
+    .no
+    {
+      width:100%;
+      padding-bottom: 15px;
+    }
+    

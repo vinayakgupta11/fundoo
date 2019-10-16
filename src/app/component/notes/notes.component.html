@@ -1,0 +1,57 @@
+<!-- <div class="main">
+<mat-accordion>
+  <mat-expansion-panel class="container">
+    <mat-expansion-panel-header>
+      <div style="width: 100%">
+        <textarea matInput type="text" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+          cdkAutosizeMaxRows="25" placeholder="Title" class="fielda"></textarea>
+      </div>
+    </mat-expansion-panel-header>
+    <div style="width: 100%">
+        <textarea matInput type="text" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+          cdkAutosizeMaxRows="25" placeholder="Title" class="fielda"></textarea>
+      </div>
+   
+  </mat-expansion-panel>
+</mat-accordion>
+</div> -->
+<div *ngIf="show" class="center" fxLayoutAlign="center start">
+  <mat-card fxFlex="50" class="card" fxLayoutAlign="start start">
+    <textarea (click)="toggle()" matInput type="text" cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+      cdkAutosizeMinRows="1" cdkAutosizeMaxRows="25" placeholder="Take a note" class="fielda"></textarea>
+
+  </mat-card>
+</div>
+
+
+
+
+
+
+
+<div *ngIf="!show" class="center" fxLayoutAlign="center start">
+
+  <mat-card class="card" fxLayout="column" fxFlex="50" fxLayoutAlign="start start">
+    <div fxFlex="40" fxLayout="row" class="no">
+
+      <textarea matInput type="text" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+        cdkAutosizeMaxRows="25" placeholder="Title " class="fielda" [formControl]="title"></textarea>
+
+
+    </div>
+    <div fxFlex="40" class="no" >
+      <textarea matInput type="text" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+        cdkAutosizeMaxRows="25" placeholder="Take a note" class="fielda" [formControl]="description"></textarea>
+    </div>
+    <div fxFlex="20" fxLayout="row " style="width: 100%">
+      <div fxFlex=80>
+        <app-icon  (messageEvent)="receiveMessage($event)" [mess]="isArchived"></app-icon>
+      </div>
+      <div fxFlex=20>
+        <button mat-button (click)="receive()" >Close</button>
+      </div>
+    </div>
+
+  </mat-card>
+  
+</div>

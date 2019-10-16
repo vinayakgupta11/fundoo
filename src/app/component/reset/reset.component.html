@@ -1,0 +1,39 @@
+<div class="container" fxLayoutAlign="center center" fxLayout.xs="column">
+  <mat-card class="card" fxLayout="column" fxFlex="50">
+      <div class="container" fxFlex="30" fxLayoutAlign="center center">
+          <img class="imag" mat-card-image src="/src//app//images/goog.jpg">
+      </div>
+      <div class="container" fxFlex="10" fxLayoutAlign="center start">
+          <mat-card-header fxLayoutGap="5px">
+              <mat-card-title class="title">Reset</mat-card-title>
+          </mat-card-header>
+      </div>
+      <div fxLayoutAlign="center start" fxFlex="20">
+        <mat-form-field appearance="outline" class="formfield">
+          <mat-label>Password</mat-label>
+          <input matInput placeholder="Password" [formControl]="password" [type]="hide ? 'password' : 'text'">
+          <mat-error *ngIf="password.invalid"> {{getPasswordInvalidMessage()}}</mat-error>
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+          <mat-hint>Use 8 or more characters with mix of numbers,symbols & characters</mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="formfield">
+          <mat-label>Confirm-Password</mat-label>
+          <input matInput placeholder="Confirm-Password" [formControl]="confirmPassword" [type]="hide ? 'password' : 'text'">
+          <mat-error *ngIf="password.invalid"> {{getMatchedPasswordsMessage()}}</mat-error>
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        </mat-form-field>
+      </div>
+     
+
+      <div fxLayoutAlign="center start" fxFlex="10">
+          
+          <button class="butto" mat-button (click)="onReset()"  > Reset Password!</button>
+      </div>
+  </mat-card>
+</div>

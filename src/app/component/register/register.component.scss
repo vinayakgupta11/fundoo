@@ -1,0 +1,48 @@
+.center{
+    background-image: url('../../images/back-image.png');
+    height: 100%;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+    justify-content: center;
+    align-items: center;
+  
+  }
+
+.container
+{
+  color: black;
+}
+  .title{
+    font-variant: small-caps;
+    font-weight: bold;
+    font-size: large;
+    color:midnightblue;
+  }
+  .subtitle{
+    font-family: "Times New Roman", Times, serif;
+    font-variant: normal;
+    font-weight: bold;
+    font-size: 15px;
+    padding-bottom: 15px;
+  }
+  .formfield{
+    padding-right:20px; 
+  }
+  .formField{
+    padding-right:20px; 
+    width:65%;
+    
+  }
+  .butto
+  { font-size: 20px;
+     padding-top:40px;  
+     color: blue
+  }
+  .imagee
+  {
+    padding-left: 80px;
+  }
+  

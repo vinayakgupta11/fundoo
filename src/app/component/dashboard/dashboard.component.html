@@ -1,0 +1,89 @@
+<div class="container" fxLayout="column">
+  <mat-toolbar fxLayoutAlign="start center" fxLayoutGap=20px class="abc" fxLayout="row">
+    <div fxFlex=90 fxLayoutAlign="start center" fxLayoutGap=20px>
+      <button type="button" mat-button (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <img class="imag" src='/src/app/images/abc.png'>
+      <span class='style'>Fundoo-Notes</span>
+      <mat-form-field appearance="outline" class="searc" fxHide.xs="true">
+        <mat-icon class="lab" matPrefix>search</mat-icon>
+        <mat-icon matSuffix>close</mat-icon>
+        <input matInput placeholder="Search">
+      </mat-form-field>
+    </div>
+    <div fxFlex=10 fxLayoutAlign="start center">
+      <mat-icon>apps</mat-icon>
+      <button mat-button [matMenuTriggerFor]="belowMenu">
+        <img mat-card-avatar src="/src/app/images/user.png" class="avatar-img" height="20px" width="20px">
+      </button>
+    </div>
+  </mat-toolbar>
+  <!-- <button mat-menu-item *ngIf="!auth.isLoggednIn()" routerLink="/login">Login</button> -->
+  <mat-drawer-container class="sidebar-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side" fxHide.xs="true" fxShow="true">
+      <mat-nav-list>
+        <mat-list-item (click)=displayNot()>
+          <mat-icon class="icon">note_add</mat-icon> <span class="nitem"> Notes</span>
+        </mat-list-item>
+        <mat-list-item routerLink='.'>
+          <mat-icon class="icon">add_alert</mat-icon> <span class="nitem"> Reminders</span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <h3 mat-subheader>Labels</h3>
+        <mat-list-item routerLink='.'>
+          <mat-icon class="icon">create</mat-icon> <span class="nitem">Edit-Labels</span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item (click)=displayArchive()>
+          <mat-icon class="icon">archive</mat-icon> <span class="nitem">Archive</span>
+        </mat-list-item>
+        <mat-list-item (click)=displayTrash()>
+          <mat-icon class="icon">delete</mat-icon> <span class="nitem">Trash</span>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-drawer>
+    <div >
+      <router-outlet></router-outlet>
+    </div>
+    
+  </mat-drawer-container>
+</div>
+
+
+
+<!-- <div fxFlex=80  fxLayout="column">
+      <div  fxFlex= 40 class="not"> 
+          <app-notes></app-notes>
+      </div >
+      <app-cards></app-cards>
+    </div> -->
+
+
+
+<mat-menu #belowMenu="matMenu" [overlapTrigger]="false">
+  <div class='ProfileInfo' fxLayout="column">
+    <div fxFlex=90 fxLayout="row">
+      <div fxFlex=40 fxLayoutAlign="center center">
+        <mat-icon (click)="openDialog()" class='icon-display'>account_circle</mat-icon>
+        <!-- <ngx-img (onSelect)="onSelect($event)" (onReset)="onReset()" [config]="{ crop: [ { ratio: .5 } ] }"></ngx-img> -->
+      </div>
+      <div fxFlex=60>
+        <p>{{firstName+' '+lastName}}</p>
+        <p>{{email}}</p>
+      </div>
+    </div>
+    <div fxFlex=10 fxLayout="row">
+      <div fxFlex=50>
+        <button mat-menu-item routerLink="/login"> Add Account</button>
+      </div>
+      <div fxFlex=50>
+        <button mat-menu-item *ngIf="auth.isLoggednIn()" (click)="auth.logout()">Logout</button>
+      </div>
+    </div>
+
+
+
+
+  </div>
+</mat-menu>

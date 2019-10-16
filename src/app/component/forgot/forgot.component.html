@@ -1,0 +1,27 @@
+<div class="container" fxLayoutAlign="center center" fxLayout.xs="column">
+  <mat-card class="card" fxLayout="column" fxFlex="50">
+      <div class="container" fxFlex="30" fxLayoutAlign="center center">
+          <img class="imag" mat-card-image src="/src//app//images/goog.jpg">
+      </div>
+      <div class="container" fxFlex="10" fxLayoutAlign="center start">
+          <mat-card-header fxLayoutGap="5px">
+              <mat-card-title class="title">Forget</mat-card-title>
+          </mat-card-header>
+      </div>
+      <div fxLayoutAlign="center start" fxFlex="20">
+          <mat-form-field class="formfield" appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="Email"  [formControl]="email" required>
+              <mat-error *ngIf="email.invalid"> {{getEmailInvalidMessage()}}</mat-error>
+              <mat-hint>enter valid email-address</mat-hint>
+          </mat-form-field>
+
+      </div>
+     
+
+      <div fxLayoutAlign="center start" fxFlex="10">
+          
+          <button class="butto" routerLink="/reset" mat-button (click)= "onforgot()"> Forgot Password!</button>
+      </div>
+  </mat-card>
+</div>

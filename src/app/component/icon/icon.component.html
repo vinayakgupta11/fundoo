@@ -1,0 +1,45 @@
+<div  fxLayoutAlign="space-between " fxFlex.gt-xs="25%">
+<button mat-icon-button title="Remind me">
+    <mat-icon>notifications</mat-icon>
+    </button>
+    <button mat-icon-button title="Collaborator">
+    <mat-icon>person_add</mat-icon>
+    </button>
+    <button  mat-icon-button [matMenuTriggerFor]="menu_color" title="Change color">
+    <mat-icon>color_lens</mat-icon>
+    </button>
+    <button mat-icon-button  title="Add image">
+    <mat-icon>panorama</mat-icon>
+    </button>
+
+    <button *ngIf="mess=='false'"  mat-icon-button (click)=ArchiveNote(card) title="Archive">
+    <mat-icon>archive</mat-icon>
+    </button>
+
+    <button *ngIf="mess=='true'"  mat-icon-button (click)=UnArchiveNote(card) title="Unarchive">
+        <mat-icon>unarchive</mat-icon>
+        </button>
+
+    <button mat-icon-button [matMenuTriggerFor]="menu_delete" title="More">
+    <mat-icon>more_vert</mat-icon>
+    </button>
+    
+    <!-- <button mat-icon-button (click)="sendMessage()" title="Save">
+        <mat-icon>save</mat-icon>
+        </button> -->
+  </div>
+
+  <mat-menu #menu_color="matMenu" [overlapTrigger]="false">
+
+    <div class="center" >
+        <button *ngFor="let color1 of colorArray" [ngStyle]="{'background':color1.color}" (click)="changeColor(card,color1.color)" class= "icon-palette"></button>
+    </div>  
+  </mat-menu>
+
+
+  <mat-menu #menu_delete="matMenu" [overlapTrigger]="false">
+
+    <button mat-menu-item>Add Label</button>
+    <button mat-menu-item (click)= trashNote(card)>Delete Note</button> 
+    
+      </mat-menu>
