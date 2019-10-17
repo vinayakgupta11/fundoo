@@ -13,17 +13,21 @@ import { DataService } from 'src/app/services/data-services/data.service';
 })
 export class TrashComponent implements OnInit {
   TokenAuth: boolean = true;
-  @Input() mess: any;
+  display:any;
+  component='deletee';
   notes: any;
   options: any;
   message: string;
   user: Color;
-  public noteSelected;
 
   constructor(private noteService: NoteService, private dialog: MatDialog, private datasvc: DataService) { }
 
   ngOnInit() {
     this.getTrashNote();
+    this.datasvc.currentMessage.subscribe((res) => {
+      this.getTrashNote();
+
+    })
   }
   openDialog(note) {
     console.log("the value of note is ", note);
@@ -50,36 +54,6 @@ export class TrashComponent implements OnInit {
       console.log(error);
     });
   }
-  RestoreNotes(noteId) {
-    this.user = {
-      isDeleted: false,
-      noteIdList: [noteId]
-    }
-    console.log(this.user);
-    this.options = {
-      data: this.user
-    }
-    this.noteService.RestoreNote(this.options, this.TokenAuth).subscribe((response) => {
-      console.log(response);
-      this.getTrashNote();
-
-    }, (error) => {
-      console.log(error);
-    });
-  }
-  deleteNotesForever(noteId) {
-    this.user = {
-      isDeleted: true,
-      noteIdList: [noteId]
-    }
-    this.options = {
-      data: this.user
-    }
-    this.noteService.DeleteForever(this.options, this.TokenAuth).subscribe((response) => {
-      console.log(response);
-      this.getTrashNote();
-    }, (error) => {
-      console.log(error);
-    });
-  }
+ 
+ 
 }

@@ -16,7 +16,11 @@
       <app-unarchive-icon [CardId]='card'></app-unarchive-icon>
       <app-more [CardId]='card' [MatMenuu]='show'></app-more>
     </div>
- 
+
+    <div *ngIf="show=='deletee'" fxLayout='row'>
+        <app-more [CardId]='card' [MatMenuu]='show'></app-more>
+    </div>
+  
 
 
 

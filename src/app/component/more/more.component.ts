@@ -40,4 +40,40 @@ export class MoreComponent implements OnInit {
   });
   }
 
+  RestoreNotes(card) {
+    this.cardId=card.id;
+    this.user = {
+      isDeleted: false,
+      noteIdList: [this.cardId]
+    }
+    console.log(this.user);
+    this.options = {
+      data: this.user
+    }
+    this.noteService.RestoreNote(this.options, this.TokenAuth).subscribe((response) => {
+      console.log(response);
+      this.datasvc.changeMessage('save')
+
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
+  deleteNotesForever(card) {
+    this.cardId=card.id;
+    this.user = {
+      isDeleted: true,
+      noteIdList: [this.cardId]
+    }
+    this.options = {
+      data: this.user
+    }
+    this.noteService.DeleteForever(this.options, this.TokenAuth).subscribe((response) => {
+      console.log(response);
+      this.datasvc.changeMessage('save')
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
 }

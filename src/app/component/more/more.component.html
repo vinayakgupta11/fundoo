@@ -6,6 +6,17 @@
     <mat-icon>more_vert</mat-icon>
   </button>
 
+  <button *ngIf="MatMenuu=='deletee'" mat-icon-button [matMenuTriggerFor]="menu_delet" title="More">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+
+
+    <mat-menu #menu_delet="matMenu" [overlapTrigger]="false">
+        
+        <button mat-menu-item (click)= deleteNotesForever(CardId)>Delete Forever</button>
+        <button mat-menu-item (click) =RestoreNotes(CardId)>Restore</button>
+      </mat-menu>
+  
 
 
 <mat-menu #menu_delete="matMenu" [overlapTrigger]="false">
