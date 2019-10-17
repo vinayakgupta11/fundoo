@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import{User} from '../../models/register.model';
 import{TestService}from '../../services/user-services/User.service'
+import { tokenReference } from '@angular/compiler';
 
 
 @Component({
@@ -13,6 +14,7 @@ export class RegisterComponent implements OnInit {
   userObj: User = new User();
   result:any;
   response: any;
+  TokenAuth:boolean= false;
 
   hide=true;
   public firstName = new FormControl('', [Validators.required]);
@@ -62,9 +64,9 @@ getEmailInvalidMessage() {
     }
     let obj={
       data: this.userObj,
-      url: 'userSignUp'
+
     }
-    this.result= this.svc.PostwithoutToken(obj);
+    this.result= this.svc.Register(obj,this.TokenAuth);
     this.result.subscribe((response) => {
       this.response = response;
       console.log(this.response);

@@ -15,6 +15,7 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./upload-image.component.scss']
 })
 export class UploadImageComponent implements OnInit {
+  TokenAuth:boolean= true;
  
   imageUrl:string;
   selectedfile:File=null;
@@ -30,18 +31,19 @@ export class UploadImageComponent implements OnInit {
     this.imageChangedEvent = event;
 }
   imageCropped(event: ImageCroppedEvent) {
+    console.log('event', event);
+    
     this.croppedImage =event.file;
 }
 changedp()
   {
     const fd= new FormData();
     fd.append('file',this.croppedImage);
-    this.options={
+    let obj={
       data: fd,
-      url: 'uploadProfileImage'
     }
     this.dialogRef.close();
-    this.testService.PostwithTokenimage(this.options).subscribe((response:any)=>
+    this.testService.Profile(obj,this.TokenAuth).subscribe((response:any)=>
     {
       console.log( response);
       localStorage.setItem('imageUrl', response.status.imageUrl)

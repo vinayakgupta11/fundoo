@@ -13,6 +13,7 @@ import {DataService} from '../../services/data-services/data.service'
 })
 export class LoginComponent implements OnInit {
   result:any;
+  TokenAuth:boolean= false;
   
   userObj: User = new User();
   public email = new FormControl('', [Validators.required, Validators.email]);
@@ -44,9 +45,8 @@ getEmailInvalidMessage() {
     }
     let obj={
       data: this.userObj,
-      url: 'login'
     }
-    this.result= this.svc.PostwithoutToken(obj);
+    this.result= this.svc.Login(obj,this.TokenAuth);
     this.result.subscribe((response) => {
       
       console.log(response);

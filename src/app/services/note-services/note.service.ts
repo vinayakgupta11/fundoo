@@ -10,31 +10,48 @@ export class NoteService {
 
   constructor(private http: HttpClient,private svc: HttpService) { }
 
-  PostwithToken(userObj)
+AddNote(userObj, auth)
 {
-  //console.log("ukjdkjdhkj", userObj);
-  
-  let httpOptions={
-    headers:new HttpHeaders({
-      'Content-type':'application/json',
-      'Authorization':localStorage.getItem('id')
-    })
-  }
- // console.log("fffffff",userObj)
-  return this.svc.PostWithTokenss(userObj,httpOptions);
-
-
+  return this.svc.Post(userObj, auth, 'notes/addNotes')
 }
-GetwithToken(userObj)
+GetNotesList(auth)
 {
-  let httpOptions={
-    headers:new HttpHeaders({
-      'Content-type':'application/x-www-form-urlencoded',
-      'Authorization':localStorage.getItem('id')
-    })
-  }
-  return this.svc.GetWithTokenss(userObj,httpOptions);
-
-
+  return this.svc.Get( auth, 'notes/getNotesList')
 }
+ArchiveNotesList(auth)
+{
+  return this.svc.Get( auth, 'notes/getArchiveNotesList')
 }
+TrashNote(userObj, auth)
+{
+  return this.svc.Post(userObj, auth, 'notes/trashNotes')
+}
+ArchiveNote(userObj, auth)
+{
+  return this.svc.Post(userObj, auth, 'notes/archiveNotes')
+}
+UnArchiveNote(userObj, auth)
+{
+  return this.svc.Post(userObj, auth, 'notes/archiveNotes')
+}
+RestoreNote(userObj, auth)
+{
+  return this.svc.Post(userObj, auth, 'notes/trashNotes')
+}
+DeleteForever(userObj, auth)
+{
+  return this.svc.Post(userObj, auth, 'notes/deleteForeverNotes')
+}
+UpdateNotes(userObj, auth)
+{
+  return this.svc.Post(userObj, auth, 'notes/updateNotes')
+}
+ColorChange(userObj, auth)
+{
+  return this.svc.Post(userObj, auth, 'notes/changesColorNotes')
+}
+TrashNotesList(auth)
+{
+  return this.svc.Get( auth, 'notes/getTrashNotesList')
+}
+ }

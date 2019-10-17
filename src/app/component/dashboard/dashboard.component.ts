@@ -33,9 +33,8 @@ export class DashboardComponent implements OnInit {
   {
     this.localstor= localStorage.getItem('imageUrl');
     this.url=(this.imgbase+this.localstor)
-    console.log('uyyy',this.url);
+    console.log('url',this.url);
     
-
   }
   openDialog()
   {

@@ -11,6 +11,7 @@ import { DataService } from '../../services/data-services/data.service'
   styleUrls: ['./notes.component.scss']
 })
 export class NotesComponent implements OnInit {
+  TokenAuth:boolean= true;
   isArchived='false';
   show: boolean = true;
   message: string;
@@ -24,30 +25,9 @@ export class NotesComponent implements OnInit {
   ngOnInit() {
 
   }
-
-
   toggle() {
     this.show = !this.show;
   }
-  //when hit on save button in icon component
-  receiveMessage($event) {
-    this.message = $event
-    this.note = {
-      title: this.title.value,
-      description: this.description.value
-    }
-    console.log(this.note);
-    this.options = {
-      data: this.note,
-      url: 'addNotes'
-    }
-    this.noteService.PostwithToken(this.options).subscribe((response) => {
-      console.log(response);
-    }, (error) => {
-      console.log(error);
-    });
-  }
-  //when hit on close button
   receive() {
     if (this.title.value == null && this.description.value == null) {
       this.toggle();
@@ -60,10 +40,9 @@ export class NotesComponent implements OnInit {
       }
       console.log(this.note);
       this.options = {
-        data: this.note,
-        url: 'addNotes'
+        data: this.note
       }
-      this.noteService.PostwithToken(this.options).subscribe((response) => {
+      this.noteService.AddNote(this.options,this.TokenAuth).subscribe((response) => {
         console.log(response);
         this.toggle();
         this.data.changeMessage("save");

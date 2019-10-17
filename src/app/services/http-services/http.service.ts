@@ -1,49 +1,81 @@
 import { Injectable } from '@angular/core';
 import{environment} from '../../../environments/environment'
 import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
   baseUrl= environment.base
-  baseUrl1=environment.base1
-
-  constructor(private http: HttpClient) { }
-  Post(userObj)
-  {
-    return this.http.post( this.baseUrl+userObj.url , userObj.data)
-  }
-
-
-
-
   
-  PostWithTokens(userObj,options)
-  {
-    return this.http.post(this.baseUrl+userObj.url ,userObj.data,options)
-  }
- 
-  //for addnote api
-  PostWithTokenss(userObj,options)
-  {
-    //console.log(this.baseUrl1+userObj.url, "DATA", userObj.data, options)
-    return this.http.post(this.baseUrl1+userObj.url , (userObj.data),options)
-
-  }
-  GetWithTokenss(userObj,options)
-  {
-    return this.http.get(this.baseUrl1+userObj.url , options)
-
-  }
-  getEncodedData(data){
-    const formBody=[];
-    for(const property in data){
-      const encodedKey=encodeURIComponent(property);
-      const encodedValue=encodeURIComponent(data[property]);
-      formBody.push(encodedKey+'='+encodedValue);
+  constructor(private http: HttpClient) { }
+  
+  Post(userObj,auth, url)
+  { 
+    if(auth)
+    {
+      let httpOptions={
+        headers:new HttpHeaders({
+          'Content-type':'application/json',
+          'Authorization':localStorage.getItem('id')
+        })
+      }
+      return this.http.post( this.baseUrl+url , userObj.data,httpOptions)
     }
-    return formBody.join ('&');
+    else
+    {
+    return this.http.post( this.baseUrl+url , userObj.data)
+    }
   }
-
+  PostEncoded(userObj,auth, url)
+  { 
+    if(auth)
+    {
+      let httpOptions={
+        headers:new HttpHeaders({
+          'Content-type':'application/x-www-form-urlencoded',
+          'Authorization':localStorage.getItem('token')
+        })
+      }
+      return this.http.post( this.baseUrl+url , userObj,httpOptions)
+    }
+    else
+    {
+    return this.http.post( this.baseUrl+url , userObj.data)
+    }
+  }
+  PostImage(userObj,auth, url)
+  { 
+    if(auth)
+    {
+      let httpOptions={
+        headers:new HttpHeaders({
+          'Authorization':localStorage.getItem('id')
+        })
+      }
+      return this.http.post( this.baseUrl+url , userObj,httpOptions)
+    }
+    else
+    {
+    return this.http.post( this.baseUrl+url , userObj.data)
+    }
+  }
+  Get(auth, url)
+  { 
+    if(auth)
+    {
+      let httpOptions={
+        headers:new HttpHeaders({
+          'Content-type':'application/json',
+          'Authorization':localStorage.getItem('id')
+        })
+      }
+      return this.http.get( this.baseUrl+url ,httpOptions)
+    }
+    else
+    {
+    return this.http.get( this.baseUrl+url )
+    }
+  }
 }

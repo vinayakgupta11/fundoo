@@ -1,0 +1,18 @@
+<button *ngIf="MatMenuu=='notess'" mat-icon-button [matMenuTriggerFor]="menu_delete" title="More">
+  <mat-icon>more_vert</mat-icon>
+</button>
+
+<button *ngIf="MatMenuu=='archive'" mat-icon-button [matMenuTriggerFor]="menu_delete" title="More">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+
+
+
+<mat-menu #menu_delete="matMenu" [overlapTrigger]="false">
+  <button mat-menu-item (click)=trashNote(CardId) >Delete Note</button>
+  <button mat-menu-item>Change Label</button>
+  <button mat-menu-item>Add drawing</button>
+  <button mat-menu-item>Make a copy</button>
+  <button mat-menu-item>Show tick boxes</button>
+  <button mat-menu-item>Copy to Google Docs</button>
+</mat-menu>

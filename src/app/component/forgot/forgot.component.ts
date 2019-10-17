@@ -12,6 +12,7 @@ export class ForgotComponent implements OnInit {
   userObj: User = new User();
   result:any;
   response: any;
+  TokenAuth:boolean= false;
   public email = new FormControl('', [Validators.required, Validators.email]);
   getEmailInvalidMessage() {
     return this.email.hasError('required') ? 'You must enter a value' :
@@ -30,9 +31,8 @@ export class ForgotComponent implements OnInit {
     }
     let obj={
       data: this.userObj,
-      url: 'reset'
     }
-    this.result= this.svc.PostwithoutToken(obj);
+    this.result= this.svc.forgot(obj,this.TokenAuth);
     this.result.subscribe((response) => {
       this.response = response;
       console.log(this.response);

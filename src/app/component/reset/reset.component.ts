@@ -10,6 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./reset.component.scss']
 })
 export class ResetComponent implements OnInit {
+  TokenAuth:boolean= true;
   userObj: User = new User();
   result:any;
   response: any;
@@ -42,10 +43,9 @@ getPasswordInvalidMessage() {
       service:"basic"
     }
     let obj={
-      data: this.userObj,
-      url: 'reset-password'
+      data: this.userObj
     }
-    this.result= this.svc.PostwithToken(obj);
+    this.result= this.svc.reset(obj,this.TokenAuth);
     this.result.subscribe((response) => {
       this.response = response;
       console.log(this.response);

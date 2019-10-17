@@ -45,7 +45,7 @@
     </div>
     <div fxFlex="20" fxLayout="row " style="width: 100%">
       <div fxFlex=80>
-        <app-icon  (messageEvent)="receiveMessage($event)" [mess]="isArchived"></app-icon>
+        <app-icon   [mess]="isArchived"></app-icon>
       </div>
       <div fxFlex=20>
         <button mat-button (click)="receive()" >Close</button>

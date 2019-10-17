@@ -13,6 +13,8 @@ import { DataService } from 'src/app/services/data-services/data.service';
   styleUrls: ['./dialogue.component.scss']
 })
 export class DialogueComponent implements OnInit {
+  TokenAuth: boolean = true;
+  options:any
   isArchived='false';
   result: any;
   response: any;
@@ -45,15 +47,12 @@ export class DialogueComponent implements OnInit {
       this.note.description = "both are empty";
     }
     this.dialogRef.close();
-    let obj =
-    {
-      data: this.note,
-      url: "updateNotes"
+    this.options= {
+      data: this.note
     }
-    this.result = this.svc.PostwithToken(obj)
+    this.result = this.svc.UpdateNotes(this.options,this.TokenAuth)
     this.result.subscribe((response) => {
       this.response = response;
-      console.log("the result is ", this.response);
     });
     this.dataSvc.changeMessage("message from dialog");
   }
@@ -67,15 +66,12 @@ export class DialogueComponent implements OnInit {
       noteIdList : [noteid]
     }
 
-    let options=
-    {
-      data : restore,
-      url : 'trashNotes'
+    this.options={
+      data : restore
     }
-    this.result = this.svc.PostwithToken(options)
+    this.result = this.svc.RestoreNote(this.options,this.TokenAuth)
     this.result.subscribe((response) => {
       this.response = response;
-      console.log("the result is ", this.response);
     });
     this.dataSvc.changeMessage("message from dialog");
     this.dialogRef.close();
@@ -92,15 +88,12 @@ export class DialogueComponent implements OnInit {
       noteIdList : [noteid]
     }
 
-    let options=
-    {
+    this.options= {
       data : delFor,
-      url : 'deleteForeverNotes'
     }
-    this.result = this.svc.PostwithToken(options)
+    this.result = this.svc.DeleteForever(this.options,this.TokenAuth)
     this.result.subscribe((response) => {
       this.response = response;
-      console.log("the result is ", this.response);
     });
     this.dataSvc.changeMessage("message from dialog");
     this.dialogRef.close();

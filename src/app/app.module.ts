@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './component/login/login.component';
 import { RegisterComponent } from './component/register/register.component';
-import { PageNotFoundComponent } from './component/page-not-found/page-not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import{AppMaterialModule}from  './angular-material/app.material';
 import { FlexLayoutModule } from "@angular/flex-layout";
@@ -21,11 +20,18 @@ import { AuthService } from '../app/services/auth/auth.service';
 import { CardsComponent } from './component/cards/cards.component';
 import { DisplayNotesComponent } from './component/display-notes/display-notes.component';
 import { TrashComponent } from './component/trash/trash.component';
-
 import { ArchiveComponent } from './component/archive/archive.component';
 import { DialogueComponent } from './component/dialogue/dialogue.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { UploadImageComponent } from './component/upload-image/upload-image.component';
+import { IconTrayComponent } from './component/icon-tray/icon-tray.component';
+import { RemindMeComponent } from './component/remind-me/remind-me.component';
+import { CollaboratorComponent } from './component/collaborator/collaborator.component';
+import { ColorComponent } from './component/color/color.component';
+import { AddImageComponent } from './component/add-image/add-image.component';
+import { MoreComponent } from './component/more/more.component';
+import { ArchiveIconComponent } from './component/archive-icon/archive-icon.component';
+import { UnarchiveIconComponent } from './component/unarchive-icon/unarchive-icon.component';
 
 
 
@@ -34,7 +40,7 @@ import { UploadImageComponent } from './component/upload-image/upload-image.comp
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    PageNotFoundComponent,
+  
     ForgotComponent,
     ResetComponent,
     DashboardComponent,
@@ -49,6 +55,22 @@ import { UploadImageComponent } from './component/upload-image/upload-image.comp
     DialogueComponent,
     
     UploadImageComponent,
+    
+    IconTrayComponent,
+    
+    RemindMeComponent,
+    
+    CollaboratorComponent,
+    
+    ColorComponent,
+    
+    AddImageComponent,
+    
+    MoreComponent,
+    
+    ArchiveIconComponent,
+    
+    UnarchiveIconComponent,
     
     
   ],
