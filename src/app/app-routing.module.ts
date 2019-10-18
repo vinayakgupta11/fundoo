@@ -9,6 +9,7 @@ import{AuthGuard} from '../app/auth-guard/auth.guard'
 import { DisplayNotesComponent } from './component/display-notes/display-notes.component';
 import { TrashComponent } from './component/trash/trash.component';
 import { ArchiveComponent } from './component/archive/archive.component';
+import { SerachComponent } from './component/serach/serach.component';
 
 
 
@@ -28,7 +29,11 @@ const routes: Routes = [
     },
     {
       path:'archive', component:ArchiveComponent
+    },
+    {
+      path:'serach', component:SerachComponent
     }
+  
   ]
 },
   { path: 'resetpassword/:token', component: ResetComponent },

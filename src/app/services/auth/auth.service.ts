@@ -19,6 +19,11 @@ export class AuthService {
   }
   logout() {
     localStorage.removeItem("LoggedInUser");
+    localStorage.removeItem("id");
+    localStorage.removeItem('email');
+      localStorage.removeItem('firstName');
+      localStorage.removeItem('lastName');
+      localStorage.removeItem('imageUrl');
     this.myRoute.navigate(["/login"]);
   }
 

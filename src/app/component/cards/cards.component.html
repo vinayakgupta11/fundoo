@@ -1,5 +1,5 @@
 <div class="container" fxLayout="row wrap" fxLayoutGap=15px   >
-  <mat-card fxFlex="30" fxFlex.sm=40 fxFlex.xs=80   *ngFor="let note of display" class="card" fxLayout="column" [ngStyle]="{background:note.color}"(click)=getNotesId(notes) fxLayoutAlign="start start">
+  <mat-card fxFlex="30" fxFlex.sm=40 fxFlex.xs=80   *ngFor="let note of display " class="card" fxLayout="column" [ngStyle]="{background:note.color}"(click)=getNotesId(notes) fxLayoutAlign="start start">
     <div (click)="openDialog(note)"  class="no" >
 
         <p style="word-break: break-all">{{note.title}}</p>

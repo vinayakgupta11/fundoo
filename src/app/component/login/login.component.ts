@@ -55,6 +55,8 @@ getEmailInvalidMessage() {
       localStorage.setItem('email',response.email);
       localStorage.setItem('firstName',response.firstName);
       localStorage.setItem('lastName',response.lastName);
+      localStorage.setItem('UserId',response.userId);
+      localStorage.setItem('imageUrl', response.imageUrl)
       this.auth.sendToken(response.id);
       this.router.navigate(['/display-notes']);
     },(error)=>{

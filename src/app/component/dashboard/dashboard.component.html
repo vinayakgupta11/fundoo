@@ -9,14 +9,14 @@
       <mat-form-field appearance="outline" class="searc" fxHide.xs="true">
         <mat-icon class="lab" matPrefix>search</mat-icon>
         <mat-icon matSuffix>close</mat-icon>
-        <input matInput placeholder="Search">
+        <input [(ngModel)]= 'FilterText' (click)= displaySearch() (keyup)="onKeyUp($event)" matInput placeholder="Search">
       </mat-form-field>
     </div>
     <div fxFlex=10 fxLayoutAlign="start center">
       <mat-icon>apps</mat-icon>
       <button mat-button [matMenuTriggerFor]="belowMenu">
           <!-- <mat-icon  >account_circle</mat-icon> -->
-        <img mat-card-avatar [src]= "url" class="avatar-img" height="20px" width="20px">
+        <img mat-card-avatar [src]= "url? url : 'https://www.w3schools.com/howto/img_avatar.png'" class="avatar-img" height="20px" width="20px">
       </button>
     </div>
   </mat-toolbar>
@@ -32,7 +32,7 @@
         </mat-list-item>
         <mat-divider></mat-divider>
         <h3 mat-subheader>Labels</h3>
-        <mat-list-item routerLink='.'>
+        <mat-list-item (click)=  openDialoglab()>
           <mat-icon class="icon">create</mat-icon> <span class="nitem">Edit-Labels</span>
         </mat-list-item>
         <mat-divider></mat-divider>
@@ -51,24 +51,13 @@
   </mat-drawer-container>
 </div>
 
-
-
-<!-- <div fxFlex=80  fxLayout="column">
-      <div  fxFlex= 40 class="not"> 
-          <app-notes></app-notes>
-      </div >
-      <app-cards></app-cards>
-    </div> -->
-
-
-
 <mat-menu #belowMenu="matMenu" [overlapTrigger]="false">
   <div class='ProfileInfo' fxLayout="column">
     <div fxFlex=90 fxLayout="row">
       <div fxFlex=40 fxLayoutAlign="center center">
         <mat-icon (click)="openDialog()" ></mat-icon>
         
-        <img mat-card-avatar [src]= "url">
+        <img mat-card-avatar [src]= "url ? url : 'https://www.w3schools.com/howto/img_avatar.png'">
         
       </div>
       <div fxFlex=60>

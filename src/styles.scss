@@ -10,3 +10,13 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
     padding-bottom:0%; 
     }
 }
+.LabelClass{
+    mat-dialog-container {
+      min-width: 300px;
+      min-height: 200px;
+    
+    // padding-top: 0%;
+    // padding-bottom:0%; 
+    }
+
+}

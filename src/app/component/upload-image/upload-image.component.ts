@@ -1,12 +1,10 @@
 import { Component, OnInit,Inject } from '@angular/core';
 import { DisplayNotesComponent } from '../display-notes/display-notes.component';
-import{NoteService} from '../../services/note-services/note.service';
 import{TestService} from '../../services/user-services/User.service'
 import { DataService } from 'src/app/services/data-services/data.service';
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
-import { FormControl } from '@angular/forms';
 
 
 @Component({
@@ -28,10 +26,11 @@ export class UploadImageComponent implements OnInit {
   ngOnInit() {
   }
   fileChangeEvent(event: any): void {
+    
     this.imageChangedEvent = event;
 }
   imageCropped(event: ImageCroppedEvent) {
-    console.log('event', event);
+    console.log('event------------', event);
     
     this.croppedImage =event.file;
 }

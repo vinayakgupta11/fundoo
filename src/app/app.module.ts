@@ -32,6 +32,11 @@ import { AddImageComponent } from './component/add-image/add-image.component';
 import { MoreComponent } from './component/more/more.component';
 import { ArchiveIconComponent } from './component/archive-icon/archive-icon.component';
 import { UnarchiveIconComponent } from './component/unarchive-icon/unarchive-icon.component';
+import { TestpipePipe } from './pipe/testpipe.pipe';
+import { SerachComponent } from './component/serach/serach.component';
+import { LabelsComponent } from './component/labels/labels.component';
+
+
 
 
 
@@ -72,9 +77,17 @@ import { UnarchiveIconComponent } from './component/unarchive-icon/unarchive-ico
     
     UnarchiveIconComponent,
     
+    TestpipePipe,
+    
+    SerachComponent,
+    
+    LabelsComponent
+    
+   
+    
     
   ],
-  entryComponents : [DialogueComponent,UploadImageComponent ],
+  entryComponents : [DialogueComponent,UploadImageComponent,LabelsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

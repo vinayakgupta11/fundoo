@@ -5,6 +5,7 @@ import{UploadImageComponent} from '../upload-image/upload-image.component'
 import {MatDialog} from '@angular/material';
 import{environment} from '../../../environments/environment'
 import{ DataService} from '../../services/data-services/data.service'
+import{LabelsComponent} from '../labels/labels.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,6 +16,8 @@ export class DashboardComponent implements OnInit {
   imgbase=environment.imagebase;
   localstor:any;
   url:any
+  FilterText: any;
+  i:number=0;
 
   constructor(private auth:AuthService,  private router:Router,private dialog : MatDialog,private datasvc:DataService) { }
   email= localStorage.getItem('email');
@@ -29,12 +32,16 @@ export class DashboardComponent implements OnInit {
     })
       
   }
+  openDialoglab()
+  {
+    let dialogref = this.dialog.open(LabelsComponent,{
+      panelClass: 'LabelClass'
+    });
+  }
   changeProfile()
   {
     this.localstor= localStorage.getItem('imageUrl');
     this.url=(this.imgbase+this.localstor)
-    console.log('url',this.url);
-    
   }
   openDialog()
   {
@@ -55,5 +62,25 @@ export class DashboardComponent implements OnInit {
   {
     this.router.navigate(['/archive']);
   }
+  displaySearch()
+  {
+    this.router.navigate(['/serach']);
+    
+  }
+  displayLabel()
+  {
+    this.router.navigate(['/labels']);
+  }
+
+onKeyUp(event: any) {
+  this.i++;
+  if( this.i>=3)
+  {
+  this.FilterText = event.target.value;
+  //console.log(this.FilterText);
+  this.datasvc.changeMessage(this.FilterText)
+  }
+  }
+  
 
 }
