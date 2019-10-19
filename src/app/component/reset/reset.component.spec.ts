@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import {  CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ResetComponent } from './reset.component';
 
 describe('ResetComponent', () => {
@@ -8,7 +8,8 @@ describe('ResetComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ResetComponent ]
+      declarations: [ ResetComponent ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
   }));

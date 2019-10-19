@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NoteService } from '../../services/note-services/note.service';
 import { Color } from '../../models/color.models';
 import { DialogueComponent } from '../dialogue/dialogue.component'
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { DataService } from 'src/app/services/data-services/data.service';
 
 @Component({

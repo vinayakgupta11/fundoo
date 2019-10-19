@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { HttpService } from '../http-services/http.service'
-import { HttpHeaders } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class TestService {
+
+
+
   response: any;
 
 
-  constructor(private http: HttpClient, private svc: HttpService) { }
+  constructor( private svc: HttpService) { }
 
   Register(userObj, auth) {
     return this.svc.Post(userObj, auth, 'user/userSignUp')

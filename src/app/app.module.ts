@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule,NO_ERRORS_SCHEMA,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,17 +35,17 @@ import { UnarchiveIconComponent } from './component/unarchive-icon/unarchive-ico
 import { TestpipePipe } from './pipe/testpipe.pipe';
 import { SerachComponent } from './component/serach/serach.component';
 import { LabelsComponent } from './component/labels/labels.component';
+import { MatMenuModule} from '@angular/material/menu';
+import { HttpModule } from '@angular/http';
+import {MatDialogModule} from '@angular/material/dialog';
 
-
-
-
-
+import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-  
     ForgotComponent,
     ResetComponent,
     DashboardComponent,
@@ -54,41 +54,25 @@ import { LabelsComponent } from './component/labels/labels.component';
     CardsComponent,
     DisplayNotesComponent,
     TrashComponent,
-    
     ArchiveComponent,
-    
     DialogueComponent,
-    
     UploadImageComponent,
-    
     IconTrayComponent,
-    
     RemindMeComponent,
-    
     CollaboratorComponent,
-    
     ColorComponent,
-    
     AddImageComponent,
-    
     MoreComponent,
-    
     ArchiveIconComponent,
-    
     UnarchiveIconComponent,
-    
     TestpipePipe,
-    
     SerachComponent,
-    
-    LabelsComponent
-    
-   
-    
+    LabelsComponent  ,
     
   ],
   entryComponents : [DialogueComponent,UploadImageComponent,LabelsComponent],
   imports: [
+    MatDialogModule,
     BrowserModule,
     AppRoutingModule,
     ImageCropperModule,
@@ -97,10 +81,20 @@ import { LabelsComponent } from './component/labels/labels.component';
     AppMaterialModule,
     FlexLayoutModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatMenuModule,
+    HttpModule,
+    
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA,
+    NO_ERRORS_SCHEMA
   ],
   providers: [ 
-    TestService,AuthGuard, AuthService
+   
+    TestService,AuthGuard, AuthService,
+    { provide: MAT_DIALOG_DATA, useValue: {} },
+    { provide: MatDialogRef, useValue: {} }
   ],
   bootstrap: [AppComponent]
 })

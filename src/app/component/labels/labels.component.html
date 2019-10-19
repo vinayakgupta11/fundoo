@@ -1,13 +1,3 @@
-<!-- <div fxLayout="column">
-  <div fxLayoutAlign="start start" fxFlex=10>
-    <p>Edit Labels</p>
-  </div>
-  <div fxFlex=60>
-
-    <textarea  matInput type="text" cdkTextareaAutosize #autosize="cdkTextareaAutosize"
-      cdkAutosizeMinRows="1" cdkAutosizeMaxRows="25" placeholder="Create New Label"></textarea>
-  </div>
-</div> -->
 <div fxLayout="column" fxLayoutGap="10px">
   <div>
     Edit Labels
@@ -17,8 +7,7 @@
       <mat-icon matPrefix matToolTip="Cancel">clear</mat-icon>
     </div>
     <div>
-      <textarea class= "fon"  matInput type="text" placeholder="Create Label" [formControl]="labelName"></textarea>
-      <!-- <input matInput placeholder="create a new label" [formControl]="labelName"> -->
+      <textarea class="fon" matInput type="text" placeholder="Create Label" [formControl]="labelName"></textarea>
     </div>
     <div fxLayoutAlign="end end">
       <button mat-button matToolTip="Create Label" (click)="addLabel()">
@@ -33,11 +22,15 @@
       </button>
     </div>
     <div fxFlex=40>
-     
-      <p>{{label.label}}</p>
+
+      <p style="word-break: break-all">{{label.label}}</p>
     </div>
     <div fxFlex=30 fxLayoutAlign="end end">
-      <mat-icon matSuffix>create</mat-icon>
+
+      <button mat-button (click)="UpdateLabel(label)">
+        <mat-icon matSuffix>create</mat-icon>
+      </button>
+
     </div>
   </div>
   <mat-divider></mat-divider>

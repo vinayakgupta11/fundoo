@@ -1,7 +1,7 @@
 import { Component, OnInit,Inject } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FormControl } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import{NoteService} from '../../services/note-services/note.service';
 import{UpdateNote } from '../../models/update.model'
 import { DisplayNotesComponent } from '../display-notes/display-notes.component';

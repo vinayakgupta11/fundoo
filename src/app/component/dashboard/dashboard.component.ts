@@ -6,6 +6,7 @@ import {MatDialog} from '@angular/material';
 import{environment} from '../../../environments/environment'
 import{ DataService} from '../../services/data-services/data.service'
 import{LabelsComponent} from '../labels/labels.component';
+import { NoteService } from 'src/app/services/note-services/note.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,20 +19,36 @@ export class DashboardComponent implements OnInit {
   url:any
   FilterText: any;
   i:number=0;
+  TokenAuth:boolean= true;
+  labels:any;
 
-  constructor(private auth:AuthService,  private router:Router,private dialog : MatDialog,private datasvc:DataService) { }
+  constructor(private auth:AuthService,private  noteService: NoteService,  private router:Router,private dialog : MatDialog,private datasvc:DataService) { }
   email= localStorage.getItem('email');
   firstName=localStorage.getItem('firstName');
   lastName=localStorage.getItem('lastName');
   
 
   ngOnInit() {
+    this.GetLabelList();
     this.datasvc.currentMessage.subscribe((res)=>
     {
       this.changeProfile();
     })
-      
+      this.datasvc.LabelMessage.subscribe((res)=>
+      {
+        this.GetLabelList();
+      })
   }
+  GetLabelList()
+{
+  this.noteService.GetLabelList(this.TokenAuth).subscribe((response: any) => {
+    this.labels = response.data.details;
+    
+  }, (error) => {
+    console.log(error);
+  });
+
+}
   openDialoglab()
   {
     let dialogref = this.dialog.open(LabelsComponent,{

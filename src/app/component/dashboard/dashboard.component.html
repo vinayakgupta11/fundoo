@@ -30,12 +30,25 @@
         <mat-list-item routerLink='.'>
           <mat-icon class="icon">add_alert</mat-icon> <span class="nitem"> Reminders</span>
         </mat-list-item>
+
+
         <mat-divider></mat-divider>
         <h3 mat-subheader>Labels</h3>
+
         <mat-list-item (click)=  openDialoglab()>
+
           <mat-icon class="icon">create</mat-icon> <span class="nitem">Edit-Labels</span>
         </mat-list-item>
+
+        <mat-list-item *ngFor="let label of labels">
+            <mat-icon mat-list-icon>label</mat-icon>
+            {{label.label}}
+            
+            </mat-list-item>
+
         <mat-divider></mat-divider>
+
+
         <mat-list-item (click)=displayArchive()>
           <mat-icon class="icon">archive</mat-icon> <span class="nitem">Archive</span>
         </mat-list-item>

@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CollaboratorComponent } from './collaborator.component';
 
 describe('CollaboratorComponent', () => {
@@ -8,7 +8,8 @@ describe('CollaboratorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CollaboratorComponent ]
+      declarations: [ CollaboratorComponent ],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
     .compileComponents();
   }));

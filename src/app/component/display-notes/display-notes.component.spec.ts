@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { DisplayNotesComponent } from './display-notes.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('DisplayNotesComponent', () => {
   let component: DisplayNotesComponent;
@@ -8,7 +9,9 @@ describe('DisplayNotesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DisplayNotesComponent ]
+      declarations: [ DisplayNotesComponent ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      imports: [HttpClientTestingModule],
     })
     .compileComponents();
   }));
