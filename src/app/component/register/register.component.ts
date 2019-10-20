@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl,FormGroup, Validators } from '@angular/forms';
 import{User} from '../../models/register.model';
 import{TestService}from '../../services/user-services/User.service'
 import { tokenReference } from '@angular/compiler';
