@@ -2,6 +2,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import {MAT_DIALOG_DATA,MatDialogRef,MatDialogModule} from '@angular/material/dialog';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogueComponent } from './dialogue.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import {TextFieldModule} from '@angular/cdk/text-field';
 
 describe('DialogueComponent', () => {
   let component: DialogueComponent;
@@ -12,11 +15,14 @@ describe('DialogueComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ DialogueComponent ],
       imports: [
-        MatDialogModule
+        MatDialogModule,TextFieldModule,HttpClientTestingModule
+      ],     
+      providers: [
+        { provide: MAT_DIALOG_DATA, useValue: {} },
+        { provide: MatDialogRef, useValue: {} },
+        { provide: MatDialog, useValue: {} }
       ],
-      providers: [ 
-        MatDialog
-      ]
+      schemas: [NO_ERRORS_SCHEMA ]
       
     })
     .compileComponents();

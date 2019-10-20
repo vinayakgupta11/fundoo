@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import {  CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {TestpipePipe} from '../../pipe/testpipe.pipe'
 import { SerachComponent } from './serach.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('SerachComponent', () => {
   let component: SerachComponent;
@@ -8,7 +10,9 @@ describe('SerachComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SerachComponent ]
+      declarations: [ SerachComponent,TestpipePipe ],
+      imports: [HttpClientTestingModule],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
   }));

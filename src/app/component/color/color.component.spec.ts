@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ColorComponent } from './color.component';
+import { MatMenuModule} from '@angular/material/menu';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ColorComponent', () => {
   let component: ColorComponent;
@@ -9,7 +11,8 @@ describe('ColorComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ColorComponent ],
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+      imports: [MatMenuModule,HttpClientTestingModule]
     })
     .compileComponents();
   }));

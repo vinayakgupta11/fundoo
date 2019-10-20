@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule,NO_ERRORS_SCHEMA,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './component/login/login.component';
@@ -38,9 +38,10 @@ import { LabelsComponent } from './component/labels/labels.component';
 import { MatMenuModule} from '@angular/material/menu';
 import { HttpModule } from '@angular/http';
 import {MatDialogModule} from '@angular/material/dialog';
-
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {TextFieldModule} from '@angular/cdk/text-field';
 @NgModule({
   declarations: [
     AppComponent,
@@ -84,6 +85,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
     HttpClientModule,
     MatMenuModule,
     HttpModule,
+    TextFieldModule
     
   ],
   schemas: [
