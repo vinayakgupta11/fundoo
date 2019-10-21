@@ -22,9 +22,9 @@ export class CardsComponent implements OnInit {
   user: Color;
   public noteSelected;
   cardId: any;
-  constructor(private noteService: NoteService, private data: DataService, private dialog: MatDialog) { }
+  constructor(private noteService: NoteService, private datasvc: DataService, private dialog: MatDialog) { }
   ngOnInit() {
-  
+    this.datasvc.currentMessage.subscribe(message => this.message = message)
   }
   openDialog(note) {
     console.log("the value of note is ", note);

@@ -18,6 +18,7 @@ export class LabelsComponent implements OnInit {
   options:any;
   TokenAuth:boolean= true;
   labels:any;
+  updateLabel: any = new FormControl();
 
   constructor(@Inject(MAT_DIALOG_DATA) private data: any,private  noteService: NoteService,private dataSvc:DataService, private dialogRef: MatDialogRef< DisplayNotesComponent>) { }
 
@@ -28,12 +29,18 @@ export class LabelsComponent implements OnInit {
 {
 this.dialogRef.close();
 }
-UpdateLabel(labelId)
+onUpdateNoteLabel(labelId)
 {
   this.label={
+     label : this.updateLabel.value,
     id:labelId.id
   }
-  this.noteService.UpdateLabel(this.label,this.TokenAuth).subscribe((response) => {
+  this.options={
+    data:this.label
+  }
+  console.log('update label', this.label);
+  
+  this.noteService.UpdateLabel(this.options,this.TokenAuth).subscribe((response) => {
     console.log(response);
     this.GetLabelList();
     this.dataSvc.LabelList('get labels')

@@ -61,6 +61,8 @@ export class ArchiveComponent implements OnInit {
 
     this.noteService.ArchiveNotesList(this.TokenAuth).subscribe((response: any) => {
       this.notes = response.data.data;
+     
+      
       this.notes = this.FilterTrash(this.notes);
       this.notes.reverse();
 

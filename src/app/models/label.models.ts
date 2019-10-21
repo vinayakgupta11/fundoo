@@ -4,4 +4,6 @@ export class LabelNote
     isDeleted?: Boolean;
     userId?: string;
     id?: string;
+    labelId?:string;
+    noteId?:string;
   }

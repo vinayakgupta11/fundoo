@@ -8,6 +8,10 @@
     <div (click)="openDialog(note)" class="no">
         <p style="word-break: break-all" >{{note.description}}</p>
     </div>
+    <div *ngFor="let noteLabel of note.noteLabels">
+            
+        <mat-chip>{{noteLabel.label}}</mat-chip>
+    </div>
 
     
     <div  fxLayoutAlign="start start" style="width: 100%" >

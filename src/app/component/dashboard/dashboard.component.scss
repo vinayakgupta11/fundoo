@@ -1,87 +1,97 @@
 .example-container {
-    width: 400px;
-    height: 200px;
-    margin: 10px;
-    border: 1px solid #555;
-  }
-  .sidebar-container
-  {
-      height: 100%;
-      width:100%;
-  }
-  .example-sidenav
-  {
-      width:200px;
-  }
-  .container{
+  width: 400px;
+  height: 200px;
+  margin: 10px;
+  border: 1px solid #555;
+}
+.sidebar-container
+{
     height: 100%;
-    width: 100%;
-    
-    
-  }
-  .imag
-  {
-      height: 60%;
-      width:4%;
-      padding-right: 7px;
-  }
+    width:100%;
+}
+.maincontent
+{
+  padding-left: 150px;
+}
+.example-sidenav
+{
+    width:200px;
+}
+.container{
+  height: 100%;
+  width: 100%;
   
-  .style
-  {
-    font-weight: bold;
-    font-variant: small-caps;
-    padding-right: 10px;
-  }
-  .searc{
-     
-      transform: translateY(-1.1em) scale(.75);
-      width: 60%;
-      top: 30px;
-     
-  }
+  
+}
+.labelname {
+  padding: 0 0 0 32px;
+  font-family: 'Google Sans',Roboto,Arial,sans-serif;
+  font-size: .875rem;
+  font-weight: 500;
+}
+.imag
+{
+    height: 60%;
+    width:4%;
+    padding-right: 7px;
+}
 
-  .abc {
-      background-color:whitesmoke;
-  }
-  .lab
-  {
+.style
+{
+  font-weight: bold;
+  font-variant: small-caps;
+  padding-right: 10px;
+}
+.searc{
+   
+    transform: translateY(-1.1em) scale(.75);
+    width: 60%;
+    top: 30px;
+   
+}
+
+.abc {
+    background-color:whitesmoke;
+}
+.lab
+{
+  padding-right: 30px;
+}
+.icon{
     padding-right: 30px;
-  }
-  .icon{
-      padding-right: 30px;
-  }
+}
 .nitem
 {
-    font-variant: small-caps;
-    color: black;
-    font-weight: 900;
-    font-size: large;
+  font-variant: small-caps;
+  color: black;
+  font-weight: 900;
+  font-size: large;
 
 }
 .ProfileInfo 
 { 
-  width: 280px;
- }
+width: 280px;
+}
 .not{
-  
-  padding-top: 30px;
-  
- 
 
-  
+padding-top: 30px;
+
+
+
+
 }
 .avatar-image{
-  height: 80px;
-  width: 80px;
- border-radius: 20px;
+height: 80px;
+width: 80px;
+border-radius: 20px;
 }
 .try{
-  margin-top: 50px;
+margin-top: 50px;
 
 }
 .icon-display {
-  transform: scale(4.2);
-  // padding-left: 10px
+transform: scale(4.2);
+// padding-left: 10px
 }
 
 // .example-container {

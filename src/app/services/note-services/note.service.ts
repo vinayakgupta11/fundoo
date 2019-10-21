@@ -55,7 +55,13 @@ export class NoteService {
     return this.svc.Delete(auth, 'noteLabels/' + id + '/deleteNoteLabel')
   }
   UpdateLabel(userObj, auth) {
-    let id = userObj.id
+    let id = userObj.data.id
     return this.svc.Post(userObj ,auth, 'noteLabels/' + id + '/updateNoteLabel')
+  }
+  addLabelToNotes(userObj, auth)
+  { 
+    let noteid= userObj.data.noteId;
+    let labelid= userObj.data.labelId;
+    return this.svc.Post(userObj ,auth, 'notes/' + noteid + '/addLabelToNotes/'+ labelid + '/add')
   }
 }
