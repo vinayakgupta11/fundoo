@@ -10,6 +10,7 @@ import { DisplayNotesComponent } from './component/display-notes/display-notes.c
 import { TrashComponent } from './component/trash/trash.component';
 import { ArchiveComponent } from './component/archive/archive.component';
 import { SerachComponent } from './component/serach/serach.component';
+import { LabelDisplayComponent } from './component/label-display/label-display.component';
 
 
 
@@ -32,8 +33,9 @@ const routes: Routes = [
     },
     {
       path:'serach', component:SerachComponent
-    }
-  
+    },
+    {path : 'label/:label', component : LabelDisplayComponent},
+
   ]
 },
   { path: 'resetpassword/:token', component: ResetComponent },

@@ -99,5 +99,12 @@ onKeyUp(event: any) {
   }
   }
   
+  goToLabelData(data)
+  {
+    this.router.navigate(["/label/" + data]);
+    this.datasvc.changeMessage(data); 
+  }
+
+
 
 }

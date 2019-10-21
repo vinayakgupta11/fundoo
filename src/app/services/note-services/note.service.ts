@@ -64,4 +64,11 @@ export class NoteService {
     let labelid= userObj.data.labelId;
     return this.svc.Post(userObj ,auth, 'notes/' + noteid + '/addLabelToNotes/'+ labelid + '/add')
   }
+  getNotesByLabel(label,auth)
+{
+
+  
+    return this.svc.Post(label ,auth, 'notes/getNotesListByLabel/' + label.labelName)
+    
+}
 }

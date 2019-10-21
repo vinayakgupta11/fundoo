@@ -41,6 +41,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {TextFieldModule} from '@angular/cdk/text-field';
+import { LabelDisplayComponent } from './component/label-display/label-display.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,7 +68,8 @@ import {TextFieldModule} from '@angular/cdk/text-field';
     UnarchiveIconComponent,
     TestpipePipe,
     SerachComponent,
-    LabelsComponent  ,
+    LabelsComponent,
+    LabelDisplayComponent  ,
     
   ],
   entryComponents : [DialogueComponent,UploadImageComponent,LabelsComponent],

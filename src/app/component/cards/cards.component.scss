@@ -1,8 +1,8 @@
 .container
 {
-    width: 90%;
+    width: 100%;
     display:flex;
-    padding-left:50px; 
+ 
     
 }
 .card
@@ -16,4 +16,8 @@
       width:100%;
       padding-bottom: 5px;
           }
-    
+    .mat-card
+    {
+      margin-right: 0px;
+      transform: scaleX(0.95) scaleY(0.95);
+    }

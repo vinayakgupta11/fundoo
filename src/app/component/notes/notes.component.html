@@ -16,7 +16,7 @@
 </mat-accordion>
 </div> -->
 <div *ngIf="show" class="center" fxLayoutAlign="center start">
-  <mat-card fxFlex="50" class="card" fxLayoutAlign="start start">
+  <mat-card fxFlex="50" fxFlex.sm=100 fxFlex.xs=100 class="card" fxLayoutAlign="start start">
     <textarea (click)="toggle()" matInput type="text" cdkTextareaAutosize #autosize="cdkTextareaAutosize"
       cdkAutosizeMinRows="1" cdkAutosizeMaxRows="25" placeholder="Take a note" class="fielda"></textarea>
 
@@ -31,15 +31,15 @@
 
 <div *ngIf="!show" class="center" fxLayoutAlign="center start">
 
-  <mat-card class="card" fxLayout="column" fxFlex="50" fxLayoutAlign="start start">
-    <div fxFlex="40" fxLayout="row" class="no">
+  <mat-card class="card" fxLayout="column" fxFlex="50"  fxFlex.sm=100 fxFlex.xs=100  fxLayoutAlign="start start">
+    <div  fxLayout="row" class="no">
 
       <textarea matInput type="text" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
         cdkAutosizeMaxRows="25" placeholder="Title " class="fielda" [formControl]="title"></textarea>
 
 
     </div>
-    <div fxFlex="40" class="no" >
+    <div class="no" >
       <textarea matInput type="text" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
         cdkAutosizeMaxRows="25" placeholder="Take a note" class="fielda" [formControl]="description"></textarea>
     </div>
