@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-icon-tray',
@@ -8,11 +8,14 @@ import { Component, OnInit,Input } from '@angular/core';
 export class IconTrayComponent implements OnInit {
   @Input() show:any;
   @Input() card:any;
+  @Output() messageEventnote= new EventEmitter<string>();
+  message:any;
 
 
   constructor() { }
 
   ngOnInit() {
   }
+  
 
 }

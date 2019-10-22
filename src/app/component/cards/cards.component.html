@@ -1,20 +1,30 @@
-<div class="container" fxLayout="row wrap"   >
-  <mat-card fxFlex="30" fxFlex.sm=100 fxFlex.xs=100  style="height: 100%" *ngFor="let note of display " class="card" fxLayout="column" [ngStyle]="{background:note.color}"(click)=getNotesId(notes) fxLayoutAlign="start start">
-    <div (click)="openDialog(note)"  class="no" >
+<div class="container" fxLayout="row wrap">
+  <mat-card fxFlex="30" fxFlex.sm=100 fxFlex.xs=100 style="height: 100%" *ngFor="let note of display " class="card"
+    fxLayout="column" [ngStyle]="{background:note.color}" (click)=getNotesId(notes) fxLayoutAlign="start start">
+    <div (click)="openDialog(note)" class="no">
 
-        <p style="word-break: break-all">{{note.title}}</p>
+      <p style="word-break: break-all">{{note.title}}</p>
     </div>
 
     <div (click)="openDialog(note)" class="no">
-        <p style="word-break: break-all" >{{note.description}}</p>
+      <p style="word-break: break-all">{{note.description}}</p>
     </div>
     <div *ngFor="let noteLabel of note.noteLabels">
-            
-        <mat-chip>{{noteLabel.label}}</mat-chip>
+
+
+      <mat-chip-list>
+        <mat-chip class="matChip">
+          {{noteLabel.label}}
+          <button mat-icon-button (click)="dellabelnotes(noteLabel.id,note.id)">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-chip>
+        <span></span>
+      </mat-chip-list>
     </div>
 
-    
-    <div  fxLayoutAlign="start start" style="width: 100%" >
+
+    <div fxLayoutAlign="start start" style="width: 100%">
       <app-icon-tray [show]='TypeIcon' [card]=note> </app-icon-tray>
       <!-- <app-icon (messageEvent)="receiveMessage($event)" >[card]={{notes}}</app-icon> -->
       <!-- <app-icon  (messageEvent)="receiveMessage($event)" [mess]="isArchived"  [card]=note ></app-icon> -->

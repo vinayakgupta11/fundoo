@@ -15,7 +15,10 @@ export class DisplayNotesComponent implements OnInit {
   message: string;
   user: Color;
   display:any;
-  component='notess'
+  component='notess';
+  component1='takenote';
+  
+
 
   constructor(private noteService: NoteService, private data: DataService) { }
 

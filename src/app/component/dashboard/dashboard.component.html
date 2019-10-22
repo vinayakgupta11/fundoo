@@ -1,86 +1,87 @@
 <div class="container" fxLayout="column">
-    <mat-toolbar fxLayoutAlign="start center" fxLayoutGap=20px class="abc" fxLayout="row">
-      <div fxFlex=90 fxLayoutAlign="start center" fxLayoutGap=20px>
-        <button type="button" mat-button (click)="drawer.toggle()">
-          <mat-icon>menu</mat-icon>
-        </button>
-        <img class="imag" src='/src/app/images/abc.png'>
-        <span class='style'>Fundoo-Notes</span>
-        <mat-form-field appearance="outline" class="searc" fxHide.xs="true">
-          <mat-icon class="lab" matPrefix>search</mat-icon>
-          <mat-icon matSuffix>close</mat-icon>
-          <input [(ngModel)]= 'FilterText' (click)= displaySearch() (keyup)="onKeyUp($event)" matInput placeholder="Search">
-        </mat-form-field>
-      </div>
-      <div fxFlex=10 fxLayoutAlign="start center">
-        <mat-icon>apps</mat-icon>
-        <button mat-button [matMenuTriggerFor]="belowMenu">
-            <!-- <mat-icon  >account_circle</mat-icon> -->
-          <img mat-card-avatar [src]= "url? url : 'https://www.w3schools.com/howto/img_avatar.png'" class="avatar-img" height="20px" width="20px">
-        </button>
-      </div>
-    </mat-toolbar>
-    <!-- <button mat-menu-item *ngIf="!auth.isLoggednIn()" routerLink="/login">Login</button> -->
+  <mat-toolbar fxLayoutAlign="start center" fxLayoutGap=20px class="abc" fxLayout="row">
+    <div fxFlex=90 fxLayoutAlign="start center" fxLayoutGap=20px>
+      <button type="button" mat-button (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <img class="imag" src='/src/app/images/abc.png'>
+      <span class='style'>Fundoo-Notes</span>
+      <mat-form-field appearance="outline" class="searc" fxHide.xs="true">
+        <mat-icon class="lab" matPrefix>search</mat-icon>
+        <mat-icon matSuffix>close</mat-icon>
+        <input [(ngModel)]='FilterText' (click)=displaySearch() (keyup)="onKeyUp($event)" matInput placeholder="Search">
+      </mat-form-field>
+    </div>
+    <div fxFlex=10 fxLayoutAlign="start center">
+      <mat-icon>apps</mat-icon>
+      <button mat-button [matMenuTriggerFor]="belowMenu">
+        <!-- <mat-icon  >account_circle</mat-icon> -->
+        <img mat-card-avatar [src]="url" class="avatar-img"
+          height="20px" width="20px">
+      </button>
+    </div>
+  </mat-toolbar>
+  <!-- <button mat-menu-item *ngIf="!auth.isLoggednIn()" routerLink="/login">Login</button> -->
 
 
 
 
 
+  <div>
     <div>
-        <div>
-            <mat-drawer-container class="sidebar-container" autosize>
-              <mat-drawer #drawer class="example-sidenav" mode="side" fxHide.xs="true" fxShow="true">
-                <mat-nav-list>
-                  <mat-list-item (click)=displayNot()>
-                    <mat-icon class="icon">note_add</mat-icon> <span  class="labelname"> Notes</span>
-                  </mat-list-item>
-                  <mat-list-item routerLink='.'>
-                    <mat-icon class="icon">add_alert</mat-icon> <span  class="labelname"> Reminders</span>
-                  </mat-list-item>
-          
-          
-                  <mat-divider></mat-divider>
-                  <h3 mat-subheader>Labels</h3>
-          
-                  <mat-list-item (click)=  openDialoglab()>
-          
-                    <mat-icon class="icon">create</mat-icon> <span  class="labelname">Edit-Labels</span>
-                  </mat-list-item>
-          
-                  <mat-list-item *ngFor="let label of labels "  >
+      <mat-drawer-container class="sidebar-container" autosize>
+        <mat-drawer #drawer class="example-sidenav" mode="side" fxHide.xs="true" fxShow="true">
+          <mat-nav-list>
+            <mat-list-item (click)=displayNot()>
+              <mat-icon class="icon">note_add</mat-icon> <span class="labelname"> Notes</span>
+            </mat-list-item>
+            <mat-list-item routerLink='.'>
+              <mat-icon class="icon">add_alert</mat-icon> <span class="labelname"> Reminders</span>
+            </mat-list-item>
 
-                      <mat-icon  class="icon">label</mat-icon>
-                      <span (click)="goToLabelData(label.label)" class="labelname">{{label.label}}</span>
-                      
-                      </mat-list-item>
-          
-                  <mat-divider></mat-divider>
-          
-          
-                  <mat-list-item (click)=displayArchive()>
-                    <mat-icon class="icon">archive</mat-icon> <span  class="labelname">Archive</span>
-                  </mat-list-item>
-                  <mat-list-item (click)=displayTrash()>
-                    <mat-icon class="icon">delete</mat-icon> <span  class="labelname">Trash</span>
-                  </mat-list-item>
-                </mat-nav-list>
-              </mat-drawer>
-            </mat-drawer-container>
-          </div>
-        
-    <div fxFlex="80" class="maincontent" fxFlex.xs=100 fxFlex.sm=100 > 
+
+            <mat-divider></mat-divider>
+            <h3 mat-subheader>Labels</h3>
+
+            <mat-list-item (click)=openDialoglab()>
+
+              <mat-icon class="icon">create</mat-icon> <span class="labelname">Edit-Labels</span>
+            </mat-list-item>
+
+            <mat-list-item *ngFor="let label of labels ">
+
+              <mat-icon class="icon">label</mat-icon>
+              <span (click)="goToLabelData(label.label)" class="labelname">{{label.label}}</span>
+
+            </mat-list-item>
+
+            <mat-divider></mat-divider>
+
+
+            <mat-list-item (click)=displayArchive()>
+              <mat-icon class="icon">archive</mat-icon> <span class="labelname">Archive</span>
+            </mat-list-item>
+            <mat-list-item (click)=displayTrash()>
+              <mat-icon class="icon">delete</mat-icon> <span class="labelname">Trash</span>
+            </mat-list-item>
+          </mat-nav-list>
+        </mat-drawer>
+      </mat-drawer-container>
+    </div>
+
+    <div fxFlex="80" class="maincontent" fxFlex.xs=100 fxFlex.sm=100>
       <router-outlet></router-outlet>
     </div>
   </div>
-  
+
   <mat-menu #belowMenu="matMenu" [overlapTrigger]="false">
     <div class='ProfileInfo' fxLayout="column">
       <div fxFlex=90 fxLayout="row">
         <div fxFlex=40 fxLayoutAlign="center center">
-          <mat-icon (click)="openDialog()" ></mat-icon>
-          
-          <img mat-card-avatar [src]= "url ? url : 'https://www.w3schools.com/howto/img_avatar.png'">
-          
+          <mat-icon (click)="openDialog()"></mat-icon>
+
+          <img mat-card-avatar [src]="url">
+
         </div>
         <div fxFlex=60>
           <p>{{firstName+' '+lastName}}</p>
@@ -95,11 +96,9 @@
           <button mat-menu-item *ngIf="auth.isLoggednIn()" (click)="auth.logout()">Logout</button>
         </div>
       </div>
-  
-  
-  
-  
+
+
+
+
     </div>
   </mat-menu>
-
-  

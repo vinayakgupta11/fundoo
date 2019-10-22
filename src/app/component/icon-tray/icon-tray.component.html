@@ -1,4 +1,15 @@
 <div fxLayoutAlign="space-between " fxFlex.gt-xs="25%">
+    <div *ngIf="show=='takenote'" fxLayout='row'>
+      <app-remind-me></app-remind-me>
+      <app-collaborator></app-collaborator>
+      <app-color [CardId]='card' ></app-color>
+      <app-add-image></app-add-image>
+      <app-archive-icon [CardId]='card'></app-archive-icon>
+      <app-more [CardId]='card' [MatMenuu]='show'></app-more>
+    </div>
+
+
+<div fxLayoutAlign="space-between " fxFlex.gt-xs="25%">
   <div *ngIf="show=='notess'" fxLayout='row'>
     <app-remind-me></app-remind-me>
     <app-collaborator></app-collaborator>

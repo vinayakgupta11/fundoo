@@ -66,9 +66,13 @@ export class NoteService {
   }
   getNotesByLabel(label,auth)
 {
-
-  
     return this.svc.Post(label ,auth, 'notes/getNotesListByLabel/' + label.labelName)
     
+}
+dellabnotes(userObj, auth){
+  let url= 'notes/' + userObj.noteId + '/addLabelToNotes/' + userObj.id + '/remove'
+
+  return this.svc.Post(userObj,auth,'notes/' + userObj.noteId + '/addLabelToNotes/' + userObj.id + '/remove'
+  );
 }
 }

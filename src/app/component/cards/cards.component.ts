@@ -22,7 +22,7 @@ export class CardsComponent implements OnInit {
   user: Color;
   public noteSelected;
   cardId: any;
-  constructor(private noteService: NoteService, private datasvc: DataService, private dialog: MatDialog) { }
+  constructor(private svc: NoteService, private datasvc: DataService, private dialog: MatDialog) { }
   ngOnInit() {
     this.datasvc.currentMessage.subscribe(message => this.message = message)
   }
@@ -45,8 +45,13 @@ export class CardsComponent implements OnInit {
     this.noteSelected = note;
     return note;
   }
-  
-  
-
-  
+  dellabelnotes(label, noteid) {
+    let data = {
+      id: label,
+      noteId: noteid
+    }
+    this.svc.dellabnotes(data,this.TokenAuth).subscribe((response: any) => {
+      this.datasvc.changeMessage("Hello from Sibling")
+    });
+  }
 }
