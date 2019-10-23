@@ -56,7 +56,7 @@ onUpdateNoteLabel(labelId)
     }
    
     this.noteService.DeleteLabel(this.label,this.TokenAuth).subscribe((response) => {
-      console.log(response);
+     // console.log(response);
       this.GetLabelList();
       this.dataSvc.LabelList('get labels')
     }, (error) => {

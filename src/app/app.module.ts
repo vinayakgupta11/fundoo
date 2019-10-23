@@ -41,7 +41,12 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {TextFieldModule} from '@angular/cdk/text-field';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { LabelDisplayComponent } from './component/label-display/label-display.component';
+import { RemindersComponent } from './component/reminders/reminders.component';
+
+import { MatDatepickerModule,MatNativeDateModule} from '@angular/material';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,11 +74,15 @@ import { LabelDisplayComponent } from './component/label-display/label-display.c
     TestpipePipe,
     SerachComponent,
     LabelsComponent,
-    LabelDisplayComponent  ,
+    LabelDisplayComponent,
+    RemindersComponent  ,
     
   ],
   entryComponents : [DialogueComponent,UploadImageComponent,LabelsComponent],
   imports: [
+    MatDatepickerModule,
+    MatNativeDateModule,
+    Ng4LoadingSpinnerModule,
     MatDialogModule,
     BrowserModule,
     AppRoutingModule,
@@ -86,7 +95,8 @@ import { LabelDisplayComponent } from './component/label-display/label-display.c
     HttpClientModule,
     MatMenuModule,
     HttpModule,
-    TextFieldModule
+    TextFieldModule,
+    
     
   ],
   schemas: [
@@ -94,8 +104,10 @@ import { LabelDisplayComponent } from './component/label-display/label-display.c
     NO_ERRORS_SCHEMA
   ],
   providers: [ 
-   
-    TestService,AuthGuard, AuthService,
+    MatDatepickerModule,
+    TestService,
+    AuthGuard, 
+    AuthService,
     { provide: MAT_DIALOG_DATA, useValue: {} },
     { provide: MatDialogRef, useValue: {} }
   ],

@@ -1,3 +1,29 @@
-<button mat-icon-button title="Remind me">
+<button mat-icon-button [matMenuTriggerFor]="menu_reminder" title="Remind me">
     <mat-icon>notifications</mat-icon>
-    </button>
+</button>
+
+<mat-menu #menu_reminder="matMenu" [overlapTrigger]="false" class="customize">
+    <div>
+        <p>Reminder:</p>
+    </div>
+    <div *ngFor="let remind of remindList">
+
+        <button mat-menu-item>
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <div>{{remind.day}}</div>
+                <div fxFlexOffset='20'>{{remind["time"]}}</div>
+            </div>
+        </button>
+    </div>
+    <div fxLayoutAlign="space-between center">
+            <mat-form-field>
+                    <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                  <button  mat-button (click)="SaveReminder(CardId,picker)" > save</button>
+    </div>
+
+
+
+</mat-menu>

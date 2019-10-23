@@ -10,8 +10,6 @@
       <p style="word-break: break-all">{{note.description}}</p>
     </div>
     <div *ngFor="let noteLabel of note.noteLabels">
-
-
       <mat-chip-list>
         <mat-chip class="matChip">
           {{noteLabel.label}}
@@ -22,7 +20,19 @@
         <span></span>
       </mat-chip-list>
     </div>
+    <div *ngFor="let noteRem of note.reminder">
 
+
+        <mat-chip-list>
+          <mat-chip class="matChip">
+            {{noteRem}}
+            <button mat-icon-button (click)="delreminder(note.reminder,note.id)">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-chip>
+          <span></span>
+        </mat-chip-list>
+      </div>
 
     <div fxLayoutAlign="start start" style="width: 100%">
       <app-icon-tray [show]='TypeIcon' [card]=note> </app-icon-tray>

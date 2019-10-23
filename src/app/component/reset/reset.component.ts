@@ -34,8 +34,8 @@ getPasswordInvalidMessage() {
   constructor(private svc:TestService, private route:ActivatedRoute) { }
   token:string;
   ngOnInit() {
-    this.token=this.route.snapshot.paramMap.get('token');
-    localStorage.setItem('token',this.token);
+    this.token=this.route.snapshot.paramMap.get('id');
+    localStorage.setItem('id',this.token);
   }
   onReset() {
     this.userObj = {

@@ -33,13 +33,12 @@ export class ColorComponent implements OnInit {
         color: colour,
         noteIdList: [this.cardId]
       }
-      console.log(this.user);
+      console.log('--------',this.user);
       this.options = {
         data: this.user,
       }
       this.noteService.ColorChange(this.options, this.TokenAuth).subscribe((response) => {
         console.log(response);
-        // this.messageEvent.emit(this.message);
         this.datasvc.changeMessage('save')
       }, (error) => {
         console.log(error);

@@ -38,7 +38,7 @@ const routes: Routes = [
 
   ]
 },
-  { path: 'resetpassword/:token', component: ResetComponent },
+  { path: 'resetpassword/:id', component: ResetComponent },
   {path:'**', redirectTo:'/login'},
   
   

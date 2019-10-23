@@ -4,6 +4,7 @@ import { Color } from '../../models/color.models';
 import { DataService } from '../../services/data-services/data.service'
 import { DialogueComponent } from '../dialogue/dialogue.component'
 import { MatDialog } from '@angular/material';
+import { Remind } from '../../models/remind.models';
 
 
 
@@ -20,6 +21,7 @@ export class CardsComponent implements OnInit {
   options: any;
   message: string;
   user: Color;
+  userr:Remind
   public noteSelected;
   cardId: any;
   constructor(private svc: NoteService, private datasvc: DataService, private dialog: MatDialog) { }
@@ -51,6 +53,22 @@ export class CardsComponent implements OnInit {
       noteId: noteid
     }
     this.svc.dellabnotes(data,this.TokenAuth).subscribe((response: any) => {
+      this.datasvc.changeMessage("Hello from Sibling")
+    });
+  }
+
+  delreminder(reminderId, noteid) {
+    this.userr= {
+      reminder: reminderId,
+      noteIdList: [noteid]
+    }
+    let res=
+    {
+      data: this.userr
+    }
+    this.svc.delreminder(res,this.TokenAuth).subscribe((response: any) => {
+      console.log('----',response);
+      
       this.datasvc.changeMessage("Hello from Sibling")
     });
   }

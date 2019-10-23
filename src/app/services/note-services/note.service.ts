@@ -69,10 +69,20 @@ export class NoteService {
     return this.svc.Post(label ,auth, 'notes/getNotesListByLabel/' + label.labelName)
     
 }
+addReminder(userObj, auth)
+{
+  return this.svc.Post(userObj, auth, 'notes/addUpdateReminderNotes')
+
+}
 dellabnotes(userObj, auth){
   let url= 'notes/' + userObj.noteId + '/addLabelToNotes/' + userObj.id + '/remove'
-
-  return this.svc.Post(userObj,auth,'notes/' + userObj.noteId + '/addLabelToNotes/' + userObj.id + '/remove'
-  );
+  return this.svc.Post(userObj,auth,'notes/' + userObj.noteId + '/addLabelToNotes/' + userObj.id + '/remove');
+}
+GetReminderList(auth) {
+  return this.svc.Get(auth, 'notes/getReminderNotesList');
+}
+delreminder(userObj, auth){
+  
+  return this.svc.Post(userObj,auth,'notes/removeReminderNotes');
 }
 }

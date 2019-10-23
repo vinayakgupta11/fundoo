@@ -29,9 +29,11 @@
         </div>
 
         <div fxLayoutAlign="center start" fxFlex="10">
-            <button class="butto" mat-button (click)="onLogin()" > Login!</button>
+            
+            <button  class="butto" mat-button (click)="onLogin()" > Login!</button>
             <button routerLink="/register" mat-button class="butto"> Register!</button>
             <button routerLink="/forget" mat-button class="butto"> Forgot Password!</button>
         </div>
     </mat-card>
 </div>
+<ng4-loading-spinner  [threshold]="0"   > </ng4-loading-spinner>

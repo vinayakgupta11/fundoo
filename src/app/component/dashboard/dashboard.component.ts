@@ -7,6 +7,7 @@ import{environment} from '../../../environments/environment'
 import{ DataService} from '../../services/data-services/data.service'
 import{LabelsComponent} from '../labels/labels.component';
 import { NoteService } from 'src/app/services/note-services/note.service';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,7 +23,7 @@ export class DashboardComponent implements OnInit {
   TokenAuth:boolean= true;
   labels:any;
 
-  constructor(private auth:AuthService,private  noteService: NoteService,  private router:Router,private dialog : MatDialog,private datasvc:DataService) { }
+  constructor(private spinnerService: Ng4LoadingSpinnerService,private auth:AuthService,private  noteService: NoteService,  private router:Router,private dialog : MatDialog,private datasvc:DataService) { }
   email= localStorage.getItem('email');
   firstName=localStorage.getItem('firstName');
   lastName=localStorage.getItem('lastName');
@@ -57,6 +58,7 @@ export class DashboardComponent implements OnInit {
   }
   changeProfile()
   {
+    this.spinnerService.show();
     this.localstor= localStorage.getItem('imageUrl');
     this.url=(this.imgbase+this.localstor)
   }

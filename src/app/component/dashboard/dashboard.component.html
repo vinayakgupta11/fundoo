@@ -74,6 +74,8 @@
     </div>
   </div>
 
+  <ng4-loading-spinner  [threshold]="0"  [timeout]="500"  [loadingText]="'Please wait...'"  > </ng4-loading-spinner>
+
   <mat-menu #belowMenu="matMenu" [overlapTrigger]="false">
     <div class='ProfileInfo' fxLayout="column">
       <div fxFlex=90 fxLayout="row">
@@ -96,9 +98,5 @@
           <button mat-menu-item *ngIf="auth.isLoggednIn()" (click)="auth.logout()">Logout</button>
         </div>
       </div>
-
-
-
-
     </div>
   </mat-menu>

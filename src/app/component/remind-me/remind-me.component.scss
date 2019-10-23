@@ -2,3 +2,8 @@
 {
     font-size: 17px;
 }
+::ng-deep .customize {
+    min-width: 270px;
+    min-height: 250px;
+    padding-left: 10px; 
+  }

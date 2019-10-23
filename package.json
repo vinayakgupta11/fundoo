@@ -25,6 +25,7 @@
     "@angular/router": "^6.1.0",
     "angular-hammer": "^2.2.0",
     "core-js": "^2.5.4",
+    "ng4-loading-spinner": "^1.2.3",
     "ngx-image-cropper": "^1.4.1",
     "ngx-img": "^10.19.0",
     "rxjs": "~6.2.0",

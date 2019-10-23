@@ -5,6 +5,8 @@ import{User} from '../../models/login.model'
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import {DataService} from '../../services/data-services/data.service'
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+
 
 @Component({
   selector: 'app-login',
@@ -32,12 +34,15 @@ getEmailInvalidMessage() {
   }
 
 
-  constructor(private svc: TestService, private router:Router,private auth: AuthService, private datasvc: DataService) { }
+  constructor(private spinnerService: Ng4LoadingSpinnerService,private svc: TestService, private router:Router,private auth: AuthService, private datasvc: DataService) { }
 
   ngOnInit() {
+   
   }
+  
+  
   onLogin() {
-
+    this.spinnerService.show();
     this.userObj = {
       email: this.email.value,
       password: this.password.value,
@@ -59,6 +64,7 @@ getEmailInvalidMessage() {
       localStorage.setItem('imageUrl', response.imageUrl)
       this.auth.sendToken(response.id);
       this.router.navigate(['/display-notes']);
+      this.spinnerService.hide();
     },(error)=>{
       console.log(error);
     });

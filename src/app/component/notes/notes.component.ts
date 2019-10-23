@@ -28,7 +28,7 @@ export class NotesComponent implements OnInit {
 
   ngOnInit() {
     this.datasvc.currentMessage.subscribe((res) =>{
-      if(res=='default message'){console.log(res);
+      if(res=='save'){
       this.colour='#fff';}
       else
       {

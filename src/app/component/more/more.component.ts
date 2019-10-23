@@ -34,7 +34,7 @@ export class MoreComponent implements OnInit {
     })
   }
   trashNote(card)
-  { console.log('---------',card);
+  {// console.log('---------',card);
      this.cardId=card.id;
     this.user={
     isDeleted:true,
@@ -57,12 +57,12 @@ export class MoreComponent implements OnInit {
       isDeleted: false,
       noteIdList: [this.cardId]
     }
-    console.log(this.user);
+    //console.log(this.user);
     this.options = {
       data: this.user
     }
     this.noteService.RestoreNote(this.options, this.TokenAuth).subscribe((response) => {
-      console.log(response);
+    //  console.log(response);
       this.datasvc.changeMessage('save')
 
     }, (error) => {
@@ -107,7 +107,7 @@ onOpenAddLabel(labelId){
     data: this.label
   }
    this.noteService.addLabelToNotes(this.options, this.TokenAuth).subscribe((response: any) => {
-    console.log(response);
+  //  console.log(response);
     this.datasvc.changeMessage('save')
     //this.messageEvent.emit(this.messageLabels);
   }, (error) => {
