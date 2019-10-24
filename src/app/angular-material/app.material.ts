@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import {MatButtonModule,MatDialogModule,MatMenuModule,MatExpansionModule,MatListModule,MatFormFieldModule,MatInputModule,MatDividerModule,MatSliderModule,MatCardModule,MatIconModule,MatToolbarModule,MatSidenavModule} from '@angular/material';
+import {MatButtonModule,MatDialogModule,MatTooltipModule,MatMenuModule,MatExpansionModule,MatListModule,MatFormFieldModule,MatInputModule,MatDividerModule,MatSliderModule,MatCardModule,MatIconModule,MatToolbarModule,MatSidenavModule} from '@angular/material';
 import {TextFieldModule} from '@angular/cdk/text-field';
 @NgModule({
 imports: [
@@ -16,7 +16,8 @@ MatListModule,
 MatExpansionModule,
 TextFieldModule,
 MatMenuModule,
-MatDialogModule
+MatDialogModule,
+MatTooltipModule
 ],
 
 exports: [
@@ -33,7 +34,8 @@ MatListModule,
 MatExpansionModule,
 TextFieldModule,
 MatMenuModule,
-MatDialogModule
+MatDialogModule,
+MatTooltipModule
 ],
 })
 export class AppMaterialModule { }

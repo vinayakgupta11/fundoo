@@ -33,6 +33,14 @@
           <span></span>
         </mat-chip-list>
       </div>
+      <div *ngFor="let notecoll of note.collaborators" fxLayout='row'>
+
+
+        <button mat-mini-fab matTooltip={{notecoll.email}}>{{notecoll.firstName[0] | uppercase}}</button>
+
+            
+            
+      </div>
 
     <div class="hide" fxLayoutAlign="start start" style="width: 100%">
       <app-icon-tray [show]='TypeIcon' [card]=note> </app-icon-tray>

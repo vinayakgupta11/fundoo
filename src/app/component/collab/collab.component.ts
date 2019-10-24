@@ -33,6 +33,7 @@ export class CollabComponent implements OnInit {
     
     
     
+    
   }
   email = localStorage.getItem('email');
   firstName = localStorage.getItem('firstName');
@@ -59,6 +60,7 @@ export class CollabComponent implements OnInit {
   this.noteService.addCollaborator(options,this.TokenAuth).subscribe((response:any)=>
   {
    // console.log('---',response);
+   this.datasvc.changeMessage("Hello from Sibling")
    this.coll='';
     this.getNotesCollab();
   },
@@ -76,6 +78,7 @@ export class CollabComponent implements OnInit {
     this.noteService.DeleteCollab(options,this.TokenAuth).subscribe((response)=>
     {
      // console.log(response);
+     this.datasvc.changeMessage("Hello from Sibling")
       this.getNotesCollab();
       
     })
