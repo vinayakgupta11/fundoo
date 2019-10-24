@@ -44,8 +44,9 @@ import {TextFieldModule} from '@angular/cdk/text-field';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { LabelDisplayComponent } from './component/label-display/label-display.component';
 import { RemindersComponent } from './component/reminders/reminders.component';
-
 import { MatDatepickerModule,MatNativeDateModule} from '@angular/material';
+import { CollabComponent } from './component/collab/collab.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -75,11 +76,13 @@ import { MatDatepickerModule,MatNativeDateModule} from '@angular/material';
     SerachComponent,
     LabelsComponent,
     LabelDisplayComponent,
-    RemindersComponent  ,
+    RemindersComponent,
+    CollabComponent  ,
     
   ],
-  entryComponents : [DialogueComponent,UploadImageComponent,LabelsComponent],
+  entryComponents : [DialogueComponent,UploadImageComponent,LabelsComponent,CollabComponent ],
   imports: [
+    MatAutocompleteModule,
     MatDatepickerModule,
     MatNativeDateModule,
     Ng4LoadingSpinnerModule,

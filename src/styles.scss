@@ -21,3 +21,14 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
     }
 
 }
+
+.CollabClass{
+    mat-dialog-container {
+        width: 600px;
+        height:300px;
+    
+    padding-top: 0%;
+    // padding-bottom:0%; 
+    }
+
+}

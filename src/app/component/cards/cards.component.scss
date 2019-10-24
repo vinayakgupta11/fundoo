@@ -13,6 +13,12 @@
       font-size: 15px;
     }
 }
+.hide{
+  opacity: 0;
+}
+.hide:hover{
+  opacity: 1;
+}
 .card
     {
       margin-top: 1.5%;

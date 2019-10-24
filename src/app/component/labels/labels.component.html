@@ -22,16 +22,17 @@
         <mat-icon matPrefix matToolTip="Delete label">delete</mat-icon>
       </button>
     </div>
-    <div fxFlex=40> 
+    <div fxFlex=40>
 
-        <input matInput type="text" [formControl]="updateLabel" value="{{label.label}}">
-          </div>
-          <div fxFlex=30 fxLayoutAlign="end end">
-          <button mat-button (click)="onUpdateNoteLabel(label)">
-          <mat-icon matSuffix>create</mat-icon>
-          </button>
-      </div>
-    <!-- <div fxFlex=40>
+      <input matInput type="text" [formControl]="updateLabel" value="{{label.label}}">
+    </div>
+    <div fxFlex=30 fxLayoutAlign="end end">
+      <button mat-button (click)="onUpdateNoteLabel(label)">
+        <mat-icon matSuffix>create</mat-icon>
+      </button>
+    </div>
+  </div>
+  <!-- <div fxFlex=40>
       <p style="word-break: break-all">{{label.label}}</p>
     </div>
     <div fxFlex=30 fxLayoutAlign="end end">
@@ -42,7 +43,7 @@
         <mat-icon matSuffix>create</mat-icon>
       </button>
     </div> -->
-  </div>
+
 
 
   <mat-divider></mat-divider>

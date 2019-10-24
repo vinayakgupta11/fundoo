@@ -85,4 +85,15 @@ delreminder(userObj, auth){
   
   return this.svc.Post(userObj,auth,'notes/removeReminderNotes');
 }
+addCollaborator(userObj, auth)
+{
+  return this.svc.Post(userObj,auth,'notes/' +userObj.noteId+ '/AddcollaboratorsNotes');
+}
+GetNotesListCollab(userObj,auth) {
+  return this.svc.Patch(userObj,auth, 'notes/'+ userObj.noteId)
+}
+DeleteCollab(userObj,auth)
+{
+    return this.svc.Delete(auth, 'notes/' + userObj.noteId + '/removeCollaboratorsNotes/'+ userObj.collId)
+}
 }

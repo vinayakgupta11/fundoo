@@ -96,4 +96,21 @@ export class HttpService {
     return this.http.delete( this.baseUrl+url)
     }
   }
+  Patch(userObj,auth, url)
+  { 
+    if(auth)
+    {
+      let httpOptions={
+        headers:new HttpHeaders({
+          'Content-type':'application/json',
+          'Authorization':localStorage.getItem('id')
+        })
+      }
+      return this.http.patch( this.baseUrl+url , userObj.data,httpOptions)
+    }
+    else
+    {
+    return this.http.patch( this.baseUrl+url , userObj.data)
+    }
+  }
 }

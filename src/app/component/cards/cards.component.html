@@ -13,7 +13,7 @@
       <mat-chip-list>
         <mat-chip class="matChip">
           {{noteLabel.label}}
-          <button mat-icon-button (click)="dellabelnotes(noteLabel.id,note.id)">
+          <button class="hide"  mat-icon-button (click)="dellabelnotes(noteLabel.id,note.id)">
             <mat-icon>close</mat-icon>
           </button>
         </mat-chip>
@@ -26,7 +26,7 @@
         <mat-chip-list>
           <mat-chip class="matChip">
             {{noteRem}}
-            <button mat-icon-button (click)="delreminder(note.reminder,note.id)">
+            <button class="hide" mat-icon-button (click)="delreminder(note.reminder,note.id)">
               <mat-icon>close</mat-icon>
             </button>
           </mat-chip>
@@ -34,11 +34,9 @@
         </mat-chip-list>
       </div>
 
-    <div fxLayoutAlign="start start" style="width: 100%">
+    <div class="hide" fxLayoutAlign="start start" style="width: 100%">
       <app-icon-tray [show]='TypeIcon' [card]=note> </app-icon-tray>
-      <!-- <app-icon (messageEvent)="receiveMessage($event)" >[card]={{notes}}</app-icon> -->
-      <!-- <app-icon  (messageEvent)="receiveMessage($event)" [mess]="isArchived"  [card]=note ></app-icon> -->
-      <!-- <app-icon></app-icon> -->
+     
     </div>
   </mat-card>
 

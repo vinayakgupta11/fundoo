@@ -30,6 +30,11 @@ export class TestService {
   Profile(userObj, auth) {
     return this.svc.PostImage(userObj.data, auth, 'user/uploadProfileImage')
   }
+
+  searchUser(userObj, auth)
+  {
+    return this.svc.Post(userObj, auth, 'user/searchUserList')
+  }
   getEncodedData(data) {
     const formBody = [];
     for (const property in data) {
