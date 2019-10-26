@@ -1,0 +1,20 @@
+<div>
+  <div *ngFor="let ques of noteData ">
+    <div>
+      <p> {{ques.title}}</p>
+      <p> {{ques.description}}</p>
+      <mat-divider></mat-divider>
+    </div>
+
+
+    <div>
+      <h3>Ask a Question</h3>
+      <textarea matInput type="text" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+        cdkAutosizeMaxRows="25" placeholder="Ask a question" [formControl]="QuesValue"></textarea>
+    </div>
+    <div fxLayoutAlign="end end">
+      <button mat-button (click)=AddQues(ques.id)>Submit</button>
+    </div>
+  </div>
+
+</div>

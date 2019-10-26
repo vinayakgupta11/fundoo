@@ -29,13 +29,14 @@ export class RemindMeComponent implements OnInit {
     this.cardId = card.id;
     this.user = {
       noteIdList: [this.cardId],
-      reminder: datee._validSelected
+      reminder: datee._selected
     }
     this.options = {
       data: this.user,
     }
+    console.log('=====',this.options);
+    
     this.noteService.addReminder(this.options, this.TokenAuth).subscribe((response) => {
-      console.log(response);
       this.GetReminder();
      
       this.datasvc.changeMessage('save')
@@ -46,7 +47,6 @@ export class RemindMeComponent implements OnInit {
   GetReminder()
   {
     this.noteService.GetReminderList(this.TokenAuth).subscribe((response: any) => {
-      console.log('===',response);
     }, (error) => {
       console.log(error);
     });

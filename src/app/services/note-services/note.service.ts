@@ -96,4 +96,13 @@ DeleteCollab(userObj,auth)
 {
     return this.svc.Delete(auth, 'notes/' + userObj.noteId + '/removeCollaboratorsNotes/'+ userObj.collId)
 }
+
+GetNoteDetailss(userObj, auth) {
+  return this.svc.Get( auth, 'notes/getNotesDetail/'+ userObj.noteIdList)
+}
+AddQuestion(userObj, auth)
+{
+  return this.svc.Post(userObj,auth,'questionAndAnswerNotes/addQuestionAndAnswer');
+
+}
 }

@@ -1,6 +1,6 @@
 <div class="container" fxLayout="column">
   <mat-toolbar fxLayoutAlign="start center" fxLayoutGap=20px class="abc" fxLayout="row">
-    <div fxFlex=90 fxLayoutAlign="start center" fxLayoutGap=20px>
+    <div fxFlex=80 fxLayoutAlign="start center" fxLayoutGap=20px>
       <button type="button" mat-button (click)="drawer.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
@@ -12,13 +12,30 @@
         <input [(ngModel)]='FilterText' (click)=displaySearch() (keyup)="onKeyUp($event)" matInput placeholder="Search">
       </mat-form-field>
     </div>
-    <div fxFlex=10 fxLayoutAlign="start center">
-      <mat-icon>apps</mat-icon>
-      <button mat-button [matMenuTriggerFor]="belowMenu">
-        <!-- <mat-icon  >account_circle</mat-icon> -->
-        <img mat-card-avatar [src]="url" class="avatar-img"
-          height="20px" width="20px">
-      </button>
+    <div fxFlex=20 fxLayoutAlign="start center">
+      <div *ngIf="show">
+        <button  matTooltip="list view" mat-button (click)="toggle()">
+          <mat-icon>view_agenda</mat-icon>
+        </button>
+      </div>
+      <div *ngIf="!show">
+        <button matTooltip="grid view" mat-button (click)="toggle()">
+          
+          <mat-icon>border_all</mat-icon>
+        </button>
+      </div>
+      <div>
+        <button mat-button>
+          <mat-icon>apps</mat-icon>
+        </button>
+      </div>
+      <div>
+        <button mat-button [matMenuTriggerFor]="belowMenu">
+          <!-- <mat-icon  >account_circle</mat-icon> -->
+          <img mat-card-avatar [src]="url" class="avatar-img" height="20px" width="20px">
+        </button> </div>
+
+
     </div>
   </mat-toolbar>
   <!-- <button mat-menu-item *ngIf="!auth.isLoggednIn()" routerLink="/login">Login</button> -->
@@ -32,7 +49,7 @@
       <mat-drawer-container class="sidebar-container" autosize>
         <mat-drawer #drawer class="example-sidenav" mode="side" fxHide.xs="true" fxShow="true">
           <mat-nav-list>
-            <mat-list-item (click)=displayNot()>
+            <mat-list-item routerLinkActive="cd" (click)=displayNot()>
               <mat-icon class="icon">note_add</mat-icon> <span class="labelname"> Notes</span>
             </mat-list-item>
             <mat-list-item routerLink='.'>
@@ -74,7 +91,7 @@
     </div>
   </div>
 
-  <ng4-loading-spinner  [threshold]="0"  [timeout]="500"  [loadingText]="'Please wait...'"  > </ng4-loading-spinner>
+  <ng4-loading-spinner [threshold]="0" [timeout]="500" [loadingText]="'Please wait...'"> </ng4-loading-spinner>
 
   <mat-menu #belowMenu="matMenu" [overlapTrigger]="false">
     <div class='ProfileInfo' fxLayout="column">

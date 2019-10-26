@@ -11,6 +11,7 @@ import { TrashComponent } from './component/trash/trash.component';
 import { ArchiveComponent } from './component/archive/archive.component';
 import { SerachComponent } from './component/serach/serach.component';
 import { LabelDisplayComponent } from './component/label-display/label-display.component';
+import { QuesAnsComponent } from './component/ques-ans/ques-ans.component';
 
 
 
@@ -35,6 +36,8 @@ const routes: Routes = [
       path:'serach', component:SerachComponent
     },
     {path : 'label/:label', component : LabelDisplayComponent},
+
+    {path : 'questionAnswer/:noteId', component : QuesAnsComponent},
 
   ]
 },

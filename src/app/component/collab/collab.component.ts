@@ -30,10 +30,7 @@ export class CollabComponent implements OnInit {
   TokenAuth: boolean = true;
   constructor(@Inject(MAT_DIALOG_DATA) dialogData: any, private testService: TestService,private  noteService: NoteService, private datasvc: DataService, private dialogRef: MatDialogRef<DisplayNotesComponent>) { 
   this.notedetails= dialogData.card.id
-    
-    
-    
-    
+  console.log('---', dialogData.card);
   }
   email = localStorage.getItem('email');
   firstName = localStorage.getItem('firstName');

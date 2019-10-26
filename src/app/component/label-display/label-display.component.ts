@@ -29,19 +29,14 @@ export class LabelDisplayComponent implements OnInit {
 getNotesByLabel() {
    
   this.dataSvc.currentMessage.subscribe((res:any) => {
-  // console.log("In ng on init",res);
    let data={
     labelName: res
   }
-  //console.log("fffffffffffffffffffffff",data.labelName);
-  
   this.noteService.getNotesByLabel(data,this.TokenAuth).subscribe((response: any) => {
     this.notes = response.data.data;
     this.notes = this.filterData(response.data.data);
     this.notesByLabel = this.notes;
     this.notesByLabel.reverse();
-    //console.log("response........",response);
-    //console.log("notes..ddddddddddddddddd......",this.notesByLabel);      
   }, (error) => {
     console.log(error);
   });

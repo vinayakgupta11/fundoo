@@ -10,18 +10,28 @@ export class DataService {
   private labelSource = new BehaviorSubject('default message');
   LabelMessage = this.labelSource.asObservable();
 
-  
+  private quesSource = new BehaviorSubject('default message');
+  QuesMessage = this.quesSource.asObservable();
+
+  private ViewSource = new BehaviorSubject('default message');
+  ViewMessage = this.ViewSource.asObservable();
+
+
 
 
   constructor() { }
   changeMessage(message: any) {
     this.messageSource.next(message)
   }
-  LabelList(message:any)
-  {
+  LabelList(message: any) {
     this.labelSource.next(message);
-
   }
-  
-  
+  AskQuestion(message: any) {
+    this.quesSource.next(message);
+  }
+  View(message:any)
+  {
+    this.ViewSource.next(message);
+  }
+
 }

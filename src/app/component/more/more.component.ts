@@ -2,7 +2,8 @@ import { Component, OnInit,Input,Output, EventEmitter } from '@angular/core';
 import { DataService } from '../../services/data-services/data.service'
 import{Color} from '../../models/color.models';
 import{NoteService} from '../../services/note-services/note.service';
-import{ LabelNote } from '../../models/label.models'
+import{ LabelNote } from '../../models/label.models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-more',
@@ -19,13 +20,14 @@ export class MoreComponent implements OnInit {
   cardId:any;
   labels:any;
   label:LabelNote;
+  notedetails:any;
  
   @Input() CardId:any;
 
-  constructor(private datasvc: DataService,private noteService: NoteService) { }
+  constructor(private router:Router,private datasvc: DataService,private noteService: NoteService) { }
 
   ngOnInit() {
-   // console.log('---------',this.cardId);
+    //console.log('----',this.CardId);
     
     this.GetLabelList();
     this.datasvc.LabelMessage.subscribe((res)=>
@@ -33,9 +35,29 @@ export class MoreComponent implements OnInit {
       this.GetLabelList();
     })
   }
+  GetNoteDetails(card)
+  {
+    this.router.navigate(['/questionAnswer/'+ card.id]);
+    this.cardId=card.id;
+    
+  
+    this.options={
+      noteIdList: [this.cardId]
+    }
+    this.noteService.GetNoteDetailss(this.options,this.TokenAuth).subscribe((response:any) => {
+      this.notedetails= response.data.data;
+      //this.notedetails= Array.of(this.notedetails); 
+      this.datasvc.AskQuestion(this.notedetails)
+    
+     
+      
+    }, (error) => {
+      console.log(error);
+    });
+    
+  }
   trashNote(card)
-  {// console.log('---------',card);
-     this.cardId=card.id;
+  {  this.cardId=card.id;
     this.user={
     isDeleted:true,
     noteIdList: [this.cardId]

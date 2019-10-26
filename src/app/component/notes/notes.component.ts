@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NoteService } from '../../services/note-services/note.service';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { Note } from '../../models/note.models';
 import { DataService } from '../../services/data-services/data.service'
 

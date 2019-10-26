@@ -1,11 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule,NO_ERRORS_SCHEMA,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './component/login/login.component';
 import { RegisterComponent } from './component/register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import{AppMaterialModule}from  './angular-material/app.material';
+import { AppMaterialModule } from './angular-material/app.material';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { ForgotComponent } from './component/forgot/forgot.component';
 import { ResetComponent } from './component/reset/reset.component';
@@ -14,7 +14,7 @@ import { TestService } from './services/user-services/User.service';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { IconComponent } from './component/icon/icon.component';
 import { NotesComponent } from './component/notes/notes.component';
-import{AuthGuard} from '../app/auth-guard/auth.guard';
+import { AuthGuard } from '../app/auth-guard/auth.guard';
 import { AuthService } from '../app/services/auth/auth.service';
 import { CardsComponent } from './component/cards/cards.component';
 import { DisplayNotesComponent } from './component/display-notes/display-notes.component';
@@ -34,19 +34,22 @@ import { UnarchiveIconComponent } from './component/unarchive-icon/unarchive-ico
 import { TestpipePipe } from './pipe/testpipe.pipe';
 import { SerachComponent } from './component/serach/serach.component';
 import { LabelsComponent } from './component/labels/labels.component';
-import { MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
 import { HttpModule } from '@angular/http';
-import {MatDialogModule} from '@angular/material/dialog';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import {TextFieldModule} from '@angular/cdk/text-field';
+import { TextFieldModule } from '@angular/cdk/text-field';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { LabelDisplayComponent } from './component/label-display/label-display.component';
 import { RemindersComponent } from './component/reminders/reminders.component';
-import { MatDatepickerModule,MatNativeDateModule} from '@angular/material';
+import { MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import { CollabComponent } from './component/collab/collab.component';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { QuesAnsComponent } from './component/ques-ans/ques-ans.component';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 @NgModule({
   declarations: [
@@ -77,11 +80,14 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     LabelsComponent,
     LabelDisplayComponent,
     RemindersComponent,
-    CollabComponent  ,
-    
+    CollabComponent,
+    QuesAnsComponent,
+
   ],
-  entryComponents : [DialogueComponent,UploadImageComponent,LabelsComponent,CollabComponent ],
+  entryComponents: [DialogueComponent, UploadImageComponent, LabelsComponent, CollabComponent],
   imports: [
+    OwlDateTimeModule, OwlNativeDateTimeModule ,
+    FroalaEditorModule, FroalaViewModule,
     MatAutocompleteModule,
     MatDatepickerModule,
     MatNativeDateModule,
@@ -99,17 +105,18 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatMenuModule,
     HttpModule,
     TextFieldModule,
-    
-    
+
+
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,
     NO_ERRORS_SCHEMA
   ],
-  providers: [ 
+  providers: [
+    OwlDateTimeModule,
     MatDatepickerModule,
     TestService,
-    AuthGuard, 
+    AuthGuard,
     AuthService,
     { provide: MAT_DIALOG_DATA, useValue: {} },
     { provide: MatDialogRef, useValue: {} }
@@ -119,5 +126,5 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 export class AppModule { }
 {
 
-  
+
 }

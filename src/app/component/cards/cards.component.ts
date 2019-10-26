@@ -24,9 +24,16 @@ export class CardsComponent implements OnInit {
   userr:Remind
   public noteSelected;
   cardId: any;
+  viewVal:any;
   constructor(private svc: NoteService, private datasvc: DataService, private dialog: MatDialog) { }
   ngOnInit() {
     this.datasvc.currentMessage.subscribe(message => this.message = message)
+    this.datasvc.ViewMessage.subscribe((res)=>
+    {this.viewVal=res;
+      console.log('backspace', this.viewVal);
+      
+
+    })
   }
   openDialog(note) {
     console.log("the value of note is ", note);

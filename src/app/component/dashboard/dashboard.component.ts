@@ -22,6 +22,7 @@ export class DashboardComponent implements OnInit {
   i:number=0;
   TokenAuth:boolean= true;
   labels:any;
+  show: boolean = true;
 
   constructor(private spinnerService: Ng4LoadingSpinnerService,private auth:AuthService,private  noteService: NoteService,  private router:Router,private dialog : MatDialog,private datasvc:DataService) { }
   email= localStorage.getItem('email');
@@ -39,6 +40,10 @@ export class DashboardComponent implements OnInit {
       {
         this.GetLabelList();
       })
+  }
+  toggle() {
+    this.show = !this.show;
+    this.datasvc.View(this.show);
   }
   GetLabelList()
 {
