@@ -56,7 +56,6 @@ export class CollabComponent implements OnInit {
   }
   this.noteService.addCollaborator(options,this.TokenAuth).subscribe((response:any)=>
   {
-   // console.log('---',response);
    this.datasvc.changeMessage("Hello from Sibling")
    this.coll='';
     this.getNotesCollab();

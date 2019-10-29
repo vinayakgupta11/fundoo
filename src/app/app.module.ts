@@ -50,6 +50,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { QuesAnsComponent } from './component/ques-ans/ques-ans.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+
 
 @NgModule({
   declarations: [
@@ -86,6 +88,7 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
   ],
   entryComponents: [DialogueComponent, UploadImageComponent, LabelsComponent, CollabComponent],
   imports: [
+  
     OwlDateTimeModule, OwlNativeDateTimeModule ,
     FroalaEditorModule, FroalaViewModule,
     MatAutocompleteModule,

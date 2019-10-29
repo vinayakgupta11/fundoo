@@ -25,7 +25,7 @@
 
         <mat-chip-list>
           <mat-chip class="matChip">
-            {{noteRem}}
+            {{noteRem |  date:'short'}}
             <button class="hide" mat-icon-button (click)="delreminder(note.reminder,note.id)">
               <mat-icon>close</mat-icon>
             </button>
@@ -78,7 +78,7 @@
   
           <mat-chip-list>
             <mat-chip class="matChip">
-              {{noteRem}}
+              {{noteRem | date:'short'}}
               <button class="hide" mat-icon-button (click)="delreminder(note.reminder,note.id)">
                 <mat-icon>close</mat-icon>
               </button>

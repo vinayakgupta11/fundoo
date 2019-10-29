@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data-services/data.service';
 import { NoteService } from '../../services/note-services/note.service';
 import { FormControl } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-ques-ans',
@@ -12,14 +14,29 @@ export class QuesAnsComponent implements OnInit {
   noteData: any;
   QuesValue = new FormControl;
   TokenAuth: boolean = true;
+  options:any;
+  notedetails:any;
+  quesToken:any
 
-  constructor(private datasvc: DataService,private noteService: NoteService) { }
+  constructor( private route: ActivatedRoute,private datasvc: DataService,private noteService: NoteService) { }
 
   ngOnInit() {
-    this.datasvc.QuesMessage.subscribe((res) => {
-      this.noteData = res;
-      console.log('----', this.noteData);
-    })
+    this.quesToken = this.route.snapshot.paramMap.get('noteId');
+    this.GetNoteDetails(this.quesToken);
+  }
+
+  GetNoteDetails(card)
+  {
+    this.options={
+      noteIdList: [card]
+    }
+    this.noteService.GetNoteDetailss(this.options,this.TokenAuth).subscribe((response:any) => {
+      this.notedetails= response.data.data;
+
+    }, (error) => {
+      console.log(error);
+    });
+    
   }
   AddQues(id)
   { let user=

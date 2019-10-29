@@ -35,27 +35,7 @@ export class MoreComponent implements OnInit {
       this.GetLabelList();
     })
   }
-  GetNoteDetails(card)
-  {
-    this.router.navigate(['/questionAnswer/'+ card.id]);
-    this.cardId=card.id;
-    
-  
-    this.options={
-      noteIdList: [this.cardId]
-    }
-    this.noteService.GetNoteDetailss(this.options,this.TokenAuth).subscribe((response:any) => {
-      this.notedetails= response.data.data;
-      //this.notedetails= Array.of(this.notedetails); 
-      this.datasvc.AskQuestion(this.notedetails)
-    
-     
-      
-    }, (error) => {
-      console.log(error);
-    });
-    
-  }
+
   trashNote(card)
   {  this.cardId=card.id;
     this.user={

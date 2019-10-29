@@ -31,6 +31,8 @@ export class DisplayNotesComponent implements OnInit {
   getNote() {
     this.noteService.GetNotesList(this.TokenAuth).subscribe((response: any) => {
       this.notes = response.data.data;
+      //console.log('-------',response);
+      
       this.notes = this.FilterTrash(this.notes);
       this.notes.reverse();
     }, (error) => {

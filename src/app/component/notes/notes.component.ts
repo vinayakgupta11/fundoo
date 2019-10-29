@@ -28,14 +28,13 @@ export class NotesComponent implements OnInit {
 
   ngOnInit() {
     this.datasvc.currentMessage.subscribe((res) =>{
-      if(res=='save'){
+      if(res=='save' || res=='default message'){
       this.colour='#fff';}
       else
       {
         this.colour=res;
       }
     }
-      
     );
   }
 

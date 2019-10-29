@@ -34,8 +34,6 @@ export class RemindMeComponent implements OnInit {
     this.options = {
       data: this.user,
     }
-    console.log('=====',this.options);
-    
     this.noteService.addReminder(this.options, this.TokenAuth).subscribe((response) => {
       this.GetReminder();
      

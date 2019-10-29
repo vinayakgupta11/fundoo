@@ -1,5 +1,5 @@
 <div>
-  <div *ngFor="let ques of noteData ">
+  <div *ngFor="let ques of notedetails ">
     <div>
       <p> {{ques.title}}</p>
       <p> {{ques.description}}</p>
@@ -9,7 +9,7 @@
 
     <div>
       <h3>Ask a Question</h3>
-      <textarea matInput type="text" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+      <textarea    matInput type="text" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
         cdkAutosizeMaxRows="25" placeholder="Ask a question" [formControl]="QuesValue"></textarea>
     </div>
     <div fxLayoutAlign="end end">
