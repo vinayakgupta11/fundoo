@@ -52,6 +52,10 @@ export class MoreComponent implements OnInit {
     console.log(error);
   });
   }
+  NavigateToQuesAns(card)
+  {
+    this.router.navigate(['/questionAnswer/'+ card.id]);
+  }
 
   RestoreNotes(card) {
     this.cardId=card.id;
@@ -59,12 +63,10 @@ export class MoreComponent implements OnInit {
       isDeleted: false,
       noteIdList: [this.cardId]
     }
-    //console.log(this.user);
     this.options = {
       data: this.user
     }
     this.noteService.RestoreNote(this.options, this.TokenAuth).subscribe((response) => {
-    //  console.log(response);
       this.datasvc.changeMessage('save')
 
     }, (error) => {

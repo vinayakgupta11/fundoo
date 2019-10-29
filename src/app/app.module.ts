@@ -88,7 +88,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
   ],
   entryComponents: [DialogueComponent, UploadImageComponent, LabelsComponent, CollabComponent],
   imports: [
-  
+    AngularEditorModule,
     OwlDateTimeModule, OwlNativeDateTimeModule ,
     FroalaEditorModule, FroalaViewModule,
     MatAutocompleteModule,

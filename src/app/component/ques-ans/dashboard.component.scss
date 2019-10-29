@@ -1,0 +1,131 @@
+.example-container {
+  width: 400px;
+  height: 200px;
+  margin: 10px;
+  border: 1px solid #555;
+}
+.sidebar-container
+{
+    height: 90vh;
+    width:100%;
+}
+.maincontent
+{
+  padding-left: 10%;
+}
+.example-sidenav
+{
+    width:200px;
+}
+.container{
+  height: 100%;
+  width: 100%;
+  
+  
+}
+.labelname {
+  padding: 0 0 0 32px;
+  font-family: 'Google Sans',Roboto,Arial,sans-serif;
+  font-size: .875rem;
+  font-weight: 500;
+}
+.imag
+{
+    height: 60%;
+    width:4%;
+    padding-right: 7px;
+}
+
+.style
+{
+  font-weight: bold;
+  font-variant: small-caps;
+  padding-right: 10px;
+}
+.searc{
+   
+    transform: translateY(-1.1em) scale(.75);
+    width: 60%;
+    top: 30px;
+   
+}
+
+.abc {
+    background-color:whitesmoke;
+}
+.lab
+{
+  padding-right: 30px;
+}
+.icon{
+    padding-right: 5px;
+}
+.nitem
+{
+  font-variant: small-caps;
+  color: black;
+  font-weight: 900;
+  font-size: large;
+
+}
+.ProfileInfo 
+{ 
+width: 280px;
+}
+.not{
+
+padding-top: 30px;
+
+
+.cd { 
+  background-color: #feefc3;
+  opacity: 1 !important;
+  border-radius: 0px 25px 25px 0px; 
+outline: none;}
+
+}
+.avatar-image{
+height: 80px;
+width: 80px;
+border-radius: 20px;
+}
+.try{
+margin-top: 50px;
+
+}
+.icon-display {
+transform: scale(4.2);
+// padding-left: 10px
+}
+
+// .example-container {
+//   display: flex;
+//   flex-direction: column;
+//   position: absolute;
+//   top: 0;
+//   bottom: 0;
+//   left: 0;
+//   right: 0;
+// }
+
+// .example-is-mobile .example-toolbar {
+//   position: fixed;
+//   /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+//   z-index: 2;
+// }
+
+// h1.example-app-name {
+//   margin-left: 8px;
+// }
+
+// .example-sidenav-container {
+//   /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+//      causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+//   flex: 1;
+// }
+
+// .example-is-mobile .example-sidenav-container {
+//   /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
+//      `<body>` to be our scrolling element for mobile layouts. */
+//   flex: 1 0 auto;
+// }

@@ -103,6 +103,9 @@ GetNoteDetailss(userObj, auth) {
 AddQuestion(userObj, auth)
 {
   return this.svc.Post(userObj,auth,'questionAndAnswerNotes/addQuestionAndAnswer');
-
+}
+ReplyQuestion(userObj, auth)
+{
+  return this.svc.Post(userObj,auth,'questionAndAnswerNotes/reply/'+ userObj.quesId);
 }
 }
