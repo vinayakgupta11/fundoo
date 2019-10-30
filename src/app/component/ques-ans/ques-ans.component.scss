@@ -3,3 +3,9 @@
     {
         margin-top: 10px;
     }
+    ::ng-deep .hometown { 
+        margin:0 !important;
+        p{
+            margin: 0;
+        }
+      }

@@ -27,12 +27,13 @@ export class QuesAnsComponent implements OnInit {
   show: boolean = true;
   showReply: boolean = false;
   localstor:any;
-  url:any
+  url:any;
+  questionAnsLength: number
 
   constructor( private route: ActivatedRoute,private datasvc: DataService,private noteService: NoteService) { }
 
   ngOnInit() {
-    console.log('dateee',this.today);
+    
     
     this.quesToken = this.route.snapshot.paramMap.get('noteId');
     this.GetNoteDetails(this.quesToken);
@@ -66,6 +67,7 @@ export class QuesAnsComponent implements OnInit {
   }
   toggleReply() {
     this.showReply = !this.showReply;
+    
   }
   toggle() {
     this.show = !this.show;
@@ -78,7 +80,12 @@ export class QuesAnsComponent implements OnInit {
     }
     this.noteService.GetNoteDetailss(this.options,this.TokenAuth).subscribe((response:any) => {
       this.notedetails= response.data.data;
-      console.log('///////',this.notedetails);
+      
+      this.questionAnsLength= this.notedetails[0].questionAndAnswerNotes.length;
+      this.datasvc.AskQuestion(this.questionAnsLength);
+
+      console.log('notedetails',this.notedetails);
+      console.log('----------',this.questionAnsLength);
       
 
     }, (error) => {
@@ -97,10 +104,12 @@ export class QuesAnsComponent implements OnInit {
       data:user
     }
     this.noteService.AddQuestion(options, this.TokenAuth).subscribe((response) => {
-      console.log(response);
       this.GetNoteDetails(id);
       this.changeProfile();
       this.toggle();
+      
+      
+
       this.QuesValue='';
     }, (error) => {
       console.log(error);

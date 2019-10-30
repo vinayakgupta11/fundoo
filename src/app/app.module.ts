@@ -90,7 +90,6 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
   imports: [
     AngularEditorModule,
     OwlDateTimeModule, OwlNativeDateTimeModule ,
-    FroalaEditorModule, FroalaViewModule,
     MatAutocompleteModule,
     MatDatepickerModule,
     MatNativeDateModule,
@@ -108,6 +107,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     MatMenuModule,
     HttpModule,
     TextFieldModule,
+    FroalaEditorModule.forRoot(), FroalaViewModule.forRoot()
 
 
   ],
@@ -120,7 +120,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     MatDatepickerModule,
     TestService,
     AuthGuard,
-    AuthService,
+    AuthService,  
     { provide: MAT_DIALOG_DATA, useValue: {} },
     { provide: MatDialogRef, useValue: {} }
   ],

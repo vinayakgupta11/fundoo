@@ -9,7 +9,9 @@
 
     <div>
       <h3>Ask a Question</h3>
-      <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="QuesValue"></angular-editor>
+
+      <div [froalaEditor] [(froalaModel)]="QuesValue" id="froala-editor"></div>
+
     </div>
     <div fxLayoutAlign="end end">
       <button mat-button (click)=AddQues(ques.id)>Submit</button>
@@ -27,14 +29,14 @@
     </div>
     <div>
       <h3>Question Asked</h3>
-      <p>{{ques.questionAndAnswerNotes[0].message}}</p>
+      <div innerHTML="{{ques.questionAndAnswerNotes[0].message}}"></div>
       <mat-divider></mat-divider>
     </div>
     <div class='center' fxLayout='row' fxLayoutGap=20px>
       <div>
         <img mat-card-avatar [src]="url">
       </div>
-      <div fxLayout='column' fxLayoutGap=12px>
+      <div fxLayout='column' >
         <div fxLayout='row' fxLayoutGap=7px>
           <div>
             {{firstName+' '+lastName}}
@@ -42,19 +44,23 @@
           <div>
             {{ today | date:'medium' }}
           </div>
-          <div>
+          <div >
             <button matTooltip="reply" mat-button (click)=toggleReply()>
               <mat-icon>reply</mat-icon>
             </button>
           </div>
         </div>
-        <div>
-          {{ques.questionAndAnswerNotes[0].message}}
+        <div class='hometown' innerHTML="{{ques.questionAndAnswerNotes[0].message}}"></div>
+
+
+
+
+
+        <div *ngIf='showReply'>
+          <div [froalaEditor] [(froalaModel)]="AnsValue" id="froala-editor"></div>
+
+          <button mat-button (click)=QuestionReply(ques.questionAndAnswerNotes[0].id)>Reply </button>
         </div>
-        <div *ngIf='showReply' >
-           <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="AnsValue"></angular-editor>
-           <button  mat-button (click)=QuestionReply(ques.questionAndAnswerNotes[0].id) >Reply </button>
-          </div>
 
 
       </div>
