@@ -16,6 +16,10 @@ export class DataService {
   private ViewSource = new BehaviorSubject('default message');
   ViewMessage = this.ViewSource.asObservable();
 
+  private ReminderSource = new BehaviorSubject('Save Reminder');
+  ReminderMessage = this.ReminderSource.asObservable();
+
+
 
 
 
@@ -32,6 +36,10 @@ export class DataService {
   View(message:any)
   {
     this.ViewSource.next(message);
+  }
+  Reminder(message:any)
+  {
+    this.ReminderSource.next(message);
   }
 
 }

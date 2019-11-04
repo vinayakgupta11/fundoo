@@ -5,6 +5,7 @@ export class Note
     isDeleted?: Boolean;
     id?: String;
     service?:String;
-    color : any;
+    color ?: any;
+    reminder?:any;
     
 }

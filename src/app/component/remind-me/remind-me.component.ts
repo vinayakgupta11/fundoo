@@ -25,7 +25,10 @@ export class RemindMeComponent implements OnInit {
   ngOnInit() {
   }
   SaveReminder(card,datee)
-  {
+  { if(card)
+    {
+
+    
     this.cardId = card.id;
     this.user = {
       noteIdList: [this.cardId],
@@ -41,6 +44,13 @@ export class RemindMeComponent implements OnInit {
     }, (error) => {
       console.log(error);
     });
+  }
+  else
+  {
+    this.datasvc.Reminder(datee._selected)
+    console.log('date on  note', datee._selected);
+    
+  }
   }
   GetReminder()
   {

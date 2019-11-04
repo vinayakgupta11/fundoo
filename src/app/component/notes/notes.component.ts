@@ -21,29 +21,39 @@ export class NotesComponent implements OnInit {
   note: Note;
   options: any;
   notes: any;
-  colour:any = '#fff';
-  titleM : any;
-  descriptionM : any;
+  colour: any = '#fff';
+  titleM: any;
+  descriptionM: any;
+  ReminderNote: any;
   constructor(private noteService: NoteService, private datasvc: DataService) { }
 
   ngOnInit() {
-    this.datasvc.currentMessage.subscribe((res) =>{
-      if(res=='save' || res=='default message'){
-      this.colour='#fff';}
-      else
-      {
-        this.colour=res;
+    this.datasvc.currentMessage.subscribe((res) => {
+      if (res == 'save' || res == 'default message') {
+        this.colour = '#fff';
+      }
+      else {
+        this.colour = res;
       }
     }
     );
+    this.datasvc.ReminderMessage.subscribe((res) => {
+      if(res=='Save Reminder')
+      {
+        this.ReminderNote=''
+      }
+      else
+      {
+      this.ReminderNote = res;
+      }
+    })
   }
 
   toggle() {
     this.show = !this.show;
-    
   }
   receive() {
-    if (this.title.value == null && this.description.value == null &&  this.colour=='#fff') {
+    if (this.title.value == null && this.description.value == null && this.colour == '#fff') {
       this.toggle();
     }
 
@@ -51,7 +61,8 @@ export class NotesComponent implements OnInit {
       this.note = {
         title: this.title.value,
         description: this.description.value,
-        color : this.colour,
+        color: this.colour,
+        reminder: this.ReminderNote
       }
       console.log(this.note);
       this.options = {
@@ -59,22 +70,15 @@ export class NotesComponent implements OnInit {
       }
       this.noteService.AddNote(this.options, this.TokenAuth).subscribe((response) => {
         console.log(response);
-        
+
         this.toggle();
-        this.titleM="";
-    this.descriptionM = "";
+        this.titleM = "";
+        this.descriptionM = "";
+        this.ReminderNote = "";
         this.datasvc.changeMessage("save");
       }, (error) => {
         console.log(error);
       });
     }
-
-
-
   }
-  newMessage() {
-
-  }
-
-
 }

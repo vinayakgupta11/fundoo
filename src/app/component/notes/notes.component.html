@@ -31,28 +31,40 @@
 
 <div *ngIf="!show" class="center" fxLayoutAlign="center start">
 
-  <mat-card class="card" [ngStyle]="{background : colour}"  fxLayout="column" fxFlex="50"  fxFlex.sm=100 fxFlex.xs=100  fxLayoutAlign="start start">
-    <div  fxLayout="row" class="no">
+  <mat-card class="card" [ngStyle]="{background : colour}" fxLayout="column" fxFlex="50" fxFlex.sm=100 fxFlex.xs=100
+    fxLayoutAlign="start start">
+    <div fxLayout="row" class="no">
 
       <textarea matInput type="text" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
-        cdkAutosizeMaxRows="25" [(ngModel)]="titleM" placeholder="Title " class="fielda" [formControl]="title"></textarea>
+        cdkAutosizeMaxRows="25" [(ngModel)]="titleM" placeholder="Title " class="fielda"
+        [formControl]="title"></textarea>
 
 
     </div>
-    <div class="no" >
+    <div class="no">
       <textarea matInput type="text" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
-        cdkAutosizeMaxRows="25" [(ngModel)]="descriptionM" placeholder="Take a note" class="fielda" [formControl]="description"></textarea>
+        cdkAutosizeMaxRows="25" [(ngModel)]="descriptionM" placeholder="Take a note" class="fielda"
+        [formControl]="description"></textarea>
     </div>
+    <!-- <div *ngFor="let noteRem of ReminderNote"> -->
+      <mat-chip-list>
+        <mat-chip class="matChip">
+          {{ReminderNote |  date:'short'}}
+
+        </mat-chip>
+        <span></span>
+      </mat-chip-list>
+    <!-- </div> -->
     <div fxFlex="20" fxLayout="row " style="width: 100%">
       <div fxFlex=80>
         <!-- <app-icon   [mess]="isArchived"></app-icon> -->
-        <app-icon-tray [show]='TypeIcon' > </app-icon-tray>
+        <app-icon-tray [show]='TypeIcon'> </app-icon-tray>
       </div>
       <div fxFlex=20>
-        <button mat-button (click)="receive()" >Close</button>
+        <button mat-button (click)="receive()">Close</button>
       </div>
     </div>
 
   </mat-card>
-  
+
 </div>
