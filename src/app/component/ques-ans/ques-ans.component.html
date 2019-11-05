@@ -42,8 +42,13 @@
             {{ today | date:'medium' }}
           </div>
           <div>
-            <button matTooltip="reply" mat-button (click)=toggleReply()>
+            <button matTooltip="reply" mat-icon-button (click)=toggleReply()>
               <mat-icon>reply</mat-icon>
+            </button>
+          </div>
+          <div>
+            <button mat-icon-button>
+              <mat-icon>thumb_up_alt</mat-icon>
             </button>
           </div>
         </div>

@@ -50,6 +50,8 @@ export class QuesAnsComponent implements OnInit {
       data:user,
       "quesId": quesid
     }
+    console.log('repluuuuuu',options);
+    
     this.noteService.ReplyQuestion(options, this.TokenAuth).subscribe((response) => {
       console.log(response);
       this.toggleReply();
@@ -78,11 +80,8 @@ export class QuesAnsComponent implements OnInit {
       
       this.questionAnsLength= this.notedetails[0].questionAndAnswerNotes.length;
       this.datasvc.AskQuestion(this.questionAnsLength);
-
       console.log('notedetails',this.notedetails);
       console.log('----------',this.questionAnsLength);
-      
-
     }, (error) => {
       console.log(error);
     });

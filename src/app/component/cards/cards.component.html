@@ -1,4 +1,4 @@
-<div *ngIf= "!viewVal"  class="container" fxLayout="row wrap">
+<div *ngIf="!viewVal" class="container" fxLayout="row wrap">
   <mat-card fxFlex="30" fxFlex.sm=100 fxFlex.xs=100 style="height: 100%" *ngFor="let note of display " class="card"
     fxLayout="column" [ngStyle]="{background:note.color}" (click)=getNotesId(notes) fxLayoutAlign="start start">
     <div (click)="openDialog(note)" class="no">
@@ -13,7 +13,7 @@
       <mat-chip-list>
         <mat-chip class="matChip">
           {{noteLabel.label}}
-          <button class="hide"  mat-icon-button (click)="dellabelnotes(noteLabel.id,note.id)">
+          <button class="hide" mat-icon-button (click)="dellabelnotes(noteLabel.id,note.id)">
             <mat-icon>close</mat-icon>
           </button>
         </mat-chip>
@@ -21,83 +21,72 @@
       </mat-chip-list>
     </div>
     <div *ngFor="let noteRem of note.reminder">
-
-
-        <mat-chip-list>
-          <mat-chip class="matChip">
-            {{noteRem |  date:'short'}}
-            <button class="hide" mat-icon-button (click)="delreminder(note.reminder,note.id)">
-              <mat-icon>close</mat-icon>
-            </button>
-          </mat-chip>
-          <span></span>
-        </mat-chip-list>
-      </div>
-      <div *ngFor="let notecoll of note.collaborators" fxLayout='row'>
-
-
-        <button mat-mini-fab matTooltip={{notecoll.email}}>{{notecoll.firstName[0] | uppercase}}</button>
-
-            
-            
-      </div>
-
+      <mat-chip-list>
+        <mat-chip class="matChip">
+          {{noteRem |  date:'short'}}
+          <button class="hide" mat-icon-button (click)="delreminder(note.reminder,note.id)">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-chip>
+        <span></span>
+      </mat-chip-list>
+    </div>
+    <div *ngFor="let notecoll of note.collaborators" fxLayout='row'>
+      <button mat-mini-fab matTooltip={{notecoll.email}}>{{notecoll.firstName[0] | uppercase}}</button>
+    </div>
     <div class="hide" fxLayoutAlign="start start" style="width: 100%">
       <app-icon-tray [show]='TypeIcon' [card]=note> </app-icon-tray>
-     
+    </div>
+    <div *ngIf="note.questionAndAnswerNotes[0]">
+      <mat-divider></mat-divider>
+      Question Asked
+      <div  innerHTML="{{note.questionAndAnswerNotes[0].message}}"></div>
     </div>
   </mat-card>
 </div>
 
 
-
-<div *ngIf= "viewVal"  class="container" fxLayout="row wrap">
-    <mat-card fxFlex="100" fxFlex.sm=100 fxFlex.xs=100 style="height: 100%" *ngFor="let note of display " class="card"
-      fxLayout="column" [ngStyle]="{background:note.color}" (click)=getNotesId(notes) fxLayoutAlign="start start">
-      <div (click)="openDialog(note)" class="no">
-  
-        <p style="word-break: break-all">{{note.title}}</p>
-      </div>
-  
-      <div (click)="openDialog(note)" class="no">
-        <p style="word-break: break-all">{{note.description}}</p>
-      </div>
-      <div *ngFor="let noteLabel of note.noteLabels">
-        <mat-chip-list>
-          <mat-chip class="matChip">
-            {{noteLabel.label}}
-            <button class="hide"  mat-icon-button (click)="dellabelnotes(noteLabel.id,note.id)">
-              <mat-icon>close</mat-icon>
-            </button>
-          </mat-chip>
-          <span></span>
-        </mat-chip-list>
-      </div>
-      <div *ngFor="let noteRem of note.reminder">
-  
-  
-          <mat-chip-list>
-            <mat-chip class="matChip">
-              {{noteRem | date:'short'}}
-              <button class="hide" mat-icon-button (click)="delreminder(note.reminder,note.id)">
-                <mat-icon>close</mat-icon>
-              </button>
-            </mat-chip>
-            <span></span>
-          </mat-chip-list>
-        </div>
-        <div *ngFor="let notecoll of note.collaborators" fxLayout='row'>
-  
-  
-          <button mat-mini-fab matTooltip={{notecoll.email}}>{{notecoll.firstName[0] | uppercase}}</button>
-  
-              
-              
-        </div>
-  
-      <div class="hide" fxLayoutAlign="start start" style="width: 100%">
-        <app-icon-tray [show]='TypeIcon' [card]=note> </app-icon-tray>
-       
-      </div>
-    </mat-card>
-  </div>
+<div *ngIf="viewVal" class="container" fxLayout="row wrap">
+  <mat-card fxFlex="100" fxFlex.sm=100 fxFlex.xs=100 style="height: 100%" *ngFor="let note of display " class="card"
+    fxLayout="column" [ngStyle]="{background:note.color}" (click)=getNotesId(notes) fxLayoutAlign="start start">
+    <div (click)="openDialog(note)" class="no">
+      <p style="word-break: break-all">{{note.title}}</p>
+    </div>
+    <div (click)="openDialog(note)" class="no">
+      <p style="word-break: break-all">{{note.description}}</p>
+    </div>
+    <div *ngFor="let noteLabel of note.noteLabels">
+      <mat-chip-list>
+        <mat-chip class="matChip">
+          {{noteLabel.label}}
+          <button class="hide" mat-icon-button (click)="dellabelnotes(noteLabel.id,note.id)">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-chip>
+        <span></span>
+      </mat-chip-list>
+    </div>
+    <div *ngFor="let noteRem of note.reminder">
+      <mat-chip-list>
+        <mat-chip class="matChip">
+          {{noteRem | date:'short'}}
+          <button class="hide" mat-icon-button (click)="delreminder(note.reminder,note.id)">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-chip>
+        <span></span>
+      </mat-chip-list>
+    </div>
+    <div *ngFor="let notecoll of note.collaborators" fxLayout='row'>
+      <button mat-mini-fab matTooltip={{notecoll.email}}>{{notecoll.firstName[0] | uppercase}}</button>
+    </div>
+    <div class="hide" fxLayoutAlign="start start" style="width: 100%">
+      <app-icon-tray [show]='TypeIcon' [card]=note> </app-icon-tray>
+    </div>
+    <div *ngIf="note.questionAndAnswerNotes[0]">
+      <mat-divider></mat-divider>
+      Question Asked
+      <div  innerHTML="{{note.questionAndAnswerNotes[0].message}}"></div>
+    </div>
+  </mat-card>
+</div>
