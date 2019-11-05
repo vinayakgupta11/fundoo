@@ -31,8 +31,8 @@
 <mat-menu #menu_notes="matMenu" [overlapTrigger]="false">
   <button mat-menu-item (click)=trashNote(CardId) >Delete Note</button>
   <button  mat-menu-item [matMenuTriggerFor]="menu_labels">Add Label</button>
-  <button *ngIf="'quesAnsView==0'" mat-menu-item (click)= NavigateToQuesAns(CardId)>Ask a question</button>
-  <button mat-menu-item (click)= NavigateToQuesAns(CardId)>Show question</button>
+  <button *ngIf="quesAnsView=='0'" mat-menu-item (click)= NavigateToQuesAns(CardId)>Ask a question</button>
+  <button  *ngIf="quesAnsView!='0'" mat-menu-item (click)= NavigateToQuesAns(CardId)>Show question</button>
   <button mat-menu-item>Make a copy</button>
   <button mat-menu-item>Show tick boxes</button>
   <button mat-menu-item>Copy to Google Docs</button>

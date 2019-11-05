@@ -1,17 +1,13 @@
-<div *ngIf="show">
+<div *ngIf="questionAnsLength=='0'">
   <div *ngFor="let ques of notedetails ">
     <div>
       <p> {{ques.title}}</p>
       <p> {{ques.description}}</p>
       <mat-divider></mat-divider>
     </div>
-
-
     <div>
       <h3>Ask a Question</h3>
-
-      <div [froalaEditor] [(froalaModel)]="QuesValue" id="froala-editor"></div>
-
+      <div [froalaEditor] [(froalaModel)]="QuesValue"></div>
     </div>
     <div fxLayoutAlign="end end">
       <button mat-button (click)=AddQues(ques.id)>Submit</button>
@@ -20,7 +16,8 @@
 </div>
 
 
-<div *ngIf="!show">
+
+<div *ngIf="questionAnsLength>='1'">
   <div *ngFor="let ques of notedetails ">
     <div>
       <p> {{ques.title}}</p>
@@ -29,14 +26,14 @@
     </div>
     <div>
       <h3>Question Asked</h3>
-      <div innerHTML="{{ques.questionAndAnswerNotes[0].message}}"></div>
+      <div *ngIf="ques.questionAndAnswerNotes[0]" innerHTML="{{ques.questionAndAnswerNotes[0].message}}"></div>
       <mat-divider></mat-divider>
     </div>
     <div class='center' fxLayout='row' fxLayoutGap=20px>
       <div>
         <img mat-card-avatar [src]="url">
       </div>
-      <div fxLayout='column' >
+      <div fxLayout='column'>
         <div fxLayout='row' fxLayoutGap=7px>
           <div>
             {{firstName+' '+lastName}}
@@ -44,28 +41,19 @@
           <div>
             {{ today | date:'medium' }}
           </div>
-          <div >
+          <div>
             <button matTooltip="reply" mat-button (click)=toggleReply()>
               <mat-icon>reply</mat-icon>
             </button>
           </div>
         </div>
-        <div class='hometown' innerHTML="{{ques.questionAndAnswerNotes[0].message}}"></div>
-
-
-
-
-
+        <div *ngIf="ques.questionAndAnswerNotes[0]" class='hometown'
+          innerHTML="{{ques.questionAndAnswerNotes[0].message}}"></div>
         <div *ngIf='showReply'>
           <div [froalaEditor] [(froalaModel)]="AnsValue" id="froala-editor"></div>
-
           <button mat-button (click)=QuestionReply(ques.questionAndAnswerNotes[0].id)>Reply </button>
         </div>
-
-
       </div>
     </div>
-
   </div>
-
 </div>

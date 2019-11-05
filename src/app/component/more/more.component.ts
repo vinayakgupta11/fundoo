@@ -36,7 +36,7 @@ export class MoreComponent implements OnInit {
     })
     this.datasvc.QuesMessage.subscribe((res) => {
       this.quesAnsView = res;
-      console.log('hahahahahahahaha',this.quesAnsView);
+      
       
     })
   }
@@ -51,7 +51,7 @@ export class MoreComponent implements OnInit {
       data: this.user
     }
     this.noteService.TrashNote(this.options, this.TokenAuth).subscribe((response) => {
-      console.log(response);
+     // console.log(response);
       this.datasvc.changeMessage('save')
     }, (error) => {
       console.log(error);

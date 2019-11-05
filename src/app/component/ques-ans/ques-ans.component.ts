@@ -24,7 +24,6 @@ export class QuesAnsComponent implements OnInit {
   options:any;
   notedetails:any;
   quesToken:any;
-  show: boolean = true;
   showReply: boolean = false;
   localstor:any;
   url:any;
@@ -69,10 +68,6 @@ export class QuesAnsComponent implements OnInit {
     this.showReply = !this.showReply;
     
   }
-  toggle() {
-    this.show = !this.show;
-  }
-
   GetNoteDetails(card)
   {
     this.options={
@@ -106,10 +101,6 @@ export class QuesAnsComponent implements OnInit {
     this.noteService.AddQuestion(options, this.TokenAuth).subscribe((response) => {
       this.GetNoteDetails(id);
       this.changeProfile();
-      this.toggle();
-      
-      
-
       this.QuesValue='';
     }, (error) => {
       console.log(error);

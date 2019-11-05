@@ -64,12 +64,12 @@ export class NotesComponent implements OnInit {
         color: this.colour,
         reminder: this.ReminderNote
       }
-      console.log(this.note);
+      
       this.options = {
         data: this.note
       }
       this.noteService.AddNote(this.options, this.TokenAuth).subscribe((response) => {
-        console.log(response);
+       // console.log(response);
 
         this.toggle();
         this.titleM = "";

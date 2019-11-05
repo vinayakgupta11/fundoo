@@ -30,9 +30,6 @@ export class CardsComponent implements OnInit {
     this.datasvc.currentMessage.subscribe(message => this.message = message)
     this.datasvc.ViewMessage.subscribe((res)=>
     {this.viewVal=res;
-      console.log('backspace', this.viewVal);
-      
-
     })
   }
   openDialog(note) {

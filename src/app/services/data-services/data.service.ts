@@ -10,7 +10,7 @@ export class DataService {
   private labelSource = new BehaviorSubject('default message');
   LabelMessage = this.labelSource.asObservable();
 
-  private quesSource = new BehaviorSubject('default message');
+  private quesSource = new BehaviorSubject('0');
   QuesMessage = this.quesSource.asObservable();
 
   private ViewSource = new BehaviorSubject('default message');
