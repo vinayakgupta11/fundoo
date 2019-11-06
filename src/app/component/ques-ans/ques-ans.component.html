@@ -29,14 +29,15 @@
       <div *ngIf="ques.questionAndAnswerNotes[0]" innerHTML="{{ques.questionAndAnswerNotes[0].message}}"></div>
       <mat-divider></mat-divider>
     </div>
-    <div class='center' fxLayout='row' fxLayoutGap=20px>
+  
+    <div *ngFor="let qa of ques.questionAndAnswerNotes " class='center' fxLayout='row' fxLayoutGap=20px>
       <div>
         <img mat-card-avatar [src]="url">
       </div>
       <div fxLayout='column'>
         <div fxLayout='row' fxLayoutGap=7px>
           <div>
-            {{firstName+' '+lastName}}
+            {{qa.user.firstName+' '+qa.user.lastName}}
           </div>
           <div>
             {{ today | date:'medium' }}
@@ -52,13 +53,14 @@
             </button>
           </div>
         </div>
-        <div *ngIf="ques.questionAndAnswerNotes[0]" class='hometown'
-          innerHTML="{{ques.questionAndAnswerNotes[0].message}}"></div>
+        <div *ngIf="qa" class='hometown'
+          innerHTML="{{qa.message}}"></div>
         <div *ngIf='showReply'>
           <div [froalaEditor] [(froalaModel)]="AnsValue" id="froala-editor"></div>
-          <button mat-button (click)=QuestionReply(ques.questionAndAnswerNotes[0].id)>Reply </button>
+          <button mat-button (click)=QuestionReply(qa.id)>Reply </button>
         </div>
       </div>
     </div>
   </div>
+  
 </div>

@@ -19,6 +19,9 @@ export class DataService {
   private ReminderSource = new BehaviorSubject('Save Reminder');
   ReminderMessage = this.ReminderSource.asObservable();
 
+  private ServiceSource = new BehaviorSubject('Save Reminder');
+  ServiceMessage = this.ServiceSource.asObservable();
+
 
 
 
@@ -40,6 +43,10 @@ export class DataService {
   Reminder(message:any)
   {
     this.ReminderSource.next(message);
+  }
+  SelectService(message:any)
+  {
+    this.ServiceSource.next(message);
   }
 
 }

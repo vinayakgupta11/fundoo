@@ -12,6 +12,7 @@ import { ArchiveComponent } from './component/archive/archive.component';
 import { SerachComponent } from './component/serach/serach.component';
 import { LabelDisplayComponent } from './component/label-display/label-display.component';
 import { QuesAnsComponent } from './component/ques-ans/ques-ans.component';
+import { SelectRegComponent } from './component/select-reg/select-reg.component';
 
 
 
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'forget', component: ForgotComponent },
+  { path: 'SelectReg', component: SelectRegComponent },
   { path: '', component: DashboardComponent, canActivate: [AuthGuard],
   children:[
     {

@@ -3,6 +3,7 @@ import { FormControl,FormGroup, Validators } from '@angular/forms';
 import{User} from '../../models/register.model';
 import{TestService}from '../../services/user-services/User.service'
 import { tokenReference } from '@angular/compiler';
+import { DataService } from '../../services/data-services/data.service';
 
 
 @Component({
@@ -15,6 +16,7 @@ export class RegisterComponent implements OnInit {
   result:any;
   response: any;
   TokenAuth:boolean= false;
+  service:string;
 
   hide=true;
   public firstName = new FormControl('', [Validators.required]);
@@ -50,9 +52,12 @@ getEmailInvalidMessage() {
   else
   return ("Password Matches")
   }
-  constructor(private svc: TestService) {
+  constructor(private svc: TestService,private datasvc: DataService) {
   } 
   ngOnInit() {
+    this.datasvc.ServiceMessage.subscribe((res)=>
+    {this.service=res;
+    })
   }
   onRegister() {
     this.userObj = {
@@ -60,11 +65,10 @@ getEmailInvalidMessage() {
       lastName: this.lastName.value,
       email: this.email.value,
       password: this.password.value,
-      service: "advance"
+      service: this.service
     }
     let obj={
       data: this.userObj,
-
     }
     this.result= this.svc.Register(obj,this.TokenAuth);
     this.result.subscribe((response) => {

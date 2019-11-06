@@ -1,0 +1,23 @@
+<mat-toolbar>
+  <span>fundooNotes</span>
+</mat-toolbar>
+<h3>Choose below one of the service to Register.</h3>
+<mat-card (click)="SelService('Advance')">
+  <h4>Advance Package</h4>
+  Price: $99 per month
+  <ul>
+    <li>$99/month</li>
+    <li> Ability to add title, description, images, labels, checklist and colors</li>
+  </ul>
+  
+ </mat-card>
+<mat-card (click)="SelService('basic')">
+  <h4>Basic Package</h4>
+  Price: $49 per month
+  <ul>
+    <li>$49/month</li>
+    <li> Ability to add title, description</li>
+  </ul>
+</mat-card>
+
+  <a routerLink="/login">Sign In Instead</a>

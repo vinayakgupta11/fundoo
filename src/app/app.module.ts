@@ -51,6 +51,7 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { QuesAnsComponent } from './component/ques-ans/ques-ans.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { SelectRegComponent } from './component/select-reg/select-reg.component';
 
 
 @NgModule({
@@ -84,6 +85,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     RemindersComponent,
     CollabComponent,
     QuesAnsComponent,
+    SelectRegComponent,
 
   ],
   entryComponents: [DialogueComponent, UploadImageComponent, LabelsComponent, CollabComponent],
