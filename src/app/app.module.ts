@@ -52,6 +52,8 @@ import { QuesAnsComponent } from './component/ques-ans/ques-ans.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { SelectRegComponent } from './component/select-reg/select-reg.component';
+import { CartComponent } from './component/cart/cart.component';
+import { BarRatingModule } from "ngx-bar-rating";
 
 
 @NgModule({
@@ -65,6 +67,7 @@ import { SelectRegComponent } from './component/select-reg/select-reg.component'
     IconComponent,
     NotesComponent,
     CardsComponent,
+    
     DisplayNotesComponent,
     TrashComponent,
     ArchiveComponent,
@@ -86,10 +89,12 @@ import { SelectRegComponent } from './component/select-reg/select-reg.component'
     CollabComponent,
     QuesAnsComponent,
     SelectRegComponent,
+    CartComponent,
 
   ],
   entryComponents: [DialogueComponent, UploadImageComponent, LabelsComponent, CollabComponent],
   imports: [
+    BarRatingModule,
     AngularEditorModule,
     OwlDateTimeModule, OwlNativeDateTimeModule ,
     MatAutocompleteModule,

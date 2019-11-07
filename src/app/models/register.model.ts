@@ -4,5 +4,6 @@ export class User
     lastName: "string";
     email :"string";
     password: "string";
-    service:String
+    service:String;
+    cartId: String
 }

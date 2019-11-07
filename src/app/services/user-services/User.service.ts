@@ -35,6 +35,10 @@ export class TestService {
   {
     return this.svc.Post(userObj, auth, 'user/searchUserList')
   }
+  AddToCart(userObj, auth)
+  {
+    return this.svc.Post(userObj, auth, 'productcarts/addToCart')
+  }
   getEncodedData(data) {
     const formBody = [];
     for (const property in data) {

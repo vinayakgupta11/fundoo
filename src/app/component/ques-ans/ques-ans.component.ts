@@ -28,6 +28,8 @@ export class QuesAnsComponent implements OnInit {
   localstor:any;
   url:any;
   questionAnsLength: number
+  replyShow:any;
+  rate:any;
 
   constructor( private route: ActivatedRoute,private datasvc: DataService,private noteService: NoteService) { }
 
@@ -37,6 +39,30 @@ export class QuesAnsComponent implements OnInit {
     this.quesToken = this.route.snapshot.paramMap.get('noteId');
     this.GetNoteDetails(this.quesToken);
   }
+
+  rating( event) {
+    this.rate=event;
+    console.log('---',this.rate);
+    
+
+    
+  }
+  replyQues(id)
+  {
+    console.log(';;;',id);
+    console.log('dfsygjudfygjudf',this.questionAnsLength);
+    
+    for (var i = 0; i < this.questionAnsLength; i++) {
+      if (this.notedetails[0].questionAndAnswerNotes[i].id == id) {
+      this.replyShow = this.notedetails[0].questionAndAnswerNotes[i].id;
+      console.log('ggggg',this.replyShow);
+      
+      this.toggleReply();
+      return;
+      }
+
+  }
+}
   
   QuestionReply(quesid)
   {
@@ -70,6 +96,7 @@ export class QuesAnsComponent implements OnInit {
     this.showReply = !this.showReply;
     
   }
+ 
   GetNoteDetails(card)
   {
     this.options={

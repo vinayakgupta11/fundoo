@@ -13,6 +13,7 @@ import { SerachComponent } from './component/serach/serach.component';
 import { LabelDisplayComponent } from './component/label-display/label-display.component';
 import { QuesAnsComponent } from './component/ques-ans/ques-ans.component';
 import { SelectRegComponent } from './component/select-reg/select-reg.component';
+import { CartComponent } from './component/cart/cart.component';
 
 
 
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'forget', component: ForgotComponent },
   { path: 'SelectReg', component: SelectRegComponent },
+  
   { path: '', component: DashboardComponent, canActivate: [AuthGuard],
   children:[
     {
@@ -40,6 +42,7 @@ const routes: Routes = [
     {path : 'label/:label', component : LabelDisplayComponent},
 
     {path : 'questionAnswer/:noteId', component : QuesAnsComponent},
+    { path: 'shoppingCart', component: CartComponent },
 
   ]
 },

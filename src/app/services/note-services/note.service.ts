@@ -108,4 +108,14 @@ ReplyQuestion(userObj, auth)
 {
   return this.svc.Post(userObj,auth,'questionAndAnswerNotes/reply/'+ userObj.quesId);
 }
+MyCart( auth)
+{
+  return this.svc.Get(auth, 'productcarts/myCart');
+}
+PlaceOrder(userObj, auth)
+{
+  return this.svc.Post(userObj,auth,'productcarts/placeOrder');
+}
+
+
 }

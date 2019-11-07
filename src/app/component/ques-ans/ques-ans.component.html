@@ -18,7 +18,7 @@
 
 
 <div *ngIf="questionAnsLength>='1'">
-  <div *ngFor="let ques of notedetails ">
+  <div *ngFor="let ques of notedetails">
     <div>
       <p> {{ques.title}}</p>
       <p> {{ques.description}}</p>
@@ -29,21 +29,20 @@
       <div *ngIf="ques.questionAndAnswerNotes[0]" innerHTML="{{ques.questionAndAnswerNotes[0].message}}"></div>
       <mat-divider></mat-divider>
     </div>
-  
-    <div *ngFor="let qa of ques.questionAndAnswerNotes " class='center' fxLayout='row' fxLayoutGap=20px>
+    <div class='center' fxLayout='row' fxLayoutGap=20px>
       <div>
         <img mat-card-avatar [src]="url">
       </div>
       <div fxLayout='column'>
         <div fxLayout='row' fxLayoutGap=7px>
           <div>
-            {{qa.user.firstName+' '+qa.user.lastName}}
+            {{ques.questionAndAnswerNotes[0].user.firstName+' '+ques.questionAndAnswerNotes[0].user.lastName}}
           </div>
           <div>
             {{ today | date:'medium' }}
           </div>
           <div>
-            <button matTooltip="reply" mat-icon-button (click)=toggleReply()>
+            <button matTooltip="reply" mat-icon-button (click)=replyQues(ques.questionAndAnswerNotes[0].id)>
               <mat-icon>reply</mat-icon>
             </button>
           </div>
@@ -52,15 +51,76 @@
               <mat-icon>thumb_up_alt</mat-icon>
             </button>
           </div>
+          <div>
+              <bar-rating matTooltip="Rate" [(rate)]="rate" [max]="5" ></bar-rating>
+          </div>
+
         </div>
-        <div *ngIf="qa" class='hometown'
-          innerHTML="{{qa.message}}"></div>
-        <div *ngIf='showReply'>
+        <div *ngIf="ques.questionAndAnswerNotes[0]" class='hometown'
+          innerHTML="{{ques.questionAndAnswerNotes[0].message}}"></div>
+        <div *ngIf="replyShow == ques.questionAndAnswerNotes[0].id &&  showReply== true">
           <div [froalaEditor] [(froalaModel)]="AnsValue" id="froala-editor"></div>
-          <button mat-button (click)=QuestionReply(qa.id)>Reply </button>
+          <button mat-button (click)=QuestionReply(ques.questionAndAnswerNotes[0].id)>Reply </button>
         </div>
       </div>
     </div>
+
+    <div class="container">
+      <div *ngFor="let qa of ques.questionAndAnswerNotes " class='center'>
+        <div *ngIf="qa.isApproved==true && qa.parentId " fxLayout='row' fxLayoutGap=20px>
+          <div>
+            <img mat-card-avatar [src]="url">
+          </div>
+          <div fxLayout='column'>
+            <div fxLayout='row' fxLayoutGap=7px>
+              <div>
+                {{qa.user.firstName+' '+qa.user.lastName}}
+              </div>
+              <div>
+                {{ today | date:'medium' }}
+              </div>
+              <div fxLayout='row'>
+              <div>
+                <button matTooltip="reply" mat-icon-button (click)=replyQues(qa.id)>
+                  <mat-icon>reply</mat-icon>
+                </button>
+              </div>
+              <div>
+                <button mat-icon-button>
+                  <mat-icon>thumb_up_alt</mat-icon>
+                </button>
+              </div>
+              <div>
+                <bar-rating matTooltip="Rate" [(rate)]="rate" [max]="5" (rateChange)="rating($event)" ></bar-rating>
+            </div>
+          </div>
+            </div>
+            <div *ngIf="qa" class='hometown' innerHTML="{{qa.message}}"></div>
+            <div *ngIf="replyShow == qa.id &&  showReply== true">
+              <div [froalaEditor] [(froalaModel)]="AnsValue" id="froala-editor"></div>
+              <button mat-button (click)=QuestionReply(qa.id)>Reply </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
-  
+
 </div>
+
+
+
+
+<!-- <div class="rate">
+        <input type="radio" id="star5" name="rate" value="5" />
+        <label for="star5" title="text">5 stars</label>
+        <input type="radio" id="star4" name="rate" value="4" />
+        <label for="star4" title="text">4 stars</label>
+        <input type="radio" id="star3" name="rate" value="3" />
+        <label for="star3" title="text">3 stars</label>
+        <input type="radio" id="star2" name="rate" value="2" />
+        <label for="star2" title="text">2 stars</label>
+        <input type="radio" id="star1" name="rate" value="1" />
+        <label for="star1" title="text">1 star</label>
+      </div>  -->

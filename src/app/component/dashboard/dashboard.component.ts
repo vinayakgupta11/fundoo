@@ -74,6 +74,10 @@ export class DashboardComponent implements OnInit {
     });
     
   }
+  displaycart()
+  {
+    this.router.navigate(['/shoppingCart']);
+  }
   displayNot()
   {
     this.router.navigate(['/display-notes']);
