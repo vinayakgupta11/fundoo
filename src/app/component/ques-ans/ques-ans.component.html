@@ -47,12 +47,11 @@
             </button>
           </div>
           <div>
-            <button mat-icon-button>
-              <mat-icon>thumb_up_alt</mat-icon>
-            </button>
+            <app-like [LikeMessage]="ques.questionAndAnswerNotes[0]"></app-like>
           </div>
-          <div>
-              <bar-rating matTooltip="Rate" [(rate)]="rate" [max]="5" ></bar-rating>
+          <div *ngIf="CheckRating(ques.questionAndAnswerNotes[0].rate)">
+            <bar-rating matTooltip="Rate" [(rate)]="rate" [max]="5"
+              (rateChange)="rating(ques.questionAndAnswerNotes[0].id,$event)"></bar-rating>
           </div>
 
         </div>
@@ -65,6 +64,12 @@
       </div>
     </div>
 
+
+
+
+
+
+
     <div class="container">
       <div *ngFor="let qa of ques.questionAndAnswerNotes " class='center'>
         <div *ngIf="qa.isApproved==true && qa.parentId " fxLayout='row' fxLayoutGap=20px>
@@ -72,28 +77,29 @@
             <img mat-card-avatar [src]="url">
           </div>
           <div fxLayout='column'>
-            <div fxLayout='row' fxLayoutGap=7px>
+            <div fxLayout='row' fxLayoutGap=7px fxLayoutAlign="start start">
               <div>
                 {{qa.user.firstName+' '+qa.user.lastName}}
               </div>
               <div>
                 {{ today | date:'medium' }}
               </div>
-              <div fxLayout='row'>
-              <div>
-                <button matTooltip="reply" mat-icon-button (click)=replyQues(qa.id)>
-                  <mat-icon>reply</mat-icon>
-                </button>
+              <div fxLayout='row' fxLayoutAlign="start start">
+                <div>
+                  <button matTooltip="reply" mat-icon-button (click)=replyQues(qa.id)>
+                    <mat-icon>reply</mat-icon>
+                  </button>
+                </div>
+                
+                  <div>
+                    <app-like [LikeMessage]="qa"></app-like>
+                  </div>
+              
+                <div *ngIf="CheckRating(qa.rate)">
+                  <bar-rating matTooltip="Rate" [(rate)]="rate" [max]="5" (rateChange)="rating(qa.id,$event)">
+                  </bar-rating>
+                </div>
               </div>
-              <div>
-                <button mat-icon-button>
-                  <mat-icon>thumb_up_alt</mat-icon>
-                </button>
-              </div>
-              <div>
-                <bar-rating matTooltip="Rate" [(rate)]="rate" [max]="5" (rateChange)="rating($event)" ></bar-rating>
-            </div>
-          </div>
             </div>
             <div *ngIf="qa" class='hometown' innerHTML="{{qa.message}}"></div>
             <div *ngIf="replyShow == qa.id &&  showReply== true">

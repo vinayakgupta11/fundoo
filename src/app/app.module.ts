@@ -54,6 +54,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
 import { SelectRegComponent } from './component/select-reg/select-reg.component';
 import { CartComponent } from './component/cart/cart.component';
 import { BarRatingModule } from "ngx-bar-rating";
+import { LikeComponent } from './component/like/like.component';
 
 
 @NgModule({
@@ -90,6 +91,7 @@ import { BarRatingModule } from "ngx-bar-rating";
     QuesAnsComponent,
     SelectRegComponent,
     CartComponent,
+    LikeComponent,
 
   ],
   entryComponents: [DialogueComponent, UploadImageComponent, LabelsComponent, CollabComponent],

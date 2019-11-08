@@ -116,6 +116,12 @@ PlaceOrder(userObj, auth)
 {
   return this.svc.Post(userObj,auth,'productcarts/placeOrder');
 }
-
-
+Rating(userObj, auth)
+{
+  return this.svc.Post(userObj,auth,'questionAndAnswerNotes/rate/'+ userObj.parentId);
+}
+Like(userObj, auth)
+{
+  return this.svc.Post(userObj,auth,'questionAndAnswerNotes/like/'+ userObj.parentId);
+}
 }

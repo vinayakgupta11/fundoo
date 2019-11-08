@@ -4,7 +4,7 @@ import { NoteService } from '../../services/note-services/note.service';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
-import{environment} from '../../../environments/environment'
+import { environment } from '../../../environments/environment'
 
 
 @Component({
@@ -14,124 +14,150 @@ import{environment} from '../../../environments/environment'
 })
 export class QuesAnsComponent implements OnInit {
   today = new Date();
-  imgbase=environment.imagebase;
+  imgbase = environment.imagebase;
   firstName = localStorage.getItem('firstName');
   lastName = localStorage.getItem('lastName');
   noteData: any;
-  QuesValue:any;
-  AnsValue:any;
+  QuesValue: any;
+  AnsValue: any;
   TokenAuth: boolean = true;
-  options:any;
-  notedetails:any;
-  quesToken:any;
+  options: any;
+  notedetails: any;
+  quesToken: any;
   showReply: boolean = false;
-  localstor:any;
-  url:any;
+  localstor: any;
+  url: any;
   questionAnsLength: number
-  replyShow:any;
-  rate:any;
+  replyShow: any;
+  rate = 1;
+  rateee: any
+  likeDetails=[];
 
-  constructor( private route: ActivatedRoute,private datasvc: DataService,private noteService: NoteService) { }
+  constructor(private route: ActivatedRoute, private datasvc: DataService, private noteService: NoteService) { }
 
   ngOnInit() {
-    
-    
+
+
     this.quesToken = this.route.snapshot.paramMap.get('noteId');
     this.GetNoteDetails(this.quesToken);
+   
   }
 
-  rating( event) {
-    this.rate=event;
-    console.log('---',this.rate);
-    
+  
 
-    
+  CheckRating(ArrayRate) {
+    this.rate = 0;
+    if (ArrayRate.length == 0) {
+      return true;
+    }
+    for (let i = 0; i < ArrayRate.length; i++) {
+      if (ArrayRate[i].userId == localStorage.getItem('UserId')) {
+        this.rate = ArrayRate[i].rate;
+      }
+    }
+    return true;
+
   }
-  replyQues(id)
-  {
-    console.log(';;;',id);
-    console.log('dfsygjudfygjudf',this.questionAnsLength);
-    
+  rating(id, event) {
+    this.rateee = event;
+    console.log('---', this.rateee);
+    let user = {
+      "rate": event
+    }
+    let options =
+    {
+      data: user,
+      "parentId": id
+    }
+    this.noteService.Rating(options, this.TokenAuth).subscribe((res: any) => {
+      console.log('rate api hit', res);
+    })
+
+
+  }
+  replyQues(id) {
+    console.log(';;;', id);
+    console.log('dfsygjudfygjudf', this.questionAnsLength);
+
     for (var i = 0; i < this.questionAnsLength; i++) {
       if (this.notedetails[0].questionAndAnswerNotes[i].id == id) {
-      this.replyShow = this.notedetails[0].questionAndAnswerNotes[i].id;
-      console.log('ggggg',this.replyShow);
-      
-      this.toggleReply();
-      return;
+        this.replyShow = this.notedetails[0].questionAndAnswerNotes[i].id;
+        console.log('ggggg', this.replyShow);
+
+        this.toggleReply();
+        return;
       }
 
+    }
   }
-}
-  
-  QuestionReply(quesid)
-  {
-    let user=
+
+  QuestionReply(quesid) {
+    let user =
     {
       "message": this.AnsValue
-      
+
     }
-    let options=
+    let options =
     {
-      data:user,
+      data: user,
       "quesId": quesid
     }
-    console.log('repluuuuuu',options);
-    
+    console.log('repluuuuuu', options);
+
     this.noteService.ReplyQuestion(options, this.TokenAuth).subscribe((response) => {
       console.log(response);
       this.toggleReply();
-      this.AnsValue='';
+      this.AnsValue = '';
     }, (error) => {
       console.log(error);
     });
 
   }
-  changeProfile()
-  {
-    this.localstor= localStorage.getItem('imageUrl');
-    this.url=(this.imgbase+this.localstor)
+  changeProfile() {
+    this.localstor = localStorage.getItem('imageUrl');
+    this.url = (this.imgbase + this.localstor)
   }
   toggleReply() {
     this.showReply = !this.showReply;
-    
+
   }
- 
-  GetNoteDetails(card)
-  {
-    this.options={
+
+  GetNoteDetails(card) {
+    this.options = {
       noteIdList: [card]
     }
-    this.noteService.GetNoteDetailss(this.options,this.TokenAuth).subscribe((response:any) => {
-      this.notedetails= response.data.data;
-      
-      this.questionAnsLength= this.notedetails[0].questionAndAnswerNotes.length;
+    this.noteService.GetNoteDetailss(this.options, this.TokenAuth).subscribe((response: any) => {
+      this.notedetails = response.data.data;
+      this.likeDetails = response.data.data[0].questionAndAnswerNotes;
+
+      this.questionAnsLength = this.notedetails[0].questionAndAnswerNotes.length;
       this.datasvc.AskQuestion(this.questionAnsLength);
-      console.log('notedetails',this.notedetails);
-      console.log('----------',this.questionAnsLength);
+      console.log('notedetails', this.notedetails);
+     // console.log('----------', this.likeDetails);
+      
     }, (error) => {
       console.log(error);
     });
-    
+
   }
-  AddQues(id)
-  { let user=
+  AddQues(id) {
+    let user =
     {
       "message": this.QuesValue,
       "notesId": id
     }
-    let options=
+    let options =
     {
-      data:user
+      data: user
     }
     this.noteService.AddQuestion(options, this.TokenAuth).subscribe((response) => {
       this.GetNoteDetails(id);
       this.changeProfile();
-      this.QuesValue='';
+      this.QuesValue = '';
     }, (error) => {
       console.log(error);
     });
-    
+
   }
 
 }
