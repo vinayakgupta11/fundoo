@@ -5,6 +5,7 @@ import { DataService } from '../../services/data-services/data.service'
 import { DialogueComponent } from '../dialogue/dialogue.component'
 import { MatDialog } from '@angular/material';
 import { Remind } from '../../models/remind.models';
+import { FormControl } from '@angular/forms';
 
 
 
@@ -14,22 +15,93 @@ import { Remind } from '../../models/remind.models';
   styleUrls: ['./cards.component.scss']
 })
 export class CardsComponent implements OnInit {
-  @Input() display:any;
-  @Input() TypeIcon:any;
-  TokenAuth:boolean= true;
+  @Input() display: any;
+  @Input() TypeIcon: any;
+  TokenAuth: boolean = true;
+  text = new FormControl;
   notes: any;
   options: any;
   message: string;
   user: Color;
-  userr:Remind
+  userr: Remind
   public noteSelected;
   cardId: any;
-  viewVal:any;
+  viewVal: any;
+  ShowCheckList: any;
+  EmptyText:any;
+  CheckListId: any;
   constructor(private svc: NoteService, private datasvc: DataService, private dialog: MatDialog) { }
   ngOnInit() {
     this.datasvc.currentMessage.subscribe(message => this.message = message)
-    this.datasvc.ViewMessage.subscribe((res)=>
-    {this.viewVal=res;
+    this.datasvc.ViewMessage.subscribe((res) => {
+      this.viewVal = res;
+    })
+    this.datasvc.ChecklistMessage.subscribe((res: any) => {
+      this.CheckListId = res.id;
+      this.ShowCheckList = res.show;
+    })
+  }
+  DeleteCheckList(nId,cId)
+  {
+    this.options={
+      noteId: nId,
+      checklistId: cId
+    }
+    this.svc.DeleteCheckList(this.options,this.TokenAuth).subscribe((res:any)=>
+  {
+    console.log(res); 
+    this.datasvc.changeMessage('updated')
+  })
+
+  }
+  UpdateCheckList(itemname,status,nId,cId)
+  {
+    if(status=='open')
+    {
+    let user=
+    {
+      status: "close",
+      itemName: itemname
+    }
+    this.options={
+      data:user,
+      noteId: nId,
+      checklistId: cId
+    }
+  }
+  else
+  { let user=
+    {
+      status: "open",
+      itemName: itemname
+    }
+    this.options={
+      data:user,
+      noteId: nId,
+      checklistId: cId
+    }
+  }
+  this.svc.UpdateCheckList(this.options,this.TokenAuth).subscribe((res:any)=>
+  {
+    console.log(res); 
+    this.datasvc.changeMessage('updated')
+  })
+  }
+  AddCheckList(noteId) {
+    let user=
+    {
+      status: "open",
+      itemName: this.text.value
+    }
+    this.options={
+      data:user,
+      id:noteId
+    }
+    this.svc.AddCheckList(this.options,this.TokenAuth).subscribe((res:any)=>
+    {
+      this.datasvc.changeMessage('added')
+      this.EmptyText='';
+      console.log(res); 
     })
   }
   openDialog(note) {
@@ -56,23 +128,23 @@ export class CardsComponent implements OnInit {
       id: label,
       noteId: noteid
     }
-    this.svc.dellabnotes(data,this.TokenAuth).subscribe((response: any) => {
+    this.svc.dellabnotes(data, this.TokenAuth).subscribe((response: any) => {
       this.datasvc.changeMessage("Hello from Sibling")
     });
   }
 
   delreminder(reminderId, noteid) {
-    this.userr= {
+    this.userr = {
       reminder: reminderId,
       noteIdList: [noteid]
     }
-    let res=
+    let res =
     {
       data: this.userr
     }
-    this.svc.delreminder(res,this.TokenAuth).subscribe((response: any) => {
-      console.log('----',response);
-      
+    this.svc.delreminder(res, this.TokenAuth).subscribe((response: any) => {
+      console.log('----', response);
+
       this.datasvc.changeMessage("Hello from Sibling")
     });
   }

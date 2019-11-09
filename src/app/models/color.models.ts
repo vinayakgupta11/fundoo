@@ -1,7 +1,7 @@
 export class Color
 {
     color?:string;
-noteIdList:any;
+noteIdList?:any;
 isDeleted?: Boolean;
 isArchived?:Boolean;
 }

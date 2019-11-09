@@ -22,8 +22,14 @@ export class DataService {
   private ServiceSource = new BehaviorSubject('Save Reminder');
   ServiceMessage = this.ServiceSource.asObservable();
 
-
-
+  private ChecklistSource = new BehaviorSubject('open checklist');
+  ChecklistMessage = this.ChecklistSource.asObservable();
+ 
+  private CollabSource = new BehaviorSubject('');
+  CollabMessage = this.CollabSource.asObservable();
+ 
+  private ArchiveSource = new BehaviorSubject('');
+  ArchiveMessage = this.ArchiveSource.asObservable();
 
 
   constructor() { }
@@ -47,6 +53,18 @@ export class DataService {
   SelectService(message:any)
   {
     this.ServiceSource.next(message);
+  }
+  ChecklistService(message:any)
+  {
+    this.ChecklistSource.next(message);
+  }
+  CollabService(message:any)
+  {
+    this.CollabSource.next(message)
+  }
+  ArchiveService(message:any)
+  {
+    this.ArchiveSource.next(message);
   }
 
 }

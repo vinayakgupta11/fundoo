@@ -7,5 +7,9 @@ export class Note
     service?:String;
     color ?: any;
     reminder?:any;
+    collaberators?:String
+    isArchived?:boolean
+
+
     
 }

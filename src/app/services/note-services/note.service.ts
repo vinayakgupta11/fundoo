@@ -11,7 +11,7 @@ export class NoteService {
   constructor(private http: HttpClient, private svc: HttpService) { }
 
   AddNote(userObj, auth) {
-    return this.svc.Post(userObj, auth, 'notes/addNotes')
+    return this.svc.PostEncoded(this.getEncodedData(userObj.data), auth, 'notes/addNotes')
   }
   GetNotesList(auth) {
     return this.svc.Get(auth, 'notes/getNotesList')
@@ -123,5 +123,26 @@ Rating(userObj, auth)
 Like(userObj, auth)
 {
   return this.svc.Post(userObj,auth,'questionAndAnswerNotes/like/'+ userObj.parentId);
+}
+AddCheckList(userObj, auth)
+{
+  return this.svc.Post(userObj,auth,'notes/'+ userObj.id+ '/checklist/add');
+}
+UpdateCheckList(userObj, auth)
+{
+  return this.svc.Post(userObj,auth,'notes/'+ userObj.noteId+ '/checklist/'+ userObj. checklistId +'/update');
+}
+DeleteCheckList(userObj, auth)
+{
+  return this.svc.Post(userObj,auth,'notes/'+ userObj.noteId+ '/checklist/'+ userObj. checklistId +'/remove');
+}
+getEncodedData(data) {
+  const formBody = [];
+  for (const property in data) {
+    const encodedKey = encodeURIComponent(property);
+    const encodedValue = encodeURIComponent(data[property]);
+    formBody.push(encodedKey + '=' + encodedValue);
+  }
+  return formBody.join('&');
 }
 }

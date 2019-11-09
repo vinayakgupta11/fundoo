@@ -34,26 +34,33 @@
   <mat-card class="card" [ngStyle]="{background : colour}" fxLayout="column" fxFlex="50" fxFlex.sm=100 fxFlex.xs=100
     fxLayoutAlign="start start">
     <div fxLayout="row" class="no">
-
       <textarea matInput type="text" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
         cdkAutosizeMaxRows="25" [(ngModel)]="titleM" placeholder="Title " class="fielda"
         [formControl]="title"></textarea>
-
-
     </div>
+
     <div class="no">
       <textarea matInput type="text" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
         cdkAutosizeMaxRows="25" [(ngModel)]="descriptionM" placeholder="Take a note" class="fielda"
         [formControl]="description"></textarea>
     </div>
     <!-- <div *ngFor="let noteRem of ReminderNote"> -->
-      <mat-chip-list>
-        <mat-chip class="matChip">
-          {{ReminderNote |  date:'short'}}
+    <mat-chip-list>
+      <mat-chip class="matChip">
+        {{ReminderNote |  date:'short'}}
+
+      </mat-chip>
+      <span></span>
+    </mat-chip-list>
+    <div *ngFor="let collab of collaberators" fxLayout="row">
+      <mat-chip-list >
+        <mat-chip class="matChip" >
+          {{collab.email}}
 
         </mat-chip>
         <span></span>
       </mat-chip-list>
+    </div>
     <!-- </div> -->
     <div fxFlex="20" fxLayout="row " style="width: 100%">
       <div fxFlex=80>

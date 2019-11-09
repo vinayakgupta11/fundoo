@@ -24,7 +24,7 @@
         
           <button mat-menu-item >Add Label</button>
           <button mat-menu-item >Add Drawing</button>
-          <button mat-menu-item >Show Tick Boxes</button>
+          <button mat-menu-item >CheckBoxes</button>
         </mat-menu>
 
 
@@ -33,7 +33,7 @@
   <button  mat-menu-item [matMenuTriggerFor]="menu_labels">Add Label</button>
   <button *ngIf="quesAnsView=='0'" mat-menu-item (click)= NavigateToQuesAns(CardId)>Ask a question</button>
   <button  *ngIf="quesAnsView!='0'" mat-menu-item (click)= NavigateToQuesAns(CardId)>Show question</button>
-  <button mat-menu-item>show checkBoxes</button>
+  <button mat-menu-item (click)=ShowCheckBox(CardId)> checkBoxes</button>
   
 </mat-menu>
 

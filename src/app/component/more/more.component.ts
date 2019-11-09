@@ -22,6 +22,8 @@ export class MoreComponent implements OnInit {
   label: LabelNote;
   notedetails: any;
   quesAnsView: any;
+  checkbox:boolean=false;
+  noteid:any;
 
   @Input() CardId: any;
 
@@ -36,10 +38,20 @@ export class MoreComponent implements OnInit {
     })
     this.datasvc.QuesMessage.subscribe((res) => {
       this.quesAnsView = res;
-      
-      
     })
   }
+  ShowCheckBox(nid)
+  {
+    this.noteid=nid.id
+    this.checkbox= !this.checkbox;
+    let user={
+      "show": this.checkbox,
+      "id": this.noteid
+    }
+    
+    this.datasvc.ChecklistService(user);
+  }
+
 
   trashNote(card) {
   this.cardId = card.id;
