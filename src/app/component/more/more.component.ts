@@ -42,14 +42,21 @@ export class MoreComponent implements OnInit {
   }
   ShowCheckBox(nid)
   {
-    this.noteid=nid.id
+    console.log('ff',nid);
+    if(nid)
+    {
     this.checkbox= !this.checkbox;
     let user={
       "show": this.checkbox,
-      "id": this.noteid
+      "id": nid.id
     }
-    
     this.datasvc.ChecklistService(user);
+  }
+  else{
+    this.checkbox= !this.checkbox;
+    this.datasvc.ChecklistServiceNotes(this.checkbox);
+
+  }
   }
 
 

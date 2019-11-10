@@ -44,14 +44,27 @@
         cdkAutosizeMaxRows="25" [(ngModel)]="descriptionM" placeholder="Take a note" class="fielda"
         [formControl]="description"></textarea>
     </div>
+    <div *ngIf="ShowCheckList">
+        <mat-icon>add</mat-icon><textarea placeholder="Add item" [formControl]="text" [(ngModel)]="EmptyText"></textarea>
+        <button (click)=AddCheckList(note.id)>add</button>
+    </div>
+
+
+
+    
     <!-- <div *ngFor="let noteRem of ReminderNote"> -->
-    <mat-chip-list>
+<div *ngIf= "remind">
+    <mat-chip-list >
       <mat-chip class="matChip">
         {{ReminderNote |  date:'short'}}
+        <button class="hide" mat-icon-button (click)= "remove()">
+          <mat-icon>close</mat-icon>
+        </button>
 
       </mat-chip>
       <span></span>
     </mat-chip-list>
+  </div>
     <div *ngFor="let collab of collaberators" fxLayout="row">
       <mat-chip-list >
         <mat-chip class="matChip" >

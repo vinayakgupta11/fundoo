@@ -24,6 +24,9 @@ export class DataService {
 
   private ChecklistSource = new BehaviorSubject('open checklist');
   ChecklistMessage = this.ChecklistSource.asObservable();
+
+  private ChecklistSourceNotes = new BehaviorSubject('');
+  ChecklistMessageNotes = this.ChecklistSourceNotes.asObservable();
  
   private CollabSource = new BehaviorSubject('');
   CollabMessage = this.CollabSource.asObservable();
@@ -65,6 +68,10 @@ export class DataService {
   ArchiveService(message:any)
   {
     this.ArchiveSource.next(message);
+  }
+  ChecklistServiceNotes(message:any)
+  {
+    this.ChecklistSourceNotes.next(message);
   }
 
 }

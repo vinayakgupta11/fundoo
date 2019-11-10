@@ -27,12 +27,24 @@ export class NotesComponent implements OnInit {
   ReminderNote: any;
   collaberators = [];
   collabHt: any;
+  text = new FormControl;
+  EmptyText:any;
   collab: any;
   collVal:any;
   arc:boolean=false
+  ShowCheckList: any;
+  remind:boolean=false;
   constructor(private noteService: NoteService, private datasvc: DataService) { }
 
   ngOnInit() {
+    this.datasvc.ChecklistMessageNotes.subscribe((res: any) => {
+      console.log('checkkkhbfghbfgtk',res);
+      if(res!=='')
+      {
+      this.ShowCheckList=res;
+      console.log('checkkkk',this.ShowCheckList);
+      }
+    })
     this.datasvc.currentMessage.subscribe((res) => {
       if (res == 'save' || res == 'default message') {
         this.colour = '#fff';
@@ -60,6 +72,7 @@ export class NotesComponent implements OnInit {
       }
       else {
         this.ReminderNote = res;
+        this.remind=true;
       }
     })
     this.datasvc.CollabMessage.subscribe((res:any) => {
@@ -76,6 +89,11 @@ export class NotesComponent implements OnInit {
 
   toggle() {
     this.show = !this.show;
+  }
+  remove()
+  {
+    this.ReminderNote='';
+    this.remind=false;
   }
   receive() {
     if (this.title.value == null && this.description.value == null ) {
