@@ -23,6 +23,12 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
     }
 
 }
+.dialogueClass{
+    mat-dialog-container{
+        padding: 0%;
+    }
+
+}
 
 .CollabClass{
     mat-dialog-container {

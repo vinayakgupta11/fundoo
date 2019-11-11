@@ -39,6 +39,7 @@ export class ColorComponent implements OnInit {
       }
       this.noteService.ColorChange(this.options, this.TokenAuth).subscribe((response) => {
         console.log(response);
+        this.GetNoteDetails(this.cardId)
         this.datasvc.changeMessage('save')
       }, (error) => {
         console.log(error);
@@ -48,6 +49,17 @@ export class ColorComponent implements OnInit {
       this.datasvc.changeMessage(colour)
       console.log('not card', colour);
     }
+  }
+  GetNoteDetails(card) {
+    this.options = {
+      noteIdList: [card]
+    }
+    this.noteService.GetNoteDetailss(this.options, this.TokenAuth).subscribe((response: any) => {
+      this.datasvc.DialogMess(response.data.data);
+
+    }, (error) => {
+      console.log(error);
+    });
   }
 
 }

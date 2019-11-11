@@ -104,13 +104,15 @@ export class CardsComponent implements OnInit {
     let dialogref = this.dialog.open(DialogueComponent,
       {
         data: {
-
           title: note.title,
           description: note.description,
           id: note.id,
           reminder:note.reminder,
+          collaborators:note.collaborators,
+          color:note.color,
           recycle: false
-        }
+        },
+        panelClass: 'dialogueClass'
       });
     // dialogref.afterClosed().subscribe(result=> {
     //   console.log("dialog result ", result);

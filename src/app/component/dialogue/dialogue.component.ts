@@ -24,20 +24,32 @@ export class DialogueComponent implements OnInit {
   description = new FormControl();
   note: UpdateNote = new UpdateNote();
   NoteVal:any;
+  
 
   constructor(@Inject(MAT_DIALOG_DATA) private data: any,private svc: NoteService,private dataSvc:DataService, private dialogRef: MatDialogRef< DisplayNotesComponent>){}
   ngOnInit() {
     
     this.dataSvc.dialogMessage.subscribe((res:any)=>
-    {console.log('resssssssssssssss',res);
-    
-      console.log('note vallllll',this.NoteVal);
-      
+    {
       if(res!='')
       {
         this.NoteVal= res;
         console.log('dsgkdsgjdfsdsgj',this.NoteVal);
       }  
+    })
+  }
+  removeCollab(collabId,noteid) {
+    let options =
+    {
+      noteId: noteid,
+      collId: collabId
+    }
+    console.log('ffdfdf',options);
+    
+    this.svc.DeleteCollab(options, this.TokenAuth).subscribe((response) => {
+      // console.log(response);
+      this.GetNoteDetails(noteid);
+      
     })
   }
   delreminder(reminderId, noteid) {

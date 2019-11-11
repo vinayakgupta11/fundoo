@@ -1,4 +1,4 @@
-<div class="container" fxLayout="column" fxLayoutGap="10px">
+<div class="container" fxLayout="column" fxLayoutGap="10px"  [ngStyle]="{background:data.color}">
 
   <textarea matInput type="text" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
     cdkAutosizeMaxRows="25"class="text"  placeholder="Title" [formControl]="title" value="{{data.title}}"></textarea>
@@ -17,23 +17,21 @@
       </mat-chip>
     </mat-chip-list>
   </div>
-     <!-- <div *ngFor="let val of data">
-  <div *ngIf= "val.collaborators.length>0 && !NoteVal" >
+
+  <div *ngIf= "data.collaborators.length>0 && !NoteVal" >
+      <div *ngFor="let dialcol of data.collaborators">
       <mat-chip-list >
       <mat-chip class="matChip">
-          {{val.email}}
-          <button class="hide" mat-icon-button (click)= "delreminder(data.reminder,data.id)">
+          {{dialcol.email}}
+          <button class="hide" mat-icon-button (click)= "removeCollab(dialcol.userId,data.id)">
             <mat-icon>close</mat-icon>
           </button>
   
         </mat-chip>
       </mat-chip-list>
-    </div>  
-  </div> -->
-
-
-
-
+    </div>
+    </div>
+  
 
     <div *ngFor="let dial of NoteVal">
     <div *ngIf= "dial.reminder.length>0 && data.id==dial.id" >
@@ -49,15 +47,17 @@
       </div>
 
       <div *ngIf= "dial.collaborators.length>0 && data.id==dial.id" >
+        <div *ngFor="let dialcol of dial.collaborators">
           <mat-chip-list >
             <mat-chip class="matChip">
-              {{dial.collaborators[0].email }}
-              <button class="hide" mat-icon-button (click)= "delreminder(dial.reminder,dial.id)">
+              {{dialcol.email }}
+              <button class="hide" mat-icon-button (click)= "removeCollab(dialcol.userId,dial.id)">
                 <mat-icon>close</mat-icon>
               </button>
       
             </mat-chip>
           </mat-chip-list>
+        </div>
         </div>
     </div>
 
