@@ -24,6 +24,19 @@ export class RemindMeComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  GetNoteDetails(card) {
+    this.options = {
+      noteIdList: [card]
+    }
+    this.noteService.GetNoteDetailss(this.options, this.TokenAuth).subscribe((response: any) => {
+    this.datasvc.DialogMess(response.data.data);
+      
+    }, (error) => {
+      console.log(error);
+    });
+
+  }
   SaveReminder(card,datee)
   { if(card)
     {
@@ -39,6 +52,7 @@ export class RemindMeComponent implements OnInit {
     }
     this.noteService.addReminder(this.options, this.TokenAuth).subscribe((response) => {
       this.GetReminder();
+      this.GetNoteDetails(this.cardId);
      
       this.datasvc.changeMessage('save')
     }, (error) => {

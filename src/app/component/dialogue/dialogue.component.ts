@@ -1,4 +1,4 @@
-import { Component, OnInit,Inject } from '@angular/core';
+import { Component, OnInit,Inject,Input } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FormControl } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -13,17 +13,57 @@ import { DataService } from 'src/app/services/data-services/data.service';
   styleUrls: ['./dialogue.component.scss']
 })
 export class DialogueComponent implements OnInit {
+  @Input() display: any;
+  @Input() TypeIcon: any;
   TokenAuth: boolean = true;
   options:any
-  isArchived='false';
+  DialogueIcon='true';
   result: any;
   response: any;
   title = new FormControl();
   description = new FormControl();
   note: UpdateNote = new UpdateNote();
+  NoteVal:any;
 
   constructor(@Inject(MAT_DIALOG_DATA) private data: any,private svc: NoteService,private dataSvc:DataService, private dialogRef: MatDialogRef< DisplayNotesComponent>){}
   ngOnInit() {
+    
+    this.dataSvc.dialogMessage.subscribe((res:any)=>
+    {console.log('resssssssssssssss',res);
+    
+      console.log('note vallllll',this.NoteVal);
+      
+      if(res!='')
+      {
+        this.NoteVal= res;
+        console.log('dsgkdsgjdfsdsgj',this.NoteVal);
+      }  
+    })
+  }
+  delreminder(reminderId, noteid) {
+    let userr = {
+      reminder: reminderId,
+      noteIdList: [noteid]
+    }
+    let res =
+    {
+      data: userr
+    }
+    this.svc.delreminder(res, this.TokenAuth).subscribe((response: any) => {
+      console.log('----', response);
+      this.GetNoteDetails(noteid);      
+    });
+  }
+  GetNoteDetails(card) {
+    this.options = {
+      noteIdList: [card]
+    }
+    this.svc.GetNoteDetailss(this.options, this.TokenAuth).subscribe((response: any) => {
+      this.dataSvc.DialogMess(response.data.data);
+
+    }, (error) => {
+      console.log(error);
+    });
   }
   updateNote() {
     

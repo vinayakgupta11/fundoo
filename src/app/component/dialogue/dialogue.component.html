@@ -5,10 +5,73 @@
 
     <textarea matInput type="text" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
     cdkAutosizeMaxRows="25" class="text" placeholder="Take a Note" [formControl]="description" value="{{data.description}}"></textarea>
-    <div fxLayout="row"> 
+    
+    <div *ngIf= "data.reminder.length>0 && !NoteVal" >
+    <mat-chip-list >
+    <mat-chip class="matChip">
+        {{data.reminder |  date:'short'}}
+        <button class="hide" mat-icon-button (click)= "delreminder(data.reminder,data.id)">
+          <mat-icon>close</mat-icon>
+        </button>
+
+      </mat-chip>
+    </mat-chip-list>
+  </div>
+     <!-- <div *ngFor="let val of data">
+  <div *ngIf= "val.collaborators.length>0 && !NoteVal" >
+      <mat-chip-list >
+      <mat-chip class="matChip">
+          {{val.email}}
+          <button class="hide" mat-icon-button (click)= "delreminder(data.reminder,data.id)">
+            <mat-icon>close</mat-icon>
+          </button>
+  
+        </mat-chip>
+      </mat-chip-list>
+    </div>  
+  </div> -->
+
+
+
+
+
+    <div *ngFor="let dial of NoteVal">
+    <div *ngIf= "dial.reminder.length>0 && data.id==dial.id" >
+        <mat-chip-list >
+          <mat-chip class="matChip">
+            {{dial.reminder |  date:'short'}}
+            <button class="hide" mat-icon-button (click)= "delreminder(dial.reminder,dial.id)">
+              <mat-icon>close</mat-icon>
+            </button>
+    
+          </mat-chip>
+        </mat-chip-list>
+      </div>
+
+      <div *ngIf= "dial.collaborators.length>0 && data.id==dial.id" >
+          <mat-chip-list >
+            <mat-chip class="matChip">
+              {{dial.collaborators[0].email }}
+              <button class="hide" mat-icon-button (click)= "delreminder(dial.reminder,dial.id)">
+                <mat-icon>close</mat-icon>
+              </button>
+      
+            </mat-chip>
+          </mat-chip-list>
+        </div>
+    </div>
+
+
+
+    <div fxLayout="row" fxLayoutAlign="start start" style="width: 100%">
+        <app-icon-tray [show]="DialogueIcon" [card]=data> </app-icon-tray>
+        <button mat-button (click)=" updateNote()">Close</button>
+      </div>
+   
+    <!-- <div fxLayout="row"> 
     <app-icon  [mess]="isArchived"  [card]=data></app-icon>
     <button mat-button (click)=" updateNote()">Close</button>
-  </div>
+  </div> -->
 
 
 </div>

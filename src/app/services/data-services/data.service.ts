@@ -34,8 +34,19 @@ export class DataService {
   private ArchiveSource = new BehaviorSubject('');
   ArchiveMessage = this.ArchiveSource.asObservable();
 
+  private LabelSourceNotes = new BehaviorSubject('');
+  LabelMessageNotes = this.LabelSourceNotes.asObservable();
+
+
+  private dialogData = new BehaviorSubject('');
+  dialogMessage = this.dialogData.asObservable();
+
 
   constructor() { }
+  DialogMess(message:any)
+  {
+    this.dialogData.next(message);
+  }
   changeMessage(message: any) {
     this.messageSource.next(message)
   }
@@ -72,6 +83,9 @@ export class DataService {
   ChecklistServiceNotes(message:any)
   {
     this.ChecklistSourceNotes.next(message);
+  }
+  LabelListNotes(message: any) {
+    this.LabelSourceNotes.next(message);
   }
 
 }

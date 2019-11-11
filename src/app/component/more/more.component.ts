@@ -22,8 +22,9 @@ export class MoreComponent implements OnInit {
   label: LabelNote;
   notedetails: any;
   quesAnsView: any;
-  checkbox:boolean=false;
-  noteid:any;
+  checkbox: boolean = false;
+  noteid: any;
+  id="yes"
 
   @Input() CardId: any;
 
@@ -40,28 +41,26 @@ export class MoreComponent implements OnInit {
       this.quesAnsView = res;
     })
   }
-  ShowCheckBox(nid)
-  {
-    console.log('ff',nid);
-    if(nid)
-    {
-    this.checkbox= !this.checkbox;
-    let user={
-      "show": this.checkbox,
-      "id": nid.id
+  ShowCheckBox(nid) {
+    console.log('ff', nid);
+    if (nid) {
+      this.checkbox = !this.checkbox;
+      let user = {
+        "show": this.checkbox,
+        "id": nid.id
+      }
+      this.datasvc.ChecklistService(user);
     }
-    this.datasvc.ChecklistService(user);
-  }
-  else{
-    this.checkbox= !this.checkbox;
-    this.datasvc.ChecklistServiceNotes(this.checkbox);
+    else {
+      this.checkbox = !this.checkbox;
+      this.datasvc.ChecklistServiceNotes(this.checkbox);
 
-  }
+    }
   }
 
 
   trashNote(card) {
-  this.cardId = card.id;
+    this.cardId = card.id;
     this.user = {
       isDeleted: true,
       noteIdList: [this.cardId]
@@ -70,7 +69,7 @@ export class MoreComponent implements OnInit {
       data: this.user
     }
     this.noteService.TrashNote(this.options, this.TokenAuth).subscribe((response) => {
-     // console.log(response);
+      // console.log(response);
       this.datasvc.changeMessage('save')
     }, (error) => {
       console.log(error);
@@ -125,20 +124,28 @@ export class MoreComponent implements OnInit {
   }
 
   onOpenAddLabel(labelId) {
-    this.label = {
-      labelId: labelId.id,
-      noteId: this.CardId.id
-    }
-    this.options = {
-      data: this.label
-    }
-    this.noteService.addLabelToNotes(this.options, this.TokenAuth).subscribe((response: any) => {
-      //  console.log(response);
-      this.datasvc.changeMessage('save')
-      //this.messageEvent.emit(this.messageLabels);
-    }, (error) => {
-      console.log(error);
-    });
+    console.log('ssssssss', labelId);
+    
+      this.label = {
+        labelId: labelId.id,
+        noteId: this.CardId.id
+      }
+      this.options = {
+        data: this.label
+      }
+      this.noteService.addLabelToNotes(this.options, this.TokenAuth).subscribe((response: any) => {
+        //  console.log(response);
+        this.datasvc.changeMessage('save')
+        //this.messageEvent.emit(this.messageLabels);
+      }, (error) => {
+        console.log(error);
+      });
+    
+    
   }
 
+  onOpenAddLabelNotes(labelId) {
+  //  console.log('ssssssssssssssssssssssssssssssss', labelId);
+    this.datasvc.LabelListNotes(labelId)
+  }
 }

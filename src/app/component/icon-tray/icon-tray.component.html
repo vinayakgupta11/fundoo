@@ -19,6 +19,16 @@
     <app-more [CardId]='card' [MatMenuu]='show'></app-more>
   </div>
 
+  <div *ngIf="show=='true'" fxLayout='row'>
+      <app-remind-me [CardId]='card'></app-remind-me>
+      <app-collaborator [CardId]='card'></app-collaborator>
+      <app-color [CardId]='card'></app-color>
+      <app-add-image></app-add-image>
+      <app-archive-icon [CardId]='card'></app-archive-icon>
+      <app-more [CardId]='card' [MatMenuu]='show'></app-more>
+    </div>
+
+
   <div *ngIf="show=='archive'" fxLayout='row'>
       <app-remind-me></app-remind-me>
       <app-collaborator></app-collaborator>
@@ -31,15 +41,4 @@
     <div *ngIf="show=='deletee'" fxLayout='row'>
         <app-more [CardId]='card' [MatMenuu]='show'></app-more>
     </div>
-  
-
-
-
-
-
-
-
-
-
-
 </div>

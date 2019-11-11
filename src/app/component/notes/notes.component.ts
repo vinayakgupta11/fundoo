@@ -34,11 +34,29 @@ export class NotesComponent implements OnInit {
   arc:boolean=false
   ShowCheckList: any;
   remind:boolean=false;
+  label:boolean=false;
+  ChecklistArray=[];
+  CheckListIndex:any;
+  LabelId:any;
+  LabelArray=[];
+  LabelArrayId=[];
   constructor(private noteService: NoteService, private datasvc: DataService) { }
 
   ngOnInit() {
+    this.datasvc.LabelMessageNotes.subscribe((resp:any)=>
+    {
+      if (resp == '') {
+        this.LabelArray = []
+      }
+      else {
+        this.LabelArray.push(resp)
+        this.LabelArrayId.push(resp.id)
+        this.label=true;
+        console.log('data received', this.LabelArray);
+      }
+    })
     this.datasvc.ChecklistMessageNotes.subscribe((res: any) => {
-      console.log('checkkkhbfghbfgtk',res);
+      //console.log('checkkkhbfghbfgtk',res);
       if(res!=='')
       {
       this.ShowCheckList=res;
@@ -85,10 +103,43 @@ export class NotesComponent implements OnInit {
       }
 
     })
+   // console.log('88888',this.ChecklistArray);
   }
+  UpdateCheckList(itemname,status)
+  {
+    this.CheckListIndex= this.ChecklistArray.findIndex(i=> i.itemName=== itemname)
+    if(status=='open'){
+      this.ChecklistArray[this.CheckListIndex].status = 'close';
+    }else{
+      this.ChecklistArray[this.CheckListIndex].status = 'open';
+    }
 
+  }
+  DeleteCheckList(itemname)
+  {
+    this.CheckListIndex= this.ChecklistArray.findIndex(i=> i.itemName=== itemname)
+    console.log("index....", this.CheckListIndex);
+    this.ChecklistArray.splice(this.CheckListIndex, 1);
+
+  }
+  AddCheckList()
+  {
+    this.ChecklistArray[this.ChecklistArray.length]= {itemName: this.text.value,status:"open"};
+    this.EmptyText='';
+    console.log("Array...",this.ChecklistArray);
+  }
   toggle() {
     this.show = !this.show;
+  }
+  removeLabel(labelId)
+  {
+    console.log('hbhhhhh',labelId.id);
+    this.LabelId=this.LabelArray.findIndex(i=> i.id=== labelId.id)
+    console.log('jjjj',this.LabelId);
+    this.LabelArray.splice(this.LabelId, 1);
+    
+    
+
   }
   remove()
   {
@@ -108,7 +159,9 @@ export class NotesComponent implements OnInit {
         color: this.colour,
         reminder: this.ReminderNote,
         collaberators: this.collab,
-        isArchived: this.arc
+        isArchived: this.arc,
+        checklist: JSON.stringify(this.ChecklistArray),
+        labelIdList:JSON.stringify(this.LabelArrayId)
       }
       console.log('---',this.note);
       
@@ -123,6 +176,10 @@ export class NotesComponent implements OnInit {
         this.descriptionM = "";
         this.ReminderNote = "";
         this.collVal=""
+        this.ChecklistArray=[];
+        this.collaberators=[];
+        this.LabelArray=[];
+        this.ShowCheckList=false;
         this.datasvc.changeMessage("save");
       }, (error) => {
         console.log(error);

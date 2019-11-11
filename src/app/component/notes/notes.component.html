@@ -44,12 +44,39 @@
         cdkAutosizeMaxRows="25" [(ngModel)]="descriptionM" placeholder="Take a note" class="fielda"
         [formControl]="description"></textarea>
     </div>
-    <div *ngIf="ShowCheckList">
-        <mat-icon>add</mat-icon><textarea placeholder="Add item" [formControl]="text" [(ngModel)]="EmptyText"></textarea>
-        <button (click)=AddCheckList(note.id)>add</button>
+    <div *ngFor="let CheckList of ChecklistArray">
+      <div *ngIf="CheckList.status=='open' ">
+        <mat-icon (click)=UpdateCheckList(CheckList.itemName,CheckList.status)>
+          check_box_outline_blank</mat-icon>
+        {{CheckList.itemName}}
+        <mat-icon (click)=DeleteCheckList(CheckList.itemName)>delete</mat-icon>
+      </div>
+      <div *ngIf="CheckList.status=='close'">
+        <mat-icon (click)=UpdateCheckList(CheckList.itemName,CheckList.status)>check_box</mat-icon>
+        <s> {{CheckList.itemName}}</s>
+        <mat-icon (click)=DeleteCheckList(CheckList.itemName)>delete</mat-icon>
+      </div>
     </div>
 
+    <div *ngIf="ShowCheckList">
+        <mat-icon>add</mat-icon><textarea placeholder="Add item" [formControl]="text" [(ngModel)]="EmptyText"></textarea>
+        <button (click)=AddCheckList()>add</button>
+    </div>
 
+    <div *ngIf= "label" fxLayout="row">
+      <div *ngFor="let lab of LabelArray" >
+      <mat-chip-list  >
+        <mat-chip class="matChip" >
+          {{lab.label}}
+          <button class="hide" mat-icon-button (click)= "removeLabel(lab)">
+            <mat-icon>close</mat-icon>
+          </button>
+  
+        </mat-chip>
+        <span></span>
+      </mat-chip-list>
+    </div>
+    </div>
 
     
     <!-- <div *ngFor="let noteRem of ReminderNote"> -->
@@ -69,7 +96,6 @@
       <mat-chip-list >
         <mat-chip class="matChip" >
           {{collab.email}}
-
         </mat-chip>
         <span></span>
       </mat-chip-list>

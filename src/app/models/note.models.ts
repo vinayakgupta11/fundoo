@@ -9,6 +9,8 @@ export class Note
     reminder?:any;
     collaberators?:String
     isArchived?:boolean
+    checklist?:string;
+    labelIdList?:string;
 
 
     

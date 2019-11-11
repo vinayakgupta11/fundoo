@@ -29,11 +29,11 @@ export class CollabComponent implements OnInit {
   notes: any;
   TokenAuth: boolean = true;
   constructor(@Inject(MAT_DIALOG_DATA) dialogData: any, private testService: TestService, private noteService: NoteService, private datasvc: DataService, private dialogRef: MatDialogRef<DisplayNotesComponent>) {
-    if (dialogData!=null) {
+    if (dialogData != null) {
       this.notedetails = dialogData.card.id;
       console.log('---', this.notedetails);
     }
-    
+
   }
   email = localStorage.getItem('email');
   firstName = localStorage.getItem('firstName');
@@ -44,31 +44,43 @@ export class CollabComponent implements OnInit {
       this.changeProfile();
     })
   }
-  addCollab() {
-    if(this.notedetails)
-    {
+  GetNoteDetails(card) {
+    let options = {
+      noteIdList: [card]
+    }
+    this.noteService.GetNoteDetailss(options, this.TokenAuth).subscribe((response: any) => {
+      this.datasvc.DialogMess(response.data.data);
 
-    let value = {
-      'email': this.searchValue[0].email,
-      'firstName': this.searchValue[0].firstName,
-      'lastName': this.searchValue[0].lastName,
-      'userId': this.searchValue[0].userId,
+    }, (error) => {
+      console.log(error);
+    });
+
+  }
+  addCollab() {
+    if (this.notedetails) {
+
+      let value = {
+        'email': this.searchValue[0].email,
+        'firstName': this.searchValue[0].firstName,
+        'lastName': this.searchValue[0].lastName,
+        'userId': this.searchValue[0].userId,
+      }
+      let options =
+      {
+        data: value,
+        noteId: this.notedetails
+      }
+      this.noteService.addCollaborator(options, this.TokenAuth).subscribe((response: any) => {
+        this.GetNoteDetails(this.notedetails);
+        this.datasvc.changeMessage("Hello from Sibling")
+        this.coll = '';
+        this.getNotesCollab();
+      },
+        (error) => {
+          console.log(error);
+        });
     }
-    let options =
-    {
-      data: value,
-      noteId: this.notedetails
-    }
-    this.noteService.addCollaborator(options, this.TokenAuth).subscribe((response: any) => {
-      this.datasvc.changeMessage("Hello from Sibling")
-      this.coll = '';
-      this.getNotesCollab();
-    },
-      (error) => {
-        console.log(error);
-      });
-    }
-    else{
+    else {
       let value = {
         'email': this.searchValue[0].email,
         'firstName': this.searchValue[0].firstName,
@@ -94,21 +106,20 @@ export class CollabComponent implements OnInit {
 
   }
   getNotesCollab() {
-    if(this.notedetails)
-    {
-    let options =
-    {
-      noteId: this.notedetails
-    }
-    this.noteService.GetNotesListCollab(options, this.TokenAuth).subscribe((response: any) => {
-      this.notes = response.collaborators;
-      // console.log('-------',this.notes);
+    if (this.notedetails) {
+      let options =
+      {
+        noteId: this.notedetails
+      }
+      this.noteService.GetNotesListCollab(options, this.TokenAuth).subscribe((response: any) => {
+        this.notes = response.collaborators;
+        // console.log('-------',this.notes);
 
-    }, (error) => {
-      console.log(error);
-    });
+      }, (error) => {
+        console.log(error);
+      });
+    }
   }
-}
   changeProfile() {
     this.localstor = localStorage.getItem('imageUrl');
     this.url = (this.imgbase + this.localstor)

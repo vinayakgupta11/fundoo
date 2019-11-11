@@ -16,10 +16,7 @@ export class CollaboratorComponent implements OnInit {
   constructor(private dialog: MatDialog, private datasvc: DataService, private noteService: NoteService) { }
 
   ngOnInit() {
-    console.log('ddddd', this.CardId);
-
-
-
+    
   }
   openDialogcol(cardId) {
     if (cardId==undefined) {

@@ -15,6 +15,8 @@ export class IconTrayComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log('dsdd',this.show);
+    
   }
   
 

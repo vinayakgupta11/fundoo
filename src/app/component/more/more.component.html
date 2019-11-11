@@ -6,6 +6,10 @@
   <mat-icon>more_vert</mat-icon>
 </button>
 
+<button *ngIf="MatMenuu=='true'" mat-icon-button [matMenuTriggerFor]="menu_notes" title="More">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+
 <button *ngIf="MatMenuu=='archive'" mat-icon-button [matMenuTriggerFor]="menu_archive" title="More">
     <mat-icon>more_vert</mat-icon>
   </button>
@@ -20,9 +24,11 @@
         <button mat-menu-item (click)= deleteNotesForever(CardId)>Delete Forever</button>
         <button mat-menu-item (click) =RestoreNotes(CardId)>Restore</button>
       </mat-menu>
+
+
       <mat-menu #menu_takeNotes="matMenu" [overlapTrigger]="false">
         
-          <button mat-menu-item >Add Label</button>
+          <button mat-menu-item  [matMenuTriggerFor]="menu_labelsNotes">Add Label</button>
           <button mat-menu-item >Add Drawing</button>
           <button mat-menu-item (click)=ShowCheckBox(CardId)>CheckBoxes</button>
         </mat-menu>
@@ -50,6 +56,16 @@
       <p>Label Note</p>
       <mat-selection-list>
         <mat-list-option *ngFor="let label of labels" (click)="onOpenAddLabel(label)">
+            {{label.label}}
+        </mat-list-option>
+    </mat-selection-list>
+    
+    </mat-menu>
+
+    <mat-menu #menu_labelsNotes>
+      <p>Label Note</p>
+      <mat-selection-list>
+        <mat-list-option *ngFor="let label of labels" (click)="onOpenAddLabelNotes(label)">
             {{label.label}}
         </mat-list-option>
     </mat-selection-list>

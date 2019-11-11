@@ -17,6 +17,7 @@ import { FormControl } from '@angular/forms';
 export class CardsComponent implements OnInit {
   @Input() display: any;
   @Input() TypeIcon: any;
+  DialogueIcon: any;
   TokenAuth: boolean = true;
   text = new FormControl;
   notes: any;
@@ -28,7 +29,7 @@ export class CardsComponent implements OnInit {
   cardId: any;
   viewVal: any;
   ShowCheckList: any;
-  EmptyText:any;
+  EmptyText: any;
   CheckListId: any;
   constructor(private svc: NoteService, private datasvc: DataService, private dialog: MatDialog) { }
   ngOnInit() {
@@ -41,67 +42,61 @@ export class CardsComponent implements OnInit {
       this.ShowCheckList = res.show;
     })
   }
-  DeleteCheckList(nId,cId)
-  {
-    this.options={
+  DeleteCheckList(nId, cId) {
+    this.options = {
       noteId: nId,
       checklistId: cId
     }
-    this.svc.DeleteCheckList(this.options,this.TokenAuth).subscribe((res:any)=>
-  {
-    console.log(res); 
-    this.datasvc.changeMessage('updated')
-  })
+    this.svc.DeleteCheckList(this.options, this.TokenAuth).subscribe((res: any) => {
+      console.log(res);
+      this.datasvc.changeMessage('updated')
+    })
 
   }
-  UpdateCheckList(itemname,status,nId,cId)
-  {
-    if(status=='open')
-    {
-    let user=
-    {
-      status: "close",
-      itemName: itemname
+  UpdateCheckList(itemname, status, nId, cId) {
+    if (status == 'open') {
+      let user =
+      {
+        status: "close",
+        itemName: itemname
+      }
+      this.options = {
+        data: user,
+        noteId: nId,
+        checklistId: cId
+      }
     }
-    this.options={
-      data:user,
-      noteId: nId,
-      checklistId: cId
+    else {
+      let user =
+      {
+        status: "open",
+        itemName: itemname
+      }
+      this.options = {
+        data: user,
+        noteId: nId,
+        checklistId: cId
+      }
     }
-  }
-  else
-  { let user=
-    {
-      status: "open",
-      itemName: itemname
-    }
-    this.options={
-      data:user,
-      noteId: nId,
-      checklistId: cId
-    }
-  }
-  this.svc.UpdateCheckList(this.options,this.TokenAuth).subscribe((res:any)=>
-  {
-    console.log(res); 
-    this.datasvc.changeMessage('updated')
-  })
+    this.svc.UpdateCheckList(this.options, this.TokenAuth).subscribe((res: any) => {
+      console.log(res);
+      this.datasvc.changeMessage('updated')
+    })
   }
   AddCheckList(noteId) {
-    let user=
+    let user =
     {
       status: "open",
       itemName: this.text.value
     }
-    this.options={
-      data:user,
-      id:noteId
+    this.options = {
+      data: user,
+      id: noteId
     }
-    this.svc.AddCheckList(this.options,this.TokenAuth).subscribe((res:any)=>
-    {
+    this.svc.AddCheckList(this.options, this.TokenAuth).subscribe((res: any) => {
       this.datasvc.changeMessage('added')
-      this.EmptyText='';
-      console.log(res); 
+      this.EmptyText = '';
+      console.log(res);
     })
   }
   openDialog(note) {
@@ -109,9 +104,11 @@ export class CardsComponent implements OnInit {
     let dialogref = this.dialog.open(DialogueComponent,
       {
         data: {
+
           title: note.title,
           description: note.description,
           id: note.id,
+          reminder:note.reminder,
           recycle: false
         }
       });
@@ -132,7 +129,17 @@ export class CardsComponent implements OnInit {
       this.datasvc.changeMessage("Hello from Sibling")
     });
   }
+  GetNoteDetails(card) {
+    this.options = {
+      noteIdList: [card]
+    }
+    this.svc.GetNoteDetailss(this.options, this.TokenAuth).subscribe((response: any) => {
+      this.datasvc.DialogMess(response.data.data);
 
+    }, (error) => {
+      console.log(error);
+    });
+  }
   delreminder(reminderId, noteid) {
     this.userr = {
       reminder: reminderId,
@@ -144,7 +151,7 @@ export class CardsComponent implements OnInit {
     }
     this.svc.delreminder(res, this.TokenAuth).subscribe((response: any) => {
       console.log('----', response);
-
+      this.GetNoteDetails(noteid)
       this.datasvc.changeMessage("Hello from Sibling")
     });
   }
