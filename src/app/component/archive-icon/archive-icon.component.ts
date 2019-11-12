@@ -33,10 +33,11 @@ export class ArchiveIconComponent implements OnInit {
       this.options = {
         data: this.user
       }
-      this.noteService.ArchiveNote(this.options, this.TokenAuth).subscribe((response) => {
+      this.noteService.ArchiveNote(this.options, this.TokenAuth).subscribe((response:any) => {
         console.log(response);
         //this.messageEvent.emit(this.message)
         this.datasvc.changeMessage('save')
+        this.datasvc. DialogMessArch(response.data)
       }, (error) => {
         console.log(error);
       });

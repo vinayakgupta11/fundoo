@@ -29,10 +29,10 @@
     </div>
 
 
-
-    <div *ngFor="let noteLabel of note.noteLabels">
-      <mat-chip-list>
-        <mat-chip class="matChip">
+<div fxLayout='row '>
+    <div *ngFor="let noteLabel of note.noteLabels" fxLayout='row '>
+      <mat-chip-list >
+        <mat-chip class="matChip" >
           {{noteLabel.label}}
           <button class="hide" mat-icon-button (click)="dellabelnotes(noteLabel.id,note.id)">
             <mat-icon>close</mat-icon>
@@ -41,6 +41,7 @@
         <span></span>
       </mat-chip-list>
     </div>
+</div>
     <div *ngFor="let noteRem of note.reminder">
       <mat-chip-list>
         <mat-chip class="matChip">
@@ -52,8 +53,11 @@
         <span></span>
       </mat-chip-list>
     </div>
-    <div *ngFor="let notecoll of note.collaborators" fxLayout='row'>
-      <button mat-mini-fab matTooltip={{notecoll.email}}>{{notecoll.firstName[0] | uppercase}}</button>
+    <div fxLayout='row '>
+    <div *ngFor="let notecoll of note.collaborators" >
+        <mat-icon  matTooltip={{notecoll.email}}>person_pin</mat-icon>
+      <!-- <button  mat-mini-fab matTooltip={{notecoll.email}}>{{notecoll.firstName[0] | uppercase}}</button> -->
+    </div>
     </div>
     <div class="hide" fxLayoutAlign="start start" style="width: 100%">
       <app-icon-tray [show]='TypeIcon' [card]=note> </app-icon-tray>
@@ -93,6 +97,7 @@
       <mat-icon>add</mat-icon><textarea placeholder="Add item" [formControl]="text" [(ngModel)]="EmptyText"></textarea>
       <button (click)=AddCheckList(note.id)>add</button>
     </div>
+    <div fxLayout='row '>
     <div *ngFor="let noteLabel of note.noteLabels">
       <mat-chip-list>
         <mat-chip class="matChip">
@@ -103,6 +108,7 @@
         </mat-chip>
         <span></span>
       </mat-chip-list>
+    </div>
     </div>
     <div *ngFor="let noteRem of note.reminder">
       <mat-chip-list>
@@ -115,8 +121,11 @@
         <span></span>
       </mat-chip-list>
     </div>
+    <div fxLayout='row '>
     <div *ngFor="let notecoll of note.collaborators" fxLayout='row'>
-      <button mat-mini-fab matTooltip={{notecoll.email}}>{{notecoll.firstName[0] | uppercase}}</button>
+        <mat-icon  matTooltip={{notecoll.email}}>person_pin</mat-icon>
+      <!-- <button mat-mini-fab matTooltip={{notecoll.email}}>{{notecoll.firstName[0] | uppercase}}</button> -->
+    </div>
     </div>
     <div class="hide" fxLayoutAlign="start start" style="width: 100%">
       <app-icon-tray [show]='TypeIcon' [card]=note> </app-icon-tray>

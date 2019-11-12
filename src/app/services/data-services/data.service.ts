@@ -41,8 +41,15 @@ export class DataService {
   private dialogData = new BehaviorSubject('');
   dialogMessage = this.dialogData.asObservable();
 
+  private dialogDataArch = new BehaviorSubject('save');
+  dialogMessageArch = this.dialogDataArch.asObservable();
+
 
   constructor() { }
+  DialogMessArch(message:any)
+  {
+    this.dialogDataArch.next(message);
+  }
   DialogMess(message:any)
   {
     this.dialogData.next(message);

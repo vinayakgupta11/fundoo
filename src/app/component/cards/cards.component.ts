@@ -49,6 +49,7 @@ export class CardsComponent implements OnInit {
     }
     this.svc.DeleteCheckList(this.options, this.TokenAuth).subscribe((res: any) => {
       console.log(res);
+      this.GetNoteDetails(nId);
       this.datasvc.changeMessage('updated')
     })
 
@@ -80,6 +81,7 @@ export class CardsComponent implements OnInit {
     }
     this.svc.UpdateCheckList(this.options, this.TokenAuth).subscribe((res: any) => {
       console.log(res);
+      this.GetNoteDetails(nId);
       this.datasvc.changeMessage('updated')
     })
   }
@@ -95,6 +97,7 @@ export class CardsComponent implements OnInit {
     }
     this.svc.AddCheckList(this.options, this.TokenAuth).subscribe((res: any) => {
       this.datasvc.changeMessage('added')
+      this.GetNoteDetails(noteId);
       this.EmptyText = '';
       console.log(res);
     })
@@ -110,10 +113,13 @@ export class CardsComponent implements OnInit {
           reminder:note.reminder,
           collaborators:note.collaborators,
           color:note.color,
+          noteLabels:note.noteLabels,
+          noteCheckLists:note.noteCheckLists,
           recycle: false
         },
         panelClass: 'dialogueClass'
       });
+      this.datasvc. DialogMessArch('save')
     // dialogref.afterClosed().subscribe(result=> {
     //   console.log("dialog result ", result);
     // })
@@ -128,6 +134,7 @@ export class CardsComponent implements OnInit {
       noteId: noteid
     }
     this.svc.dellabnotes(data, this.TokenAuth).subscribe((response: any) => {
+      this.GetNoteDetails(noteid);
       this.datasvc.changeMessage("Hello from Sibling")
     });
   }

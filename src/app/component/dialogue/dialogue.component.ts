@@ -19,39 +19,117 @@ export class DialogueComponent implements OnInit {
   options:any
   DialogueIcon='true';
   result: any;
+  text = new FormControl;
   response: any;
   title = new FormControl();
   description = new FormControl();
   note: UpdateNote = new UpdateNote();
   NoteVal:any;
+  ShowCheckList: any;
+  CheckListId: any;
+  EmptyText: any;
+  message:any;
   
 
   constructor(@Inject(MAT_DIALOG_DATA) private data: any,private svc: NoteService,private dataSvc:DataService, private dialogRef: MatDialogRef< DisplayNotesComponent>){}
   ngOnInit() {
     
+    this.dataSvc.ChecklistMessage.subscribe((res: any) => {
+      this.CheckListId = res.id;
+      this.ShowCheckList = res.show;
+    })
     this.dataSvc.dialogMessage.subscribe((res:any)=>
     {
       if(res!='')
       {
-        this.NoteVal= res;
-        console.log('dsgkdsgjdfsdsgj',this.NoteVal);
+        this.NoteVal= res; 
+        if(this.data.id== res[0].id)
+        {
+        this.data.color=res[0].color;
+        }
+        console.log('414111111111111',this.NoteVal);
       }  
+    });
+    this.dataSvc.dialogMessageArch.subscribe((res:any)=>
+    {
+      if(res!='save')
+      {
+        this.dialogRef.close();
+        res='save';
+      }
     })
   }
-  removeCollab(collabId,noteid) {
-    let options =
+  AddCheckList(noteId) {
+    let user =
     {
-      noteId: noteid,
-      collId: collabId
+      status: "open",
+      itemName: this.text.value
     }
-    console.log('ffdfdf',options);
-    
-    this.svc.DeleteCollab(options, this.TokenAuth).subscribe((response) => {
-      // console.log(response);
+    this.options = {
+      data: user,
+      id: noteId
+    }
+    this.svc.AddCheckList(this.options, this.TokenAuth).subscribe((res: any) => {
+      this.GetNoteDetails(noteId);
+     
+      this.EmptyText = '';
+      console.log(res);
+    })
+  }
+  UpdateCheckList(itemname, status, nId, cId) {
+    if (status == 'open') {
+      let user =
+      {
+        status: "close",
+        itemName: itemname
+      }
+      this.options = {
+        data: user,
+        noteId: nId,
+        checklistId: cId
+      }
+    }
+    else {
+      let user =
+      {
+        status: "open",
+        itemName: itemname
+      }
+      this.options = {
+        data: user,
+        noteId: nId,
+        checklistId: cId
+      }
+    }
+    this.svc.UpdateCheckList(this.options, this.TokenAuth).subscribe((res: any) => {
+      console.log(res);
+      
+      this.GetNoteDetails(nId);
+    })
+  }
+  DeleteCheckList(nId, cId) {
+    this.options = {
+      noteId: nId,
+      checklistId: cId
+    }
+    this.svc.DeleteCheckList(this.options, this.TokenAuth).subscribe((res: any) => {
+      console.log(res);
+     
+      this.GetNoteDetails(nId);
+    })
+
+  }
+  dellabelnotes(label, noteid) {
+    let data = {
+      id: label,
+      noteId: noteid
+    }
+    this.svc.dellabnotes(data, this.TokenAuth).subscribe((response: any) => {
       this.GetNoteDetails(noteid);
       
-    })
+    });
   }
+  
   delreminder(reminderId, noteid) {
     let userr = {
       reminder: reminderId,

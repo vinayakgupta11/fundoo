@@ -68,8 +68,9 @@ export class MoreComponent implements OnInit {
     this.options = {
       data: this.user
     }
-    this.noteService.TrashNote(this.options, this.TokenAuth).subscribe((response) => {
+    this.noteService.TrashNote(this.options, this.TokenAuth).subscribe((response:any) => {
       // console.log(response);
+      this.datasvc. DialogMessArch(response.data)
       this.datasvc.changeMessage('save')
     }, (error) => {
       console.log(error);
@@ -122,6 +123,18 @@ export class MoreComponent implements OnInit {
     });
 
   }
+  GetNoteDetails(card) {
+    let options = {
+      noteIdList: [card]
+    }
+    this.noteService.GetNoteDetailss(options, this.TokenAuth).subscribe((response: any) => {
+      this.datasvc.DialogMess(response.data.data);
+
+    }, (error) => {
+      console.log(error);
+    });
+
+  }
 
   onOpenAddLabel(labelId) {
     console.log('ssssssss', labelId);
@@ -134,7 +147,8 @@ export class MoreComponent implements OnInit {
         data: this.label
       }
       this.noteService.addLabelToNotes(this.options, this.TokenAuth).subscribe((response: any) => {
-        //  console.log(response);
+        // console.log(response);
+        this.GetNoteDetails(this.CardId.id)
         this.datasvc.changeMessage('save')
         //this.messageEvent.emit(this.messageLabels);
       }, (error) => {

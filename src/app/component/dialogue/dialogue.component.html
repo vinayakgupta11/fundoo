@@ -1,77 +1,111 @@
-<div class="container" fxLayout="column" fxLayoutGap="10px"  [ngStyle]="{background:data.color}">
-
+<div fxLayout="column" fxLayoutGap="10px" [ngStyle]="{background:data.color}">
   <textarea matInput type="text" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
-    cdkAutosizeMaxRows="25"class="text"  placeholder="Title" [formControl]="title" value="{{data.title}}"></textarea>
-
-    <textarea matInput type="text" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
-    cdkAutosizeMaxRows="25" class="text" placeholder="Take a Note" [formControl]="description" value="{{data.description}}"></textarea>
-    
-    <div *ngIf= "data.reminder.length>0 && !NoteVal" >
-    <mat-chip-list >
-    <mat-chip class="matChip">
+    cdkAutosizeMaxRows="25" class="text" placeholder="Title" [formControl]="title" value="{{data.title}}"></textarea>
+  <textarea matInput type="text" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+    cdkAutosizeMaxRows="25" class="text" placeholder="Take a Note" [formControl]="description"
+    value="{{data.description}}"></textarea>
+  <div *ngIf="ShowCheckList && CheckListId==data.id">
+    <mat-icon>add</mat-icon><textarea placeholder="Add item" [formControl]="text" [(ngModel)]="EmptyText"></textarea>
+    <button (click)=AddCheckList(data.id)>add</button>
+  </div>
+  <div *ngIf="data.reminder.length>0 && !NoteVal">
+    <mat-chip-list>
+      <mat-chip class="matChip">
         {{data.reminder |  date:'short'}}
-        <button class="hide" mat-icon-button (click)= "delreminder(data.reminder,data.id)">
+        <button class="hide" mat-icon-button (click)="delreminder(data.reminder,data.id)">
           <mat-icon>close</mat-icon>
         </button>
-
       </mat-chip>
     </mat-chip-list>
   </div>
 
-  <div *ngIf= "data.collaborators.length>0 && !NoteVal" >
-      <div *ngFor="let dialcol of data.collaborators">
-      <mat-chip-list >
-      <mat-chip class="matChip">
-          {{dialcol.email}}
-          <button class="hide" mat-icon-button (click)= "removeCollab(dialcol.userId,data.id)">
+  <div *ngIf="data.collaborators.length>0 && !NoteVal" fxLayout="row">
+    <div *ngFor="let dialcol of data.collaborators">
+      <mat-icon matTooltip={{dialcol.email}}>person_pin</mat-icon>
+    </div>
+  </div>
+  <div *ngIf="data.noteLabels.length>0 && !NoteVal">
+    <div *ngFor="let dialcol of data.noteLabels">
+      <mat-chip-list>
+        <mat-chip class="matChip">
+          {{dialcol.label}}
+          <button class="hide" mat-icon-button (click)="dellabelnotes(dialcol.id,data.id)">
             <mat-icon>close</mat-icon>
           </button>
-  
         </mat-chip>
       </mat-chip-list>
     </div>
+  </div>
+  <div *ngIf="data.noteCheckLists.length>0 && !NoteVal">
+    <div *ngFor="let dialcol of data.noteCheckLists">
+      <div *ngIf="dialcol.status=='close' && dialcol.isDeleted==false">
+        <mat-icon (click)=UpdateCheckList(CheckList.itemName,CheckList.status,note.id,CheckList.id)>check_box</mat-icon>
+        <s> {{dialcol.itemName}}</s>
+        <mat-icon (click)=DeleteCheckList(data.id,dialcol.id)>delete</mat-icon>
+      </div>
     </div>
-  
+  </div>
+  <div *ngIf="data.noteCheckLists.length>0 && !NoteVal">
+    <div *ngFor="let dialcol of data.noteCheckLists">
+      <div *ngIf="dialcol.status=='open' && dialcol.isDeleted==false">
+        <mat-icon (click)=UpdateCheckList(dialcol.itemName,dialcol.status,data.id,dialcol.id)> check_box_outline_blank
+        </mat-icon>
+        {{dialcol.itemName}}
+        <mat-icon (click)=DeleteCheckList(data.id,dialcol.id)>delete</mat-icon>
+      </div>
+    </div>
+  </div>
+  <div *ngFor="let dial of NoteVal">
+    <div *ngIf="dial.reminder.length>0 && data.id==dial.id">
+      <mat-chip-list>
+        <mat-chip class="matChip">
+          {{dial.reminder |  date:'short'}}
+          <button class="hide" mat-icon-button (click)="delreminder(dial.reminder,dial.id)">
+            <mat-icon>close</mat-icon>
+          </button>
 
-    <div *ngFor="let dial of NoteVal">
-    <div *ngIf= "dial.reminder.length>0 && data.id==dial.id" >
-        <mat-chip-list >
+        </mat-chip>
+      </mat-chip-list>
+    </div>
+    <div *ngIf="dial.collaborators.length>0 && data.id==dial.id" fxLayout="row">
+      <div *ngFor="let dialcol of dial.collaborators">
+        <mat-icon matTooltip={{dialcol.email}}>person_pin</mat-icon>
+      </div>
+    </div>
+    <div *ngIf="dial.noteLabels.length>0 && data.id==dial.id">
+      <div *ngFor="let dialcol of dial.noteLabels">
+        <mat-chip-list>
           <mat-chip class="matChip">
-            {{dial.reminder |  date:'short'}}
-            <button class="hide" mat-icon-button (click)= "delreminder(dial.reminder,dial.id)">
+            {{dialcol.label }}
+            <button class="hide" mat-icon-button (click)="dellabelnotes(dialcol.id,dial.id)">
               <mat-icon>close</mat-icon>
             </button>
-    
           </mat-chip>
         </mat-chip-list>
       </div>
-
-      <div *ngIf= "dial.collaborators.length>0 && data.id==dial.id" >
-        <div *ngFor="let dialcol of dial.collaborators">
-          <mat-chip-list >
-            <mat-chip class="matChip">
-              {{dialcol.email }}
-              <button class="hide" mat-icon-button (click)= "removeCollab(dialcol.userId,dial.id)">
-                <mat-icon>close</mat-icon>
-              </button>
-      
-            </mat-chip>
-          </mat-chip-list>
-        </div>
-        </div>
     </div>
-
-
-
-    <div fxLayout="row" fxLayoutAlign="start start" style="width: 100%">
-        <app-icon-tray [show]="DialogueIcon" [card]=data> </app-icon-tray>
-        <button mat-button (click)=" updateNote()">Close</button>
+    <div *ngIf="dial.noteCheckLists.length>0 && data.id==dial.id">
+      <div *ngFor="let dialcol of data.noteCheckLists">
+        <div *ngIf="dialcol.status=='open' && dialcol.isDeleted==false">
+          <mat-icon (click)=UpdateCheckList(dialcol.itemName,dialcol.status,dial.id,dialcol.id)> check_box_outline_blank
+          </mat-icon>
+          {{dialcol.itemName}}
+          <mat-icon (click)=DeleteCheckList(dial.id,dialcol.id)>delete</mat-icon>
+        </div>
       </div>
-   
-    <!-- <div fxLayout="row"> 
-    <app-icon  [mess]="isArchived"  [card]=data></app-icon>
+    </div>
+    <div *ngIf="dial.noteCheckLists.length>0 && data.id==dial.id">
+      <div *ngFor="let dialcol of data.noteCheckLists">
+        <div *ngIf="dialcol.status=='close' && dialcol.isDeleted==false">
+          <mat-icon (click)=UpdateCheckList(dialcol.itemName,dialcol.status,dial.id,dialcol.id)>check_box</mat-icon>
+          <s> {{dialcol.itemName}}</s>
+          <mat-icon (click)=DeleteCheckList(dial.id,dialcol.id)>delete</mat-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="start start" style="width: 100%">
+    <app-icon-tray [show]="DialogueIcon" [card]=data> </app-icon-tray>
     <button mat-button (click)=" updateNote()">Close</button>
-  </div> -->
-
-
+  </div>
 </div>
