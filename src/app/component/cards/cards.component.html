@@ -32,7 +32,7 @@
 <div fxLayout='row '>
     <div *ngFor="let noteLabel of note.noteLabels" fxLayout='row '>
       <mat-chip-list >
-        <mat-chip class="matChip" >
+        <mat-chip class="matChip"   >
           {{noteLabel.label}}
           <button class="hide" mat-icon-button (click)="dellabelnotes(noteLabel.id,note.id)">
             <mat-icon>close</mat-icon>

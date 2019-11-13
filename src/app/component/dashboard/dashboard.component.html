@@ -1,7 +1,11 @@
+<link
+  href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+  rel="stylesheet">
 <div class="container" fxLayout="column">
-  <mat-toolbar fxLayoutAlign="start center" fxLayoutGap=20px class="abc" fxLayout="row">
+
+  <mat-toolbar fxLayoutAlign="start center" fxLayoutGap=20px class="abc" fxLayout="row" style="background-color: white">
     <div fxFlex=80 fxLayoutAlign="start center" fxLayoutGap=20px>
-      <button type="button" mat-button (click)="drawer.toggle()">
+      <button type="button" mat-icon-button (click)="drawer.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
       <img class="imag" src='/src/app/images/abc.png'>
@@ -14,46 +18,43 @@
     </div>
     <div fxFlex=20 fxLayoutAlign="start center">
       <div *ngIf="show">
-        <button  matTooltip="list view" mat-button (click)="toggle()">
-          <mat-icon>view_agenda</mat-icon>
+        <button matTooltip="list view" mat-icon-button (click)="toggle()">
+          <mat-icon class="material-icons-outlined icon-spacer">view_agenda</mat-icon>
         </button>
       </div>
       <div *ngIf="!show">
-        <button matTooltip="grid view" mat-button (click)="toggle()">
-          
-          <mat-icon>border_all</mat-icon>
+        <button matTooltip="grid view" mat-icon-button (click)="toggle()">
+
+          <mat-icon class="material-icons-outlined icon-spacer">border_all</mat-icon>
         </button>
       </div>
       <div>
         <button mat-button (click)="displaycart()">
-          <mat-icon>shopping_cart</mat-icon>
+          <mat-icon class="material-icons-outlined icon-spacer">shopping_cart</mat-icon>
         </button>
       </div>
       <div>
         <button mat-button [matMenuTriggerFor]="belowMenu">
-          <!-- <mat-icon  >account_circle</mat-icon> -->
           <img mat-card-avatar [src]="url" class="avatar-img" height="20px" width="20px">
         </button> </div>
-
-
     </div>
   </mat-toolbar>
-  <!-- <button mat-menu-item *ngIf="!auth.isLoggednIn()" routerLink="/login">Login</button> -->
-
-
-
-
-
+  <mat-divider></mat-divider>
   <div>
+
     <div>
       <mat-drawer-container class="sidebar-container" autosize>
         <mat-drawer #drawer class="example-sidenav" mode="side" fxHide.xs="true" fxShow="true">
           <mat-nav-list>
-            <mat-list-item routerLinkActive="cd" (click)=displayNot()>
-              <mat-icon class="icon">note_add</mat-icon> <span class="labelname"> Notes</span>
+
+            <mat-list-item [routerLinkActive]="['active']" routerLink='/display-notes'>
+              <mat-icon class="material-icons-outlined icon-spacer">emoji_objects</mat-icon> <span class="labelname">
+                Notes</span>
             </mat-list-item>
-            <mat-list-item routerLink='.'>
-              <mat-icon class="icon">add_alert</mat-icon> <span class="labelname"> Reminders</span>
+
+            <mat-list-item [routerLinkActive]="['active']" routerLink='/Reminders'>
+              <mat-icon class="material-icons-outlined icon-spacer">notifications_none</mat-icon> <span
+                class="labelname"> Reminders</span>
             </mat-list-item>
 
 
@@ -62,24 +63,32 @@
 
             <mat-list-item (click)=openDialoglab()>
 
-              <mat-icon class="icon">create</mat-icon> <span class="labelname">Edit-Labels</span>
+              <mat-icon class="material-icons-outlined icon-spacer">create</mat-icon> <span
+                class="labelname">Edit-Labels</span>
             </mat-list-item>
 
-            <mat-list-item *ngFor="let label of labels ">
 
-              <mat-icon class="icon">label</mat-icon>
-              <span (click)="goToLabelData(label.label)" class="labelname">{{label.label}}</span>
+            <div >
+              <div *ngFor="let label of labels " style="padding-left: 15px" fxLayout="row" routerLinkActive="cd" routerLink="/label/{{label.label}}"  (click)=goToLabelData(label.label)>
+                <div style="padding-top: 15px">
+                  <i class="material-icons-outlined icon-spacer">label</i>
 
-            </mat-list-item>
+                </div>
+                <div class="not"> {{label.label}}</div>
+              </div>
+            </div>
+
 
             <mat-divider></mat-divider>
 
 
-            <mat-list-item (click)=displayArchive()>
-              <mat-icon class="icon">archive</mat-icon> <span class="labelname">Archive</span>
+            <mat-list-item [routerLinkActive]="['active']" routerLink='/archive'>
+              <mat-icon class="material-icons-outlined icon-spacer">archive</mat-icon> <span
+                class="labelname">Archive</span>
             </mat-list-item>
-            <mat-list-item (click)=displayTrash()>
-              <mat-icon class="icon">delete</mat-icon> <span class="labelname">Trash</span>
+            <mat-list-item [routerLinkActive]="['active']" routerLink='/trash'>
+              <mat-icon class="material-icons-outlined icon-spacer">delete</mat-icon> <span
+                class="labelname">Trash</span>
             </mat-list-item>
           </mat-nav-list>
         </mat-drawer>
@@ -90,6 +99,12 @@
       <router-outlet></router-outlet>
     </div>
   </div>
+
+
+
+
+
+
 
   <ng4-loading-spinner [threshold]="0" [timeout]="500" [loadingText]="'Please wait...'"> </ng4-loading-spinner>
 

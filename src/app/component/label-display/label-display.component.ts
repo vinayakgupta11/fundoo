@@ -17,20 +17,24 @@ export class LabelDisplayComponent implements OnInit {
   filteredRecords : any;
   component = "notesByLabel";
   TokenAuth:boolean= true;
+  value:any;
 
   ngOnInit() {
     this.getNotesByLabel();
-    this.dataSvc.currentMessage.subscribe((res:any)=>
+    this.dataSvc.labdisplay.subscribe((res:any)=>
+    { if(res!='save')
     {
+      this.value=res;
       this.getNotesByLabel();
+      res='save'
+    }
     })
   }
   
 getNotesByLabel() {
    
-  this.dataSvc.currentMessage.subscribe((res:any) => {
-   let data={
-    labelName: res
+  let data={
+    labelName: this.value
   }
   this.noteService.getNotesByLabel(data,this.TokenAuth).subscribe((response: any) => {
     this.notes = response.data.data;
@@ -39,8 +43,7 @@ getNotesByLabel() {
     this.notesByLabel.reverse();
   }, (error) => {
     console.log(error);
-  });
-});   
+  });  
 }
 
 filterData(data)

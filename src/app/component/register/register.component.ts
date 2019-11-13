@@ -4,6 +4,7 @@ import { User } from '../../models/register.model';
 import { TestService } from '../../services/user-services/User.service'
 import { tokenReference } from '@angular/compiler';
 import { DataService } from '../../services/data-services/data.service';
+import { MatSnackBar } from '@angular/material';
 
 
 @Component({
@@ -54,7 +55,7 @@ export class RegisterComponent implements OnInit {
     else
       return ("Password Matches")
   }
-  constructor(private svc: TestService, private datasvc: DataService) {
+  constructor(private svc: TestService, private datasvc: DataService, private _snackBar: MatSnackBar) {
   }
   ngOnInit() {
     this.datasvc.ServiceMessage.subscribe((res) => {
@@ -62,6 +63,11 @@ export class RegisterComponent implements OnInit {
       console.log('ff', this.service);
     })
     this.AddToCart();
+  }
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
   AddToCart() {
     
@@ -112,9 +118,14 @@ export class RegisterComponent implements OnInit {
     }
     this.result = this.svc.Register(obj, this.TokenAuth);
     this.result.subscribe((response) => {
+      this.openSnackBar('successfully registered',"Close");
       this.response = response;
       console.log(this.response);
-    })
+    },
+    (error)=>{
+      this.openSnackBar('not registered',"Close");
+      console.log(error);
+    });
   }
 
 }

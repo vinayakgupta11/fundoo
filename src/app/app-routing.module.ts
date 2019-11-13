@@ -14,6 +14,7 @@ import { LabelDisplayComponent } from './component/label-display/label-display.c
 import { QuesAnsComponent } from './component/ques-ans/ques-ans.component';
 import { SelectRegComponent } from './component/select-reg/select-reg.component';
 import { CartComponent } from './component/cart/cart.component';
+import { RemindersComponent } from './component/reminders/reminders.component';
 
 
 
@@ -32,6 +33,9 @@ const routes: Routes = [
     },
     {
       path:'trash', component:TrashComponent
+    },
+    {
+      path:'Reminders', component:RemindersComponent
     },
     {
       path:'archive', component:ArchiveComponent

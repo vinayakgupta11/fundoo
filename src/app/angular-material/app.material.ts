@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
-import {MatButtonModule,MatStepperModule,MatRadioModule,MatDialogModule,  MatTooltipModule,MatMenuModule,MatExpansionModule,MatListModule,MatFormFieldModule,MatInputModule,MatDividerModule,MatSliderModule,MatCardModule,MatIconModule,MatToolbarModule,MatSidenavModule} from '@angular/material';
+import {MatButtonModule,MatStepperModule,MatSnackBar,MatRadioModule,MatDialogModule,  MatTooltipModule,MatMenuModule,MatExpansionModule,MatListModule,MatFormFieldModule,MatInputModule,MatDividerModule,MatSliderModule,MatCardModule,MatIconModule,MatToolbarModule,MatSidenavModule} from '@angular/material';
 import {TextFieldModule} from '@angular/cdk/text-field';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 @NgModule({
 imports: [
 MatButtonModule,
@@ -12,7 +13,9 @@ MatCardModule,
 MatIconModule,
 MatToolbarModule,
 MatSidenavModule,
+MatSnackBarModule,
 MatListModule,
+MatSnackBarModule,
 MatExpansionModule,
 TextFieldModule,
 MatMenuModule,
@@ -33,6 +36,7 @@ MatSliderModule,
 MatCardModule,
 MatIconModule,
 MatToolbarModule,
+MatSnackBarModule,
 MatSidenavModule,
 MatListModule,
 MatExpansionModule,

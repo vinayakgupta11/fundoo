@@ -4,10 +4,15 @@
   margin: 10px;
   border: 1px solid #555;
 }
+.drawer
+{
+  background-color:red;
+}
 .sidebar-container
 {
     height: 90vh;
     width:100%;
+    
 }
 .maincontent
 {
@@ -16,29 +21,31 @@
 .example-sidenav
 {
     width:200px;
+    background-color:white;
+    .labelname {
+      padding: 0 0 0 32px;
+      font-family: 'Google Sans',Roboto,Arial,sans-serif;
+      font-size: .875rem;
+      font-weight: 500;
+    }
 }
 .container{
   height: 100%;
   width: 100%;
+  background-color:white
   
   
 }
-.labelname {
-  padding: 0 0 0 32px;
-  font-family: 'Google Sans',Roboto,Arial,sans-serif;
-  font-size: .875rem;
-  font-weight: 500;
-}
+
 .imag
 {
-    height: 60%;
-    width:4%;
-    padding-right: 7px;
+    height: 17%;
+    width:3.3%;
 }
 
 .style
 {
-  font-weight: bold;
+  
   font-variant: small-caps;
   padding-right: 10px;
 }
@@ -57,9 +64,6 @@
 {
   padding-right: 30px;
 }
-.icon{
-    padding-right: 5px;
-}
 .nitem
 {
   font-variant: small-caps;
@@ -74,16 +78,23 @@ width: 280px;
 }
 .not{
 
-padding-top: 30px;
-
-
-.cd { 
-  background-color: #feefc3;
-  opacity: 1 !important;
-  border-radius: 0px 25px 25px 0px; 
-outline: none;}
+padding-top: 15px;
+padding-left: 30px;
 
 }
+.mat-list-item.active{
+  background-color:#feefc3;
+  opacity: 1 !important;
+  border-radius: 0px 25px 25px 0px;
+  outline: none;
+}
+.cd{
+  background-color:#feefc3;
+  opacity: 1 !important;
+  border-radius: 0px 25px 25px 0px;
+  outline: none;
+}
+
 .avatar-image{
 height: 80px;
 width: 80px;

@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import {DataService} from '../../services/data-services/data.service'
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { MatSnackBar } from '@angular/material';
 
 
 @Component({
@@ -34,12 +35,16 @@ getEmailInvalidMessage() {
   }
 
 
-  constructor(private spinnerService: Ng4LoadingSpinnerService,private svc: TestService, private router:Router,private auth: AuthService, private datasvc: DataService) { }
+  constructor(private _snackBar: MatSnackBar,private spinnerService: Ng4LoadingSpinnerService,private svc: TestService, private router:Router,private auth: AuthService, private datasvc: DataService) { }
 
   ngOnInit() {
    
   }
-  
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
   
   onLogin() {
     this.spinnerService.show();
@@ -55,6 +60,7 @@ getEmailInvalidMessage() {
     this.result.subscribe((response) => {
       
       console.log(response);
+      this.openSnackBar('successfully login',"Close");
      // this.datasvc.changeMessage(response);
       localStorage.setItem('id',response.id);
       localStorage.setItem('email',response.email);
@@ -66,6 +72,7 @@ getEmailInvalidMessage() {
       this.router.navigate(['/display-notes']);
       this.spinnerService.hide();
     },(error)=>{
+      this.openSnackBar('Incorrect email or password',"Close");
       console.log(error);
     });
   }

@@ -49,6 +49,8 @@ export class DashboardComponent implements OnInit {
 {
   this.noteService.GetLabelList(this.TokenAuth).subscribe((response: any) => {
     this.labels = response.data.details;
+    console.log('line 52',this.labels);
+    
     
   }, (error) => {
     console.log(error);
@@ -112,8 +114,10 @@ onKeyUp(event: any) {
   
   goToLabelData(data)
   {
+    console.log('1117',data);
+    
     this.router.navigate(["/label/" + data]);
-    this.datasvc.changeMessage(data); 
+    this.datasvc.DisplayLab(data); 
   }
 
 
