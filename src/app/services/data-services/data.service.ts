@@ -47,8 +47,17 @@ export class DataService {
   private labdis = new BehaviorSubject('save');
   labdisplay = this.labdis.asObservable();
 
+  private Icondata = new BehaviorSubject('save');
+  Icondisplay = this. Icondata.asObservable();
+
+
 
   constructor() { }
+DisplayIcon(message:any)
+{
+  this.Icondata.next(message)
+}
+
   DisplayLab(message:any)
   {
     this.labdis.next(message)

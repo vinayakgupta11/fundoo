@@ -28,6 +28,8 @@ export class TestService {
     return this.svc.PostEncoded(this.getEncodedData(userObj.data), auth, 'user/reset-password')
   }
   Profile(userObj, auth) {
+   
+    
     return this.svc.PostImage(userObj.data, auth, 'user/uploadProfileImage')
   }
 

@@ -4,6 +4,8 @@ import { Color } from '../../models/color.models';
 import { NoteService } from '../../services/note-services/note.service';
 import { LabelNote } from '../../models/label.models';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
+
 
 @Component({
   selector: 'app-more',
@@ -28,7 +30,7 @@ export class MoreComponent implements OnInit {
 
   @Input() CardId: any;
 
-  constructor(private router: Router, private datasvc: DataService, private noteService: NoteService) { }
+  constructor(private _snackBar: MatSnackBar,private router: Router, private datasvc: DataService, private noteService: NoteService) { }
 
   ngOnInit() {
     //console.log('----',this.CardId);
@@ -57,7 +59,11 @@ export class MoreComponent implements OnInit {
 
     }
   }
-
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
 
   trashNote(card) {
     this.cardId = card.id;
@@ -70,16 +76,17 @@ export class MoreComponent implements OnInit {
     }
     this.noteService.TrashNote(this.options, this.TokenAuth).subscribe((response:any) => {
       // console.log(response);
+      this.openSnackBar('successfully trashed',"Close");
       this.datasvc. DialogMessArch(response.data)
       this.datasvc.changeMessage('save')
     }, (error) => {
+      this.openSnackBar('not trashed',"Close");
       console.log(error);
     });
   }
   NavigateToQuesAns(card) {
     this.router.navigate(['/questionAnswer/' + card.id]);
   }
-
   RestoreNotes(card) {
     this.cardId = card.id;
     this.user = {
@@ -89,14 +96,16 @@ export class MoreComponent implements OnInit {
     this.options = {
       data: this.user
     }
-    this.noteService.RestoreNote(this.options, this.TokenAuth).subscribe((response) => {
+    this.noteService.RestoreNote(this.options, this.TokenAuth).subscribe((response:any) => {
       this.datasvc.changeMessage('save')
+      this.datasvc. DialogMessArch(response.data)
+      this.openSnackBar(' restored successfully',"Close");
 
     }, (error) => {
+      this.openSnackBar('not restored',"Close");
       console.log(error);
     });
   }
-
   deleteNotesForever(card) {
     this.cardId = card.id;
     this.user = {
@@ -106,22 +115,22 @@ export class MoreComponent implements OnInit {
     this.options = {
       data: this.user
     }
-    this.noteService.DeleteForever(this.options, this.TokenAuth).subscribe((response) => {
+    this.noteService.DeleteForever(this.options, this.TokenAuth).subscribe((response:any) => {
       console.log(response);
+      this.openSnackBar(' deleted successfully',"Close");
+      this.datasvc. DialogMessArch(response.data)
       this.datasvc.changeMessage('save')
     }, (error) => {
       console.log(error);
+      this.openSnackBar(' NOt deleted ',"Close");
     });
   }
-
   GetLabelList() {
     this.noteService.GetLabelList(this.TokenAuth).subscribe((response: any) => {
       this.labels = response.data.details;
-
     }, (error) => {
       console.log(error);
     });
-
   }
   GetNoteDetails(card) {
     let options = {
@@ -129,16 +138,12 @@ export class MoreComponent implements OnInit {
     }
     this.noteService.GetNoteDetailss(options, this.TokenAuth).subscribe((response: any) => {
       this.datasvc.DialogMess(response.data.data);
-
     }, (error) => {
       console.log(error);
     });
-
   }
-
   onOpenAddLabel(labelId) {
     console.log('ssssssss', labelId);
-    
       this.label = {
         labelId: labelId.id,
         noteId: this.CardId.id
@@ -147,19 +152,13 @@ export class MoreComponent implements OnInit {
         data: this.label
       }
       this.noteService.addLabelToNotes(this.options, this.TokenAuth).subscribe((response: any) => {
-        // console.log(response);
         this.GetNoteDetails(this.CardId.id)
         this.datasvc.changeMessage('save')
-        //this.messageEvent.emit(this.messageLabels);
       }, (error) => {
         console.log(error);
       });
-    
-    
   }
-
   onOpenAddLabelNotes(labelId) {
-  //  console.log('ssssssssssssssssssssssssssssssss', labelId);
     this.datasvc.LabelListNotes(labelId)
   }
 }

@@ -17,7 +17,7 @@ export class DialogueComponent implements OnInit {
   @Input() TypeIcon: any;
   TokenAuth: boolean = true;
   options:any
-  DialogueIcon='true';
+  DialogueIcon:any;
   result: any;
   text = new FormControl;
   response: any;
@@ -57,6 +57,12 @@ export class DialogueComponent implements OnInit {
         this.dialogRef.close();
         res='save';
       }
+    })
+
+    this.dataSvc.Icondisplay.subscribe((res:any)=>
+    {
+      this.DialogueIcon=res;
+
     })
   }
   AddCheckList(noteId) {

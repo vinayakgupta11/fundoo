@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NoteService } from 'src/app/services/note-services/note.service';
 import { MatDialog } from '@angular/material';
 import { DataService } from 'src/app/services/data-services/data.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-label-display',
@@ -10,7 +11,7 @@ import { DataService } from 'src/app/services/data-services/data.service';
 })
 export class LabelDisplayComponent implements OnInit {
 
-  constructor(private  noteService: NoteService,private dialog : MatDialog,private dataSvc:DataService) { }
+  constructor(private route : ActivatedRoute,private  noteService: NoteService,private dialog : MatDialog,private dataSvc:DataService) { }
   @Input() labelName : any;
   notes : any;
   notesByLabel : any;
@@ -20,6 +21,10 @@ export class LabelDisplayComponent implements OnInit {
   value:any;
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.value = params['label'];
+      this.getNotesByLabel();
+      });
     this.getNotesByLabel();
     this.dataSvc.labdisplay.subscribe((res:any)=>
     { if(res!='save')

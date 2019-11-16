@@ -23,6 +23,7 @@ export class TrashComponent implements OnInit {
   constructor(private noteService: NoteService, private dialog: MatDialog, private datasvc: DataService) { }
 
   ngOnInit() {
+    this.SendData();
     this.getTrashNote();
     this.datasvc.currentMessage.subscribe((res) => {
       this.getTrashNote();
@@ -43,6 +44,10 @@ export class TrashComponent implements OnInit {
     dialogref.afterClosed().subscribe(result => {
       console.log("dialog result ", result);
     })
+  }
+  SendData()
+  {
+    this.datasvc.DisplayIcon(this.component);
   }
 
   getTrashNote() {

@@ -34,9 +34,10 @@ export class UnarchiveIconComponent implements OnInit {
   this.options={
     data: this.user
   }
-  this.noteService.UnArchiveNote(this.options,this.TokenAuth).subscribe((response) => {
+  this.noteService.UnArchiveNote(this.options,this.TokenAuth).subscribe((response:any) => {
     console.log(response);
     this.datasvc.changeMessage('save')
+    this.datasvc. DialogMessArch(response.data)
     //this.messageEvent.emit(this.message)
   }, (error) => {
     console.log(error);

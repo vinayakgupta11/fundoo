@@ -18,11 +18,16 @@ export class RemindersComponent implements OnInit {
   constructor(private noteService: NoteService, private dialog: MatDialog, private datasvc: DataService) { }
 
   ngOnInit() {
+    this.SendData();
     this.GetReminder();
     this.datasvc.currentMessage.subscribe((res) => {
       this.GetReminder();
     })
    
+  }
+  SendData()
+  {
+    this.datasvc.DisplayIcon(this.component);
   }
   openDialog(note) {
     console.log("the value of note is ", note);

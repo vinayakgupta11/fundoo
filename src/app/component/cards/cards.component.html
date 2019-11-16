@@ -1,5 +1,6 @@
-<div *ngIf="!viewVal" class="container" fxLayout="row wrap">
-  <mat-card fxFlex="30" fxFlex.sm=100 fxFlex.xs=100 style="height: 100%" *ngFor="let note of display " class="card"
+<ngx-masonry >
+<div   *ngIf="!viewVal" class="container" fxLayout="row wrap">
+  <mat-card fxFlex="250px" ngxMasonryItem fxFlex.sm=100 fxFlex.xs=100 style="height: fit-content" *ngFor="let note of display " class="card"
     fxLayout="column" [ngStyle]="{background:note.color}" (click)=getNotesId(notes) fxLayoutAlign="start start">
     <div (click)="openDialog(note)" class="no">
 
@@ -69,6 +70,7 @@
     </div>
   </mat-card>
 </div>
+</ngx-masonry>
 
 
 <div *ngIf="viewVal" class="container" fxLayout="row wrap">

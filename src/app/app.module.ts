@@ -55,6 +55,7 @@ import { SelectRegComponent } from './component/select-reg/select-reg.component'
 import { CartComponent } from './component/cart/cart.component';
 import { BarRatingModule } from "ngx-bar-rating";
 import { LikeComponent } from './component/like/like.component';
+import { NgxMasonryModule } from 'ngx-masonry'
 
 
 @NgModule({
@@ -97,6 +98,7 @@ import { LikeComponent } from './component/like/like.component';
   entryComponents: [DialogueComponent, UploadImageComponent, LabelsComponent, CollabComponent],
   imports: [
     BarRatingModule,
+    NgxMasonryModule,
     AngularEditorModule,
     OwlDateTimeModule, OwlNativeDateTimeModule ,
     MatAutocompleteModule,

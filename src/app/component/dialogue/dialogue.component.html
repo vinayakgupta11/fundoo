@@ -1,5 +1,5 @@
-<div fxLayout="column" fxLayoutGap="10px" [ngStyle]="{background:data.color}">
-  <textarea matInput type="text" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+<div fxLayout="column" fxLayoutGap="10px" [ngStyle]="{background:data.color}" style="padding: 15px">
+  <textarea  matInput type="text" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
     cdkAutosizeMaxRows="25" class="text" placeholder="Title" [formControl]="title" value="{{data.title}}"></textarea>
   <textarea matInput type="text" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
     cdkAutosizeMaxRows="25" class="text" placeholder="Take a Note" [formControl]="description"
@@ -8,6 +8,7 @@
     <mat-icon>add</mat-icon><textarea placeholder="Add item" [formControl]="text" [(ngModel)]="EmptyText"></textarea>
     <button (click)=AddCheckList(data.id)>add</button>
   </div>
+
   <div *ngIf="data.reminder.length>0 && !NoteVal">
     <mat-chip-list>
       <mat-chip class="matChip">
@@ -55,6 +56,7 @@
       </div>
     </div>
   </div>
+  
   <div *ngFor="let dial of NoteVal">
     <div *ngIf="dial.reminder.length>0 && data.id==dial.id">
       <mat-chip-list>
@@ -104,7 +106,7 @@
       </div>
     </div>
   </div>
-  <div fxLayout="row" fxLayoutAlign="start start" style="width: 100%">
+  <div fxLayout="row" fxLayoutAlign="space-between center" style="width: 100%">
     <app-icon-tray [show]="DialogueIcon" [card]=data> </app-icon-tray>
     <button mat-button (click)=" updateNote()">Close</button>
   </div>

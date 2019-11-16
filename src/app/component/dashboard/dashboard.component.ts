@@ -23,6 +23,7 @@ export class DashboardComponent implements OnInit {
   TokenAuth:boolean= true;
   labels:any;
   show: boolean = true;
+  
 
   constructor(private spinnerService: Ng4LoadingSpinnerService,private auth:AuthService,private  noteService: NoteService,  private router:Router,private dialog : MatDialog,private datasvc:DataService) { }
   email= localStorage.getItem('email');

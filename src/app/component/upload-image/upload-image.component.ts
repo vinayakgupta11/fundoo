@@ -33,6 +33,8 @@ export class UploadImageComponent implements OnInit {
     console.log('event------------', event);
     
     this.croppedImage =event.file;
+    console.log('checkkkkkkkkkkk',this.croppedImage);
+    
 }
 changedp()
   {
@@ -41,6 +43,8 @@ changedp()
     let obj={
       data: fd,
     }
+    console.log('dsddddddddddddd',obj);
+    
     this.dialogRef.close();
     this.testService.Profile(obj,this.TokenAuth).subscribe((response:any)=>
     {

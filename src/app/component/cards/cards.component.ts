@@ -6,7 +6,7 @@ import { DialogueComponent } from '../dialogue/dialogue.component'
 import { MatDialog } from '@angular/material';
 import { Remind } from '../../models/remind.models';
 import { FormControl } from '@angular/forms';
-
+import { NgxMasonryOptions } from 'ngx-masonry';
 
 
 @Component({
@@ -15,6 +15,9 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./cards.component.scss']
 })
 export class CardsComponent implements OnInit {
+  public myOptions: NgxMasonryOptions = {
+		transitionDuration: '0.8s'
+	};
   @Input() display: any;
   @Input() TypeIcon: any;
   DialogueIcon: any;

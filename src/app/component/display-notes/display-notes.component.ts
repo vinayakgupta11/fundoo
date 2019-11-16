@@ -23,6 +23,7 @@ export class DisplayNotesComponent implements OnInit {
   constructor(private noteService: NoteService, private data: DataService) { }
 
   ngOnInit() {
+    this.SendData();
     this.getNote()
     this.data.currentMessage.subscribe((res) => {
         this.getNote();
@@ -38,6 +39,10 @@ export class DisplayNotesComponent implements OnInit {
     }, (error) => {
       console.log(error);
     });
+  }
+  SendData()
+  {
+    this.data.DisplayIcon(this.component);
   }
 
   FilterTrash(notes) {
