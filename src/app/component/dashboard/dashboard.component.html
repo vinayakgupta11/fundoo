@@ -44,7 +44,7 @@
 
     <div>
       <mat-drawer-container class="sidebar-container" autosize>
-        <mat-drawer #drawer class="example-sidenav" mode="side" fxHide.xs="true" fxShow="true">
+        <mat-drawer #drawer (openedChange)="onOpenedChange($event)"  class="example-sidenav" mode="side" fxHide.xs="true" fxShow="true">
           <mat-nav-list>
 
             <mat-list-item [routerLinkActive]="['active']" routerLink='/display-notes'>
@@ -95,7 +95,14 @@
       </mat-drawer-container>
     </div>
 
-    <div fxFlex="80" class="maincontent" fxFlex.xs=100 fxFlex.sm=100>
+    <!-- <div [ngClass]="(!drawerVal)?'drawerClose':'drawerOpen'" fxFlex.xs=100 fxFlex.sm=100>
+      <router-outlet></router-outlet>
+    </div> -->
+    <div *ngIf="!drawerVal" fxFlex=100 class="drawerClose" fxFlex.xs=100 fxFlex.sm=100>
+      <router-outlet></router-outlet>
+    </div>
+
+    <div *ngIf="drawerVal" fxFlex=80 class="drawerOpen" fxFlex.xs=100 fxFlex.sm=100>
       <router-outlet></router-outlet>
     </div>
   </div>

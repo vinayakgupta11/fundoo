@@ -36,4 +36,16 @@
       margin-right: 0px;
       transform: scaleX(0.95) scaleY(0.95);
     }
-    .masonry-item { width: 200px; }
+   .gridview
+   {
+    display: flex;
+    border-radius: 10px;
+    min-width: 25%;
+   }
+
+   .listview
+   {
+    display: flex;
+    border-radius: 10px;
+     min-width: 100%;
+   }

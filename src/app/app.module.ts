@@ -55,7 +55,8 @@ import { SelectRegComponent } from './component/select-reg/select-reg.component'
 import { CartComponent } from './component/cart/cart.component';
 import { BarRatingModule } from "ngx-bar-rating";
 import { LikeComponent } from './component/like/like.component';
-import { NgxMasonryModule } from 'ngx-masonry'
+import { NgxMasonryModule } from 'ngx-masonry';
+import { CartDialogueComponent } from './component/cart-dialogue/cart-dialogue.component'
 
 
 @NgModule({
@@ -93,9 +94,10 @@ import { NgxMasonryModule } from 'ngx-masonry'
     SelectRegComponent,
     CartComponent,
     LikeComponent,
+    CartDialogueComponent,
 
   ],
-  entryComponents: [DialogueComponent, UploadImageComponent, LabelsComponent, CollabComponent],
+  entryComponents: [DialogueComponent, UploadImageComponent, LabelsComponent, CollabComponent,CartDialogueComponent],
   imports: [
     BarRatingModule,
     NgxMasonryModule,

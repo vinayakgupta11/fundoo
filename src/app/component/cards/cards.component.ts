@@ -15,9 +15,7 @@ import { NgxMasonryOptions } from 'ngx-masonry';
   styleUrls: ['./cards.component.scss']
 })
 export class CardsComponent implements OnInit {
-  public myOptions: NgxMasonryOptions = {
-		transitionDuration: '0.8s'
-	};
+  
   @Input() display: any;
   @Input() TypeIcon: any;
   DialogueIcon: any;
@@ -30,15 +28,17 @@ export class CardsComponent implements OnInit {
   userr: Remind
   public noteSelected;
   cardId: any;
-  viewVal: any;
+  viewVal: any
   ShowCheckList: any;
   EmptyText: any;
   CheckListId: any;
   constructor(private svc: NoteService, private datasvc: DataService, private dialog: MatDialog) { }
   ngOnInit() {
     this.datasvc.currentMessage.subscribe(message => this.message = message)
-    this.datasvc.ViewMessage.subscribe((res) => {
+    this.datasvc.ViewMessage.subscribe((res:any) => {
       this.viewVal = res;
+      console.log('dddddddddd',this.viewVal);
+      
     })
     this.datasvc.ChecklistMessage.subscribe((res: any) => {
       this.CheckListId = res.id;

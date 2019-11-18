@@ -19,7 +19,7 @@ import { RemindersComponent } from './component/reminders/reminders.component';
 
 
 const routes: Routes = [
-  {path:'', redirectTo:'/login',pathMatch:'full'},
+  {path:'', redirectTo:'/SelectReg',pathMatch:'full'},
   
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -51,7 +51,7 @@ const routes: Routes = [
   ]
 },
   { path: 'resetpassword/:id', component: ResetComponent },
-  {path:'**', redirectTo:'/login'},
+  {path:'**', redirectTo:'/SelectReg'},
   
   
 ];
