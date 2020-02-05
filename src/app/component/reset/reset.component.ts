@@ -14,6 +14,7 @@ export class ResetComponent implements OnInit {
   userObj: User = new User();
   result:any;
   response: any;
+  public hide = true;
   public password = new FormControl('', [Validators.required, Validators.minLength(8)])
 public confirmPassword = new FormControl('', [Validators.required, Validators.minLength(8)]);
 getPasswordInvalidMessage() {

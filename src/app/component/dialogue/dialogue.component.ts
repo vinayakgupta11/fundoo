@@ -31,7 +31,7 @@ export class DialogueComponent implements OnInit {
   message:any;
   
 
-  constructor(@Inject(MAT_DIALOG_DATA) private data: any,private svc: NoteService,private dataSvc:DataService, private dialogRef: MatDialogRef< DisplayNotesComponent>){}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,private svc: NoteService,private dataSvc:DataService, private dialogRef: MatDialogRef< DisplayNotesComponent>){}
   ngOnInit() {
     
     this.dataSvc.ChecklistMessage.subscribe((res: any) => {

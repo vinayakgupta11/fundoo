@@ -26,7 +26,7 @@ export class DashboardComponent implements OnInit {
   show: boolean = false;
 
 
-  constructor(private spinnerService: Ng4LoadingSpinnerService, private auth: AuthService, private noteService: NoteService, private router: Router, private dialog: MatDialog, private datasvc: DataService) { }
+  constructor(private spinnerService: Ng4LoadingSpinnerService, public auth: AuthService, private noteService: NoteService, private router: Router, private dialog: MatDialog, private datasvc: DataService) { }
   email = localStorage.getItem('email');
   firstName = localStorage.getItem('firstName');
   lastName = localStorage.getItem('lastName');

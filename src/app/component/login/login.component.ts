@@ -17,6 +17,7 @@ import { MatSnackBar } from '@angular/material';
 export class LoginComponent implements OnInit {
   result:any;
   TokenAuth:boolean= false;
+  public hide = true;
   
   userObj: User = new User();
   public email = new FormControl('', [Validators.required, Validators.email]);

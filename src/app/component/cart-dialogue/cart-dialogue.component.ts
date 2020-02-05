@@ -12,7 +12,7 @@ import { RegisterComponent } from '../register/register.component';
 })
 export class CartDialogueComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) private data,private datasvc: DataService,private router:Router,private dialogRef: MatDialogRef< RegisterComponent>) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data,private datasvc: DataService,private router:Router,private dialogRef: MatDialogRef< RegisterComponent>) { }
 
   ngOnInit() {
     console.log(this.data);

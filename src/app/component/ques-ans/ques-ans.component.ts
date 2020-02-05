@@ -131,6 +131,8 @@ export class QuesAnsComponent implements OnInit {
       this.likeDetails = response.data.data[0].questionAndAnswerNotes;
 
       this.questionAnsLength = this.notedetails[0].questionAndAnswerNotes.length;
+      console.log('111', typeof(this.questionAnsLength));
+      
       this.datasvc.AskQuestion(this.questionAnsLength);
       console.log('notedetails', this.notedetails);
      // console.log('----------', this.likeDetails);
